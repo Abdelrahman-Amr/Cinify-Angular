@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -63,7 +64,8 @@
               "browserTarget": "clinify-front:build:production"
             },
             "development": {
-              "browserTarget": "clinify-front:build:development"
+              "browserTarget": "clinify-front:build:development",
+              "open": true
             }
           },
           "defaultConfiguration": "development"
@@ -94,5 +96,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
