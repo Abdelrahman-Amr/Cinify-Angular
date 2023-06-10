@@ -10,6 +10,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import { HeaderComponent } from '../shared/components/header/header.component';
+import { FooterComponent } from '../shared/components/footer/footer.component';
+import { ClinicSearchComponent } from './components/clinic-search/clinic-search.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -17,6 +21,7 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
   declarations: [
     ClientHomeComponent,
     ClientLoginComponent,
+    ClinicSearchComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +35,8 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
     RouterLink,
     RouterOutlet,
     MatSnackBarModule,
+    SharedModule
+  
   ]
 })
 export class ClientModule { }
