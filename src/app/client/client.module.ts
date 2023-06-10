@@ -14,6 +14,8 @@ import { HeaderComponent } from '../shared/components/header/header.component';
 import { FooterComponent } from '../shared/components/footer/footer.component';
 import { ClinicSearchComponent } from './components/clinic-search/clinic-search.component';
 import { SharedModule } from '../shared/shared.module';
+import { SpecialtiesComponent } from './components/client-home/specialties/specialties.component';
+import { FeaturesComponent } from './components/client-home/features/features.component';
 
 
 
@@ -21,7 +23,9 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     ClientHomeComponent,
     ClientLoginComponent,
-    ClinicSearchComponent
+    ClinicSearchComponent,
+    SpecialtiesComponent,
+    FeaturesComponent
   ],
   imports: [
     CommonModule,
