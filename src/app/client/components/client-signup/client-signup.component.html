@@ -1,0 +1,67 @@
+<div class="login-page">
+  <div class="login">
+    <div class="container">
+      <div class="col-12 header">
+        <h2 >SignUp</h2>
+      </div>
+
+      <div class="example-form row "  [formGroup]="signupForm">
+
+        <mat-form-field appearance="outline" class="col-12">
+          <mat-label>Name</mat-label>
+          <input  matInput name="name" required type="text" [formControlName]="'name'">
+          <mat-error *ngIf="signupForm.controls['name'].errors?.['required']">Required</mat-error>
+          <mat-error *ngIf="signupForm.controls['name'].errors?.['minlength']">Min Length = 5</mat-error>
+          <mat-error *ngIf="signupForm.controls['name'].errors?.['maxlength']">Max Length = 30</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-12">
+          <mat-label>Phone</mat-label>
+          <input  matInput name="phone" required type="tel" [formControlName]="'phone'">
+          <mat-error *ngIf="signupForm.controls['phone'].errors?.['required']">Required</mat-error>
+          <mat-error *ngIf="signupForm.controls['phone'].errors?.['pattern']">Invalid Phone</mat-error>
+        </mat-form-field>
+
+        <mat-form-field   appearance="outline" class="col-md-12">
+          <mat-label>DOB</mat-label>
+          <input  matInput [matDatepicker]="picker" name="dob" required  [formControlName]="'dob'">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="signupForm.controls['dob'].errors?.['required']">Required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-12">
+          <mat-label>Password</mat-label>
+          <input   matInput name="Password" required
+                   type="password" [formControlName]="'password'">
+          <mat-error *ngIf="signupForm.controls['password'].errors?.['required']">Required</mat-error>
+          <mat-error *ngIf="signupForm.controls['password'].errors?.['minlength']">MinLength = 5</mat-error>
+          <mat-error *ngIf="signupForm.controls['password'].errors?.['maxlength']">MaxLength = 30</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-12">
+          <mat-label>Confirm Password</mat-label>
+          <input   matInput name="confirmPassword" required
+                   type="password" formControlName="confirmPassword"
+                   >
+          <mat-error *ngIf="signupForm.controls['confirmPassword'].errors?.['required']">Required</mat-error>
+          <mat-error *ngIf="signupForm.controls['confirmPassword'].errors?.['minlength']">Min Length = 5</mat-error>
+          <mat-error *ngIf="signupForm.controls['confirmPassword'].errors?.['maxlength']">Max Length = 30</mat-error>
+          <mat-error *ngIf="signupForm.controls['confirmPassword'].errors?.['passwordMismatch']">Password Mismatch</mat-error>
+
+        </mat-form-field>
+
+        <div class="row">
+          <button (click)="login()" mat-raised-button color="primary" class="col-4 offset-4"
+                  [disabled]="!signupForm.valid"  >SignUp</button>
+        </div>
+
+        <div class="row">
+          <a routerLink="/login" class=" col-4 offset-4 2">Login!</a>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

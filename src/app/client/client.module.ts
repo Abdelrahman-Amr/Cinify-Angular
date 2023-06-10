@@ -10,6 +10,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import { ClientSignupComponent } from './components/client-signup/client-signup.component';
+import {MatDatepickerActions, MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 
 
@@ -17,6 +20,7 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
   declarations: [
     ClientHomeComponent,
     ClientLoginComponent,
+    ClientSignupComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +34,10 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
     RouterLink,
     RouterOutlet,
     MatSnackBarModule,
-  ]
+    MatDatepickerModule,
+    MatNativeDateModule
+
+  ],
+  providers:[MatDatepickerModule]
 })
 export class ClientModule { }

@@ -17,8 +17,8 @@
           <input   matInput name="Password" required
                  type="password" [formControlName]="'password'">
           <mat-error *ngIf="loginForm.controls['password'].errors?.['required']">Required</mat-error>
-          <mat-error *ngIf="loginForm.controls['password'].errors?.['minlength']">Minimum Length = 5</mat-error>
-          <mat-error *ngIf="loginForm.controls['password'].errors?.['maxlength']">Maximum Length = 30</mat-error>
+          <mat-error *ngIf="loginForm.controls['password'].errors?.['minlength']">Min Length = 5</mat-error>
+          <mat-error *ngIf="loginForm.controls['password'].errors?.['maxlength']">MaxLength = 30</mat-error>
 
 
         </mat-form-field>
@@ -29,7 +29,7 @@
         </div>
 
         <div class="row">
-             <a routerLink="" class=" col-4 offset-4 2">SignUp!</a>
+             <a routerLink="/signup" class=" col-4 offset-4 2">SignUp!</a>
         </div>
 
 

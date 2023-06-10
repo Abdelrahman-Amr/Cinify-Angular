@@ -34,7 +34,7 @@ export class ClientLoginComponent implements OnInit{
     Swal.fire({
       // position: 'top-end',
       icon: 'success',
-      text:"Logged in Success",
+      text:"Logged in Successfully",
       title: 'Success',
       showConfirmButton: false,
       timer: 1500,
