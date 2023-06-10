@@ -33,3 +33,24 @@ $clinify-front-theme: mat.define-light-theme((
 // that you are using.
 @include mat.all-component-themes($clinify-front-theme);
 
+.success-snackbar {
+  color: white;
+  --mdc-snackbar-container-color: #00cc00;
+  text-align: center;
+
+  .mat-simple-snackbar-action {
+    color: white;
+  }
+}
+
+.error-snackbar {
+  //max-width: max-content !important;
+  color: white;
+  --mdc-snackbar-container-color: #e60000;
+  text-align: center;
+  //border-color: #f5c6cb;
+
+  .mat-simple-snackbar-action {
+    color: white;
+  }
+}

@@ -9,6 +9,7 @@ import { ClientLoginComponent } from './components/client-login/client-login.com
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {RouterLink, RouterOutlet} from "@angular/router";
+import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 
@@ -27,7 +28,8 @@ import {RouterLink, RouterOutlet} from "@angular/router";
     FormsModule,
     MatInputModule,
     RouterLink,
-    RouterOutlet
+    RouterOutlet,
+    MatSnackBarModule,
   ]
 })
 export class ClientModule { }

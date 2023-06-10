@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Constants} from "../../../shared/constatnts";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import Swal from "sweetalert2";
+
 
 @Component({
   selector: 'app-client-login',
@@ -11,7 +14,7 @@ export class ClientLoginComponent implements OnInit{
 
   loginForm:FormGroup;
 
-  constructor(private  formBuilder:FormBuilder) {
+  constructor(private  formBuilder:FormBuilder,  private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -24,9 +27,20 @@ export class ClientLoginComponent implements OnInit{
 
   login(){
     if(this.loginForm.valid){
-      alert(JSON.stringify(this.loginForm.value));
+      this.success();
     }
   }
-
+  success(){
+    Swal.fire({
+      // position: 'top-end',
+      icon: 'success',
+      text:"Logged in Success",
+      title: 'Success',
+      showConfirmButton: false,
+      timer: 1500,
+      toast:true,
+      iconColor:'#00bcd4',
+    });
+  }
 
 }

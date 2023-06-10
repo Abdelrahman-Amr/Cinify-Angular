@@ -22,12 +22,16 @@
 
 
         </mat-form-field>
-        <div class="row ">
-          <button (click)="login()" mat-raised-button color="primary"
-                  [disabled]="!loginForm.valid"  >Login</button>
 
-          <a routerLink="" class=" col-4-offset-4">SignUp!</a>
+        <div class="row">
+             <button (click)="login()" mat-raised-button color="primary" class="col-4 offset-4"
+                  [disabled]="!loginForm.valid"  >Login</button>
         </div>
+
+        <div class="row">
+             <a routerLink="" class=" col-4 offset-4 2">SignUp!</a>
+        </div>
+
 
       </div>
     </div>
