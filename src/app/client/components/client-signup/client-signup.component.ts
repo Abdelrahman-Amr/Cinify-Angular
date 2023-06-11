@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
   styleUrls: ['./client-signup.component.css']
 })
 export class ClientSignupComponent  implements OnInit{
-
+  cities=['Giza', 'Cairo']
   signupForm:FormGroup;
 
   constructor(private  formBuilder:FormBuilder) {
@@ -23,12 +23,20 @@ export class ClientSignupComponent  implements OnInit{
       phone:['', [Validators.required, Validators.pattern(Constants.DIGITS_ONLY_11)]],
 
       dob:['', [Validators.required]],
+      city:['', Validators.required],
+      area:['', [Validators.required, Validators.minLength(3),
+        Validators.maxLength(30)]],
+
+      address:['', [Validators.required, Validators.minLength(3),
+        Validators.maxLength(30)]],
+
+      email:['', [Validators.required, Validators.pattern(Constants.EMAIL)]],
 
       password:['',[Validators.required,Validators.minLength(5),
         Validators.maxLength(30)]],
 
-      confirmPassword:['', [Validators.required,Validators.minLength(5),
-        Validators.maxLength(30),this.passwordMatchValidator.bind(this)]]
+      gender:['male',[Validators.required]],
+
     });
   }
 
@@ -49,15 +57,6 @@ export class ClientSignupComponent  implements OnInit{
       iconColor:'#00bcd4',
     });
   }
-  passwordMatchValidator(control: AbstractControl):{[s:string]:boolean} | null {
 
-    const password = this.signupForm?.controls['password'].value;
-    const confirmPassword = control.value;
-    if (password !== confirmPassword) {
-      return { 'passwordMismatch': true };
-    } else {
-      return null;
-    }
-  }
 
 }
