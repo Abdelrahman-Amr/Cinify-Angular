@@ -54,9 +54,6 @@ button:hover {
   transition: all 0.2s;
   color: #000;
 }
-button:disabled{
-  cursor: not-allowed;
-}
 
 .login-page .login p {
   margin-top: 20px;
@@ -90,6 +87,4 @@ mat-form-field{
 }
 
 
-.fail-snackbar{
-  background-color: red;
-}
+

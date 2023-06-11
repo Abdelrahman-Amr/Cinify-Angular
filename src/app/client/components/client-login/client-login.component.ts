@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Constants} from "../../../shared/constatnts";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import Swal from "sweetalert2";
@@ -19,17 +19,24 @@ export class ClientLoginComponent implements OnInit{
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      phone:['', Validators.compose([Validators.required, Validators.pattern(Constants.DIGITS_ONLY_11)])],
-      password:['',Validators.compose([Validators.required,Validators.minLength(5),
-        Validators.maxLength(30)])]
+      emailOrMobileNumber:['', [Validators.required, this.validateEmailOrMobileNumber]],
+      password:['',[Validators.required,Validators.minLength(5),
+        Validators.maxLength(30)]]
     });
   }
 
   login(){
     if(this.loginForm.valid){
       this.success();
+      const emailOrMobileNumber = this.loginForm.controls['emailOrMobileNumber'].value;
+      if (emailOrMobileNumber.match(Constants.EMAIL)){
+        //login by email request
+      }else if(emailOrMobileNumber.match(Constants.DIGITS_ONLY_11)){
+        //login by mobileNumber request
+      }
     }
   }
+
   success(){
     Swal.fire({
       // position: 'top-end',
@@ -41,6 +48,17 @@ export class ClientLoginComponent implements OnInit{
       toast:true,
       iconColor:'#00bcd4',
     });
+  }
+
+  validateEmailOrMobileNumber(control:AbstractControl):{[s:string]:boolean} | null{
+    const emailOrMobileNumber = control.value;
+
+    if (emailOrMobileNumber.length==0  ||emailOrMobileNumber.match(Constants.EMAIL) ||
+      emailOrMobileNumber.match(Constants.DIGITS_ONLY_11) ){
+      return null;
+    } else {
+      return {"emailOrMobileNumber": true};
+    }
   }
 
 }

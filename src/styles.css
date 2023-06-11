@@ -4,4 +4,9 @@
   --main-color: #00bcd4;
   --secondary-color: #03a9f4
 }
-
+/*::ng-deep .mdc-text-field--invalid {*/
+/*  color:red;*/
+/*}*/
+/*::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-required-marker {*/
+/*  color: red;*/
+/*}*/

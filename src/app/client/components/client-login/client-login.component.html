@@ -7,10 +7,11 @@
 
       <div class="example-form row "  [formGroup]="loginForm">
         <mat-form-field appearance="outline" class="col-12">
-          <mat-label>Mobile Number</mat-label>
-          <input  matInput name="phone" required type="tel" [formControlName]="'phone'">
-          <mat-error *ngIf="loginForm.controls['phone'].errors?.['required']">Required</mat-error>
-          <mat-error *ngIf="loginForm.controls['phone'].errors?.['pattern']">Invalid Number</mat-error>
+          <mat-label>Email or Mobile Number</mat-label>
+          <input  matInput name="phone" required type="tel" [formControlName]="'emailOrMobileNumber'">
+          <mat-error *ngIf="loginForm.controls['emailOrMobileNumber'].errors?.['required']">Required</mat-error>
+          <mat-error *ngIf="loginForm.controls['emailOrMobileNumber'].errors?.['emailOrMobileNumber']">Invalid</mat-error>
+
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-12">
           <mat-label>Password</mat-label>
