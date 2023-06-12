@@ -42,7 +42,6 @@ export class ClinicSignupComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-
     this.signupForm.controls['city'].valueChanges.subscribe(value => {
       this.signupForm.controls['area'].enable();
     });
