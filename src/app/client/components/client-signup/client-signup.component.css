@@ -1,3 +1,4 @@
+
 .login-page .login {
   margin: 20px auto 20px auto;
   padding: 1em;
@@ -33,12 +34,12 @@
     margin-bottom: 2px
   }
 }
-/*.login-page .login input{*/
-/*  border: none;*/
-/*  border-bottom: 1px solid #003147;*/
-/*  outline: none;*/
-/*  box-shadow: none;*/
-/*}*/
+.login-page .login input{
+  border: none;
+  border-bottom: 1px solid #003147;
+  outline: none;
+  box-shadow: none;
+}
 
 button{
   min-width: 110px;
@@ -53,6 +54,9 @@ button:hover {
   border: 1px solid var(--main-color);
   transition: all 0.2s;
   color: #000;
+}
+button:disabled{
+  cursor: not-allowed;
 }
 
 .login-page .login p {
@@ -87,4 +91,6 @@ mat-form-field{
 }
 
 
-
+.fail-snackbar{
+  background-color: red;
+}
