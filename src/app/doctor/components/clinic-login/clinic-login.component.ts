@@ -3,13 +3,12 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/form
 import {Constants} from "../../../shared/constatnts";
 import Swal from "sweetalert2";
 
-
 @Component({
-  selector: 'app-client-login',
-  templateUrl: './client-login.component.html',
-  styleUrls: ['./client-login.component.css']
+  selector: 'app-clinic-login',
+  templateUrl: './clinic-login.component.html',
+  styleUrls: ['./clinic-login.component.css']
 })
-export class ClientLoginComponent implements OnInit{
+export class ClinicLoginComponent implements OnInit{
 
   loginForm:FormGroup;
 
@@ -18,7 +17,7 @@ export class ClientLoginComponent implements OnInit{
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      emailOrMobileNumber:['', [Validators.required, this.validateEmailOrMobileNumber]],
+      email:['', [Validators.required,Validators.pattern(Constants.EMAIL)]],
       password:['',[Validators.required,Validators.minLength(5),
         Validators.maxLength(30)]]
     });
@@ -49,15 +48,5 @@ export class ClientLoginComponent implements OnInit{
     });
   }
 
-  validateEmailOrMobileNumber(control:AbstractControl):{[s:string]:boolean} | null{
-    const emailOrMobileNumber = control.value;
-
-    if (emailOrMobileNumber.length==0  ||emailOrMobileNumber.match(Constants.EMAIL) ||
-      emailOrMobileNumber.match(Constants.DIGITS_ONLY_11) ){
-      return null;
-    } else {
-      return {"emailOrMobileNumber": true};
-    }
-  }
 
 }
