@@ -9,7 +9,16 @@ import { ClientLoginComponent } from './components/client-login/client-login.com
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {RouterLink, RouterOutlet} from "@angular/router";
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import { MatSnackBarModule} from "@angular/material/snack-bar";
+import {ClinicSearchComponent} from "./components/clinic-search/clinic-search.component";
+import {SpecialtiesComponent} from "./components/client-home/specialties/specialties.component";
+import {ClientSignupComponent} from "./components/client-signup/client-signup.component";
+import {FeaturesComponent} from "./components/client-home/features/features.component";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
+import {MatRadioModule} from "@angular/material/radio";
+import {SharedModule} from "../shared/shared.module";
 
 
 
@@ -19,7 +28,7 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
     ClientLoginComponent,
     ClinicSearchComponent,
     SpecialtiesComponent,
-    FeaturesComponent
+    FeaturesComponent,
     ClientSignupComponent,
   ],
   imports: [
@@ -37,7 +46,8 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    SharedModule
 
   ],
   providers:[MatDatepickerModule]
