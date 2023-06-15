@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./clinic-search.component.css']
 })
 export class ClinicSearchComponent {
-
+  selectedSpeciality: string;
+  selectedGovernorate: string;
+  specialties: string[] = [
+    "Skin", "Teeth", "Psyciatry", "Ear, Nose and Throat"
+  ];
+  governorates: string[] = [
+    "Giza", "Dakahlia", "Cairo"
+  ];
+  cities: string[] = [
+    "Mansoura", "6th Of October"
+  ]
 }

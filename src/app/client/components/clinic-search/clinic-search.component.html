@@ -1,1 +1,56 @@
-<p>clinic-search works!</p>
+<div class="container p-5">
+    <div class="search">
+        <div class="search-title">
+            <h3><mat-icon class="search-icon">calendar_month</mat-icon>
+                Book a doctor</h3>
+        </div>
+        <mat-divider></mat-divider>
+        <form action="" class="form-container pt-3">
+            <div class="row gx-1">
+
+                <mat-form-field class="col-12 col-sm-6 col-lg">
+                    <mat-label><mat-icon>emergency</mat-icon>
+                        Speciality</mat-label>
+                    <mat-select [(ngModel)]="selectedSpeciality" name="speciality">
+                        <mat-option *ngFor="let speciality of specialties" [value]="speciality">
+                            {{speciality}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field class="col-12 col-sm-6 col-lg">
+                    <mat-label><mat-icon>my_location</mat-icon>
+                        Governorate</mat-label>
+                    <mat-select [(ngModel)]="selectedGovernorate" name="governorate">
+                        <mat-option *ngFor="let governorate of governorates" [value]="governorate">
+                            {{governorate}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field class="col-12 col-sm-6 col-lg">
+                    <mat-label><mat-icon>location_city</mat-icon>
+                        City</mat-label>
+                    <mat-select [(ngModel)]="selectedGovernorate" name="city">
+                        <mat-option *ngFor="let city of cities" [value]="city">
+                            {{city}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <mat-form-field class="col-12 col-sm-6 col-lg ">
+                    <mat-label>Clinic Name</mat-label>
+                    <input type="text" matInput>
+                </mat-form-field>
+
+
+                <button mat-raised-button color="accent" class="search-button col-12 col-lg-2">
+                    <mat-icon class="btn-search-icon">search</mat-icon>Search</button>
+
+            </div>
+        </form>
+    </div>
+</div>

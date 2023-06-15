@@ -40,7 +40,7 @@ import { FeaturesComponent } from './components/client-home/features/features.co
     RouterOutlet,
     MatSnackBarModule,
     SharedModule
-  
+    
   ]
 })
 export class ClientModule { }
