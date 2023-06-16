@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import {Constants} from "../../../shared/constatnts";
 import Swal from "sweetalert2";
+import {SwAlertService} from "../../../shared/services/sw-alert.service";
 
 @Component({
   selector: 'app-client-signup',
@@ -12,7 +13,7 @@ export class ClientSignupComponent  implements OnInit{
   cities=['Giza', 'Cairo']
   signupForm:FormGroup;
 
-  constructor(private  formBuilder:FormBuilder) {
+  constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService) {
   }
 
   ngOnInit(): void {
@@ -23,13 +24,6 @@ export class ClientSignupComponent  implements OnInit{
       phone:['', [Validators.required, Validators.pattern(Constants.DIGITS_ONLY_11)]],
 
       dob:['', [Validators.required]],
-      city:['', Validators.required],
-      area:['', [Validators.required, Validators.minLength(3),
-        Validators.maxLength(30)]],
-
-      address:['', [Validators.required, Validators.minLength(3),
-        Validators.maxLength(30)]],
-
       email:['', [Validators.required, Validators.pattern(Constants.EMAIL)]],
 
       password:['',[Validators.required,Validators.minLength(5),
@@ -42,20 +36,8 @@ export class ClientSignupComponent  implements OnInit{
 
   signup(){
     if(this.signupForm.valid){
-      this.success();
+      this.swAlertService.success("SignedUp Successfully");
     }
-  }
-  success(){
-    Swal.fire({
-      // position: 'top-end',
-      icon: 'success',
-      text:"SignedUp Successfully",
-      title: 'Success',
-      showConfirmButton: false,
-      timer: 1500,
-      toast:true,
-      iconColor:'#00bcd4',
-    });
   }
 
 

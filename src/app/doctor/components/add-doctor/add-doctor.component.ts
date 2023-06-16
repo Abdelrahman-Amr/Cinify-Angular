@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Constants} from "../../../shared/constatnts";
 import Swal from "sweetalert2";
+import {SwAlertService} from "../../../shared/services/sw-alert.service";
 
 @Component({
   selector: 'app-add-doctor',
@@ -13,7 +14,7 @@ export class AddDoctorComponent implements OnInit{
   titles=['Giza', 'Cairo']
 form:FormGroup;
 
-constructor(private  formBuilder:FormBuilder) {
+constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService) {
 }
 
 ngOnInit(): void {
@@ -29,20 +30,9 @@ ngOnInit(): void {
 
 signup(){
   if(this.form.valid){
-    this.success();
+    this.swAlertService.success('SignedUp Successfully');
   }
 }
-success(){
-  Swal.fire({
-    // position: 'top-end',
-    icon: 'success',
-    text:"SignedUp Successfully",
-    title: 'Success',
-    showConfirmButton: false,
-    timer: 1500,
-    toast:true,
-    iconColor:'#00bcd4',
-  });
-}
+
 
 }

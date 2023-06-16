@@ -1,7 +1,7 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 :root {
-  --main-color: #00bcd4;
+  --main-color: #11468f;
   --secondary-color: #03a9f4
 }
 /*::ng-deep .mdc-text-field--invalid {*/
@@ -16,7 +16,7 @@
 /*forms title*/
 .title {
   font-size: 38px;
-  color: royalblue;
+  color: #11468f;
   font-weight: 600;
   letter-spacing: -1px;
   /*position: relative;*/
@@ -85,5 +85,5 @@
 
 .activeLink{
   background-color: white;
-  color:royalblue;
+  color: #11468f;
 }

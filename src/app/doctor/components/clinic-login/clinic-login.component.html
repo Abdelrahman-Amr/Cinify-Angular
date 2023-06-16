@@ -13,7 +13,7 @@
       <div class="example-form row "  [formGroup]="loginForm">
         <mat-form-field appearance="outline" class="col-12">
           <mat-label>Email</mat-label>
-          <input  matInput name="phone" required type="tel" [formControlName]="'email'">
+          <input  matInput name="email" required type="email" [formControlName]="'email'">
           <mat-error *ngIf="loginForm.controls['email'].errors?.['required']">Required</mat-error>
           <mat-error *ngIf="loginForm.controls['email'].errors?.['pattern']">Invalid</mat-error>
 

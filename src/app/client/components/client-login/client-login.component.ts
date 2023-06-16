@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Constants} from "../../../shared/constatnts";
 import Swal from "sweetalert2";
+import {SwAlertService} from "../../../shared/services/sw-alert.service";
 
 
 @Component({
@@ -13,7 +14,7 @@ export class ClientLoginComponent implements OnInit{
 
   loginForm:FormGroup;
 
-  constructor(private  formBuilder:FormBuilder) {
+  constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService) {
   }
 
   ngOnInit(): void {
@@ -26,7 +27,7 @@ export class ClientLoginComponent implements OnInit{
 
   login(){
     if(this.loginForm.valid){
-      this.success();
+      this.swAlertService.success("Logged in Successfully");
       const emailOrMobileNumber = this.loginForm.controls['emailOrMobileNumber'].value;
       if (emailOrMobileNumber.match(Constants.EMAIL)){
         //login by email request
@@ -36,18 +37,6 @@ export class ClientLoginComponent implements OnInit{
     }
   }
 
-  success(){
-    Swal.fire({
-      // position: 'top-end',
-      icon: 'success',
-      text:"Logged in Successfully",
-      title: 'Success',
-      showConfirmButton: false,
-      timer: 1500,
-      toast:true,
-      iconColor:'#00bcd4',
-    });
-  }
 
   validateEmailOrMobileNumber(control:AbstractControl):{[s:string]:boolean} | null{
     const emailOrMobileNumber = control.value;
