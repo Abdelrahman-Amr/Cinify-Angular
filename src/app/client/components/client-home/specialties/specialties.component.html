@@ -1,1 +1,19 @@
-<p>specialties works!</p>
+<ngb-carousel *ngIf="images && isSmallScreen" [showNavigationIndicators]=false>
+  <ng-template ngbSlide *ngFor="let image of images; let i = index">
+    <ng-container >
+      <div class="row p-1">
+        <img class="col-12" [src]="image" alt="Random slide" />
+      </div>
+    </ng-container>
+  </ng-template>
+  </ngb-carousel>
+  <ngb-carousel *ngIf="images && !isSmallScreen" [showNavigationIndicators]=false>
+    <ng-template ngbSlide *ngFor="let i of getCarouselIndices()" >
+      <ng-container>
+        <div class="row p-4">
+          <img class="col-3" [src]="image" alt="Random slide" *ngFor="let image of getCarouselImages(i)"/>
+        </div>
+      </ng-container>
+    </ng-template>
+    </ngb-carousel>
+
