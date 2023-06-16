@@ -2,7 +2,12 @@
   <div class="login">
     <div class="container">
       <div class="col-12 header">
-        <h2 >Clinic Login</h2>
+        <div class="">
+          <p class="title">Clinic Login</p>
+        </div>
+        <p class="x"></p>
+
+        <p class="message ">Login now and get full access to our app. </p>
       </div>
 
       <div class="example-form row "  [formGroup]="loginForm">
@@ -32,7 +37,7 @@
         </div>
 
         <div class="row">
-          <a routerLink="/doctor/signup" class=" col-4 offset-4 2">SignUp!</a>
+          <p class="signin">Don't have an account ? <a routerLink="/doctor/signup" >Register</a> </p>
         </div>
 
 

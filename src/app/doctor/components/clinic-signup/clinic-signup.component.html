@@ -1,10 +1,13 @@
-<div class="row col-12 text-center"style="text-align: center">
+<div class="row col-12 "style="">
 
   <div class="login-page">
     <div class="login">
       <div class="container">
-        <div class="col-12 header">
-          <h2 >Clinic SignUp</h2>
+        <div class="col-12 header" style="margin: auto">
+          <div class="text-center">
+              <p class="title">Clinic Register</p>
+          </div>
+          <p class="message ">Signup now and get full access to our app. </p>
         </div>
 
         <div class="example-form row "  [formGroup]="signupForm">
@@ -61,7 +64,7 @@
 
           <mat-form-field appearance="outline" class="col-md-12">
             <mat-label>Address</mat-label>
-            <textarea  matInput name="address" required [formControlName]="'address'"></textarea>
+            <input type="text"  matInput name="address" required [formControlName]="'address'"/>
             <mat-error *ngIf="signupForm.controls['address'].errors?.['required']">Required</mat-error>
             <mat-error *ngIf="signupForm.controls['address'].errors?.['minlength']">Min Length = 5</mat-error>
             <mat-error *ngIf="signupForm.controls['address'].errors?.['maxlength']">Max Length = 50</mat-error>
@@ -76,7 +79,8 @@
           </div>
 
           <div class="row">
-            <a routerLink="/doctor/login" class=" col-4 offset-4 2">Login!</a>
+<!--            <a class=" col-4 offset-4 2">Login!</a>-->
+            <p class="signin">Already have an account ? <a routerLink="/doctor/login" >Login</a> </p>
           </div>
 
 

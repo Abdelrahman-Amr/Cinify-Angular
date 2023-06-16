@@ -11,10 +11,11 @@ import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from "@angular/material/radio";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterLink} from "@angular/router";
-import {MatOptionModule} from "@angular/material/core";
+import {MatNativeDateModule, MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import { ClinicLoginComponent } from './components/clinic-login/clinic-login.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { AddDoctorComponent } from './components/add-doctor/add-doctor.component';
 
 
 
@@ -22,7 +23,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
   declarations: [
     DoctorHomeComponent,
     ClinicSignupComponent,
-    ClinicLoginComponent
+    ClinicLoginComponent,
+    AddDoctorComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,9 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     RouterLink,
     MatOptionModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ]
 })
 export class DoctorModule { }

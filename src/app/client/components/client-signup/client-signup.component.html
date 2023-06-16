@@ -4,7 +4,10 @@
     <div class="login">
       <div class="container">
         <div class="col-12 header">
-          <h2 >SignUp</h2>
+          <div class="">
+            <p class="title">Register</p>
+          </div>
+          <p class="message ">Signup now and get full access to our app. </p>
         </div>
 
         <div class="example-form row "  [formGroup]="signupForm">
@@ -103,7 +106,8 @@
           </div>
 
           <div class="row">
-            <a routerLink="/login" class=" col-4 offset-4 2">Login!</a>
+            <p class="signin">Already have an account ? <a routerLink="/login" >Login</a> </p>
+
           </div>
 
 

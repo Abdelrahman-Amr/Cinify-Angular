@@ -2,13 +2,17 @@
   <div class="login">
     <div class="container">
       <div class="col-12 header">
-        <h2 >Login</h2>
+        <div class="">
+          <p class="title">Login</p>
+<!--          <div class="x"></div>-->
+        </div>
+        <p class="message ">Login now and get full access to our app. </p>
       </div>
 
       <div class="example-form row "  [formGroup]="loginForm">
         <mat-form-field appearance="outline" class="col-12">
           <mat-label>Email or Mobile Number</mat-label>
-          <input  matInput name="phone" required type="tel" [formControlName]="'emailOrMobileNumber'">
+          <input  matInput name="phone" required type="text" [formControlName]="'emailOrMobileNumber'">
           <mat-error *ngIf="loginForm.controls['emailOrMobileNumber'].errors?.['required']">Required</mat-error>
           <mat-error *ngIf="loginForm.controls['emailOrMobileNumber'].errors?.['emailOrMobileNumber']">Invalid</mat-error>
 
@@ -32,7 +36,9 @@
         </div>
 
         <div class="row">
-             <a routerLink="/signup" class=" col-4 offset-4 2">SignUp!</a>
+<!--             <a routerLink="/signup" class=" col-4 offset-4 2">SignUp!</a>-->
+          <p class="signin">Don't have an account ? <a routerLink="/signup" >Register</a> </p>
+
         </div>
 
 

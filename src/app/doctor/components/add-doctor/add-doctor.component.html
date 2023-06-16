@@ -1,0 +1,67 @@
+<div class="row col-12 text-center"style="text-align: center">
+
+  <div class="login-page">
+    <div class="login">
+      <div class="container">
+        <div class="col-12 header">
+          <div class="">
+            <p class="title">Add Doctor</p>
+          </div>
+        </div>
+
+        <div class="example-form row "  [formGroup]="form">
+
+          <mat-form-field appearance="outline" class="col-md-6 col-xs-12">
+            <mat-label>Full Name</mat-label>
+            <input  matInput name="name" required type="text" [formControlName]="'name'">
+            <mat-error *ngIf="form.controls['name'].errors?.['required']">Required</mat-error>
+            <mat-error *ngIf="form.controls['name'].errors?.['minlength']">Min Length = 5</mat-error>
+            <mat-error *ngIf="form.controls['name'].errors?.['maxlength']">Max Length = 30</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="col-md-6">
+            <mat-label>Mobile Number</mat-label>
+            <input  matInput name="phone" required type="tel" [formControlName]="'phone'">
+            <mat-error *ngIf="form.controls['phone'].errors?.['required']">Required</mat-error>
+            <mat-error *ngIf="form.controls['phone'].errors?.['pattern']">Invalid Number</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="col-md-6">
+            <mat-label>Title</mat-label>
+            <mat-select [formControlName]="'title'">
+              <mat-option *ngFor="let title of titles" [value]="title">
+                {{title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-md-6">
+            <mat-label>Specialization</mat-label>
+            <mat-select [formControlName]="'specialization'">
+              <mat-option *ngFor="let spec of titles" [value]="spec">
+                {{spec}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="col-md-6 col-xs-12">
+            <mat-label>Ticket Price(EGP)</mat-label>
+            <input  matInput name="name" required type="number" [formControlName]="'price'">
+            <mat-error *ngIf="form.controls['price'].errors?.['required']">Required</mat-error>
+            <mat-error *ngIf="form.controls['price'].errors?.['min']">Min price = 1</mat-error>
+          </mat-form-field>
+
+
+          <mat-divider></mat-divider>
+
+          <div class="row mt-3">
+            <button (click)="signup()" mat-raised-button color="primary" class="col-4 offset-4"
+                    [disabled]="!form.valid"  >Save</button>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
