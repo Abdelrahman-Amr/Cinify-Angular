@@ -1,22 +1,48 @@
-<nav class="navbar navbar-expand-lg header">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg bg-custom navbar-dark py-3">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="" class="logo" alt="logo" />
+    </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation" (click)="isNavbarCollapsed = !isNavbarCollapsed">
+
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+    <div class="collapse navbar-collapse justify-content-end flex-grow-0" [class.show]="!isNavbarCollapsed">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <button type="button" class="btn btn-outline-primary btn-custom" data-bs-toggle="button" aria-pressed="false" autocomplete="off">Signup</button>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link active" aria-current="page" href="#">Login</a>
         </li>
+        <li class="nav-item separator"></li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link active link" href="#">Contact Us</a>
         </li>
+        <li class="nav-item separator"></li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
+          <a class="nav-link active link" href="#">Language</a>
+        </li>
+        <li class="nav-item separator"></li>
+        <li class="nav-item dropdown">
+          <div ngbDropdown class="d-inline-block" placement="end">
+            <button type="button" class="nav-link active dropdown-toggle" id="dropdownBasic1" ngbDropdownToggle>
+              <i ngbDropdownItem href="#" class="dropdown-item flag-icon" [ngClass]="countryFlagMap.get(getSelectCountry())"></i> {{ getSelectCountry()}}
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu dropdown-menu-end font-weight-bold">
+              <a ngbDropdownItem href="#" class="dropdown-item" (click)="selectCountry('US')">
+                <i class="flag-icon" [ngClass]="countryFlagMap.get('US')"></i> US
+              </a>
+              <a ngbDropdownItem href="#" class="dropdown-item" (click)="selectCountry('UK')">
+                <i class="flag-icon" [ngClass]="countryFlagMap.get('UK')"></i> UK
+              </a>
+              <a ngbDropdownItem href="#" class="dropdown-item" (click)="selectCountry('Egypt')">
+                <i class="flag-icon" [ngClass]="countryFlagMap.get('Egypt')"></i> Egypt
+              </a>
+            </div>
+          </div>
         </li>
       </ul>
     </div>
-  </nav>
+  </div>
+</nav>
