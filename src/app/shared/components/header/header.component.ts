@@ -24,5 +24,9 @@ export class HeaderComponent {
   getSelectCountry(){
     return this.selectedCountry;
   }
-  
+
+  collapse(){
+    this.isNavbarCollapsed=true;
+  }
+
 }

@@ -13,19 +13,19 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end flex-grow-0" [class.show]="!isNavbarCollapsed">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <button  routerLink="/signup" routerLinkActive="active" type="button" class="btn btn-outline-primary btn-custom" data-bs-toggle="button" aria-pressed="false" autocomplete="off">Signup</button>
+        <li class="nav-item" >
+          <button  routerLink="/signup" (click)="collapse()" routerLinkActive="active" type="button" class="btn btn-outline-primary btn-custom" data-bs-toggle="button" aria-pressed="false" autocomplete="off">Signup</button>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/login" >Login</a>
-        </li>
-        <li class="nav-item separator"></li>
-        <li class="nav-item">
-          <a class="nav-link active link" href="#">Contact Us</a>
+          <a class="nav-link active" aria-current="page" routerLink="/login" ><span  (click)="collapse()" >Login</span></a>
         </li>
         <li class="nav-item separator"></li>
         <li class="nav-item">
-          <a class="nav-link active link" href="#">Language</a>
+          <a class="nav-link active " routerLink="/" (click)="collapse()">Contact Us</a>
+        </li>
+        <li class="nav-item separator"></li>
+        <li class="nav-item">
+          <a class="nav-link active " routerLink="/">Language</a>
         </li>
         <li class="nav-item separator"></li>
         <li class="nav-item dropdown">

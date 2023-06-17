@@ -99,7 +99,10 @@
     color: #007bff;
   } */
 
-
+span{
+  /*background-color: white;*/
+  /*color:--var(main-color)*/
+}
 
 
 
