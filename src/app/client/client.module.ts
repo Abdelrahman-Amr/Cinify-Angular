@@ -22,7 +22,7 @@ import {SharedModule} from "../shared/shared.module";
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { CardComponent } from './components/search-result/card/card.component';
 import { FilterComponent } from './components/search-result/filter/filter.component';
-
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
 @NgModule({
@@ -35,7 +35,7 @@ import { FilterComponent } from './components/search-result/filter/filter.compon
     ClientSignupComponent,
     SearchResultComponent,
     CardComponent,
-    FilterComponent,
+    FilterComponent
   ],
   imports: [
     CommonModule,
@@ -53,8 +53,9 @@ import { FilterComponent } from './components/search-result/filter/filter.compon
     MatNativeDateModule,
     MatRadioModule,
     MatSelectModule,
-    SharedModule
-
+    SharedModule,
+    MDBBootstrapModule.forRoot()
+ 
   ],
   providers:[MatDatepickerModule]
 })

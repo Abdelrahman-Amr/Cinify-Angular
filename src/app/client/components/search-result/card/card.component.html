@@ -1,1 +1,106 @@
-<p>card works!</p>
+<!-- <a class="card-link" href="https://www.google.com"> -->
+<a class="card-link">
+    <div class="card border-light mb-5" style="padding: 0px;">
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-md-2">
+                    <img class="rounded-circle border border-2"
+                        src="https://www.pngplay.com/wp-content/uploads/9/Kitten-PNG-HD-Quality.png" />
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="name-container">
+                        <span>Doctor</span>
+                        <h5>Esraa Naser</h5>
+                    </div>
+                    <p class="color-gray">Ortho-Spine Surgery Consultant</p>
+                    <p *ngFor="let star of stars" class="fa fa-star " (click)="setRate(star)"
+                        [class.checked]="rate>=star"></p>
+                    <p>
+                        <i class="fas fa-stethoscope me-1 main-color"></i>
+                        <span class="color-gray">Surgeon Specialized in MicroscopicSurgery</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-location-dot me-1 main-color"></i>
+                        <span class="color-gray">El-Dokki : El-Tahrir street</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-money-bill-wave me-1 main-color"></i>
+                        <span class="color-gray">Fees : 350 EGP</span>
+                    </p>
+                    <p>
+                        <i class="fas fa-phone me-1 main-color"></i>
+                        <span class="color-gray">16676</span>
+                    </p>
+
+                </div>
+                <div class="col-12 col-md-6">
+                    <main class="text-center">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="testimonials">
+                                        <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation"
+                                            [type]="'carousel-multi-item'" [animation]="'slide'">
+                                            <mdb-carousel-item *ngFor="let item of slides; let i = index">
+                                                <div class="col-md-4 pb-2"
+                                                    *ngFor="let card of item; let cardIndex = index">
+                                                    <mdb-card style="padding: 0px;" class="my-1 h-100 ">
+                                                        <mdb-card-header>{{card.day}}</mdb-card-header>
+                                                        <mdb-card-body>
+                                                            <mdb-card-title>
+                                                                <p>From {{card.from}}</p>
+                                                            </mdb-card-title>
+                                                            <p>To {{card.to}}</p>
+                                                        </mdb-card-body>
+                                                        <mdb-card-footer>
+                                                            <a href="#" mdbBtn class="waves-light book-btn"
+                                                                mdbWavesEffect>BOOK</a>
+                                                        </mdb-card-footer>
+                                                    </mdb-card>
+                                                </div>
+                                            </mdb-carousel-item>
+                                        </mdb-carousel>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="card-footer">Header</div> -->
+    </div>
+</a>
+
+<!-- <main class="text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="testimonials">
+                    <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation"
+                        [type]="'carousel-multi-item'" [animation]="'slide'">
+                        <mdb-carousel-item *ngFor="let item of slides; let i = index">
+                            <div class="col-md-4 pb-2"
+                                *ngFor="let card of item; let cardIndex = index">
+                                <mdb-card style="padding: 0px;" class="my-1 h-100 ">
+                                    <mdb-card-header>{{card.day}}</mdb-card-header>
+                                    <mdb-card-body>
+                                        <mdb-card-title>
+                                            <p>From {{card.from}}</p>
+                                        </mdb-card-title>
+                                        <p>To {{card.to}}</p>
+                                    </mdb-card-body>
+                                    <mdb-card-footer>
+                                        <a href="#" mdbBtn class="waves-light book-btn"
+                                            mdbWavesEffect>BOOK</a>
+                                    </mdb-card-footer>
+                                </mdb-card>
+                            </div>
+                        </mdb-carousel-item>
+                    </mdb-carousel>
+                </div>
+            </div>
+        </div>
+    </div>
+</main> -->

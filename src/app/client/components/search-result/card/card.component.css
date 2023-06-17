@@ -1,0 +1,105 @@
+a.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card {
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+    transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    padding: 14px 80px 18px 36px;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    background-color: #f1f1f1;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}
+
+.card-link img.rounded-circle {
+    width: 90px;
+    height: 90px;
+}
+
+.card-link .name-container {
+    display: flex;
+    align-items: center;
+    color: var(--main-color);
+}
+
+.card-link .name-container span {
+    margin-right: 5px;
+}
+
+.card-link .name-container h5 {
+    margin-bottom: 0;
+}
+
+.color-gray {
+    color: #808184;
+}
+
+.fa-star {
+    cursor: pointer;
+}
+
+.fa-star.checked {
+    color: gold;
+}
+
+.fa-star.checked,
+.fa-star:hover {
+    color: gold;
+    cursor: pointer;
+}
+
+.main-color {
+    color: var(--main-color);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
+
+.carousel-item.active,
+.carousel-item.carousel-item-right,
+.carousel-item.carousel-item-next {
+    display: flex !important;
+    flex-wrap: wrap;
+    height: 300px;
+    font-size: 10;
+}
+
+:root :not(.carousel) .carousel-indicators li {
+    font-size: 0px;
+}
+
+/* mdb-card{
+    width: 200px;
+} */
+mdb-card {
+    width: 130px;
+    margin-right: 10px;
+}
+
+mdb-card-header {
+    background-color: var(--main-color);
+    color: white;
+    /* margin: 5%; */
+}
+
+mdb-card-body,
+mdb-card-footer {
+    /* margin: 5%; */
+}
+
+.book-btn {
+    background-color: #da1212;
+    color: white;
+    font-size: 15px;
+    /* font-weight: bold; */
+    padding: 10px;
+}
