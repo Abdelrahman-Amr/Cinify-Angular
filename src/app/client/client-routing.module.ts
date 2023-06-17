@@ -4,6 +4,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {ClientHomeComponent} from "./components/client-home/client-home.component";
 import {ClientLoginComponent} from "./components/client-login/client-login.component";
 import {ClientSignupComponent} from "./components/client-signup/client-signup.component";
+import { SearchResultComponent } from './components/search-result/search-result.component';
 
 
 
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path:'signup',
     component:ClientSignupComponent
+  },
+  {
+    path:'doctor',
+    component:SearchResultComponent
   }
 
 ];

@@ -19,6 +19,9 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatRadioModule} from "@angular/material/radio";
 import {SharedModule} from "../shared/shared.module";
+import { SearchResultComponent } from './components/search-result/search-result.component';
+import { CardComponent } from './components/search-result/card/card.component';
+import { FilterComponent } from './components/search-result/filter/filter.component';
 
 
 
@@ -30,6 +33,9 @@ import {SharedModule} from "../shared/shared.module";
     SpecialtiesComponent,
     FeaturesComponent,
     ClientSignupComponent,
+    SearchResultComponent,
+    CardComponent,
+    FilterComponent,
   ],
   imports: [
     CommonModule,
