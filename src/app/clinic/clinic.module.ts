@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {DoctorRoutingModule} from "./doctor-routing.module";
+import {ClinicRoutingModule} from "./clinic-routing.module";
 import { DoctorHomeComponent } from './components/doctor-home/doctor-home.component';
 import { ClinicSignupComponent } from './components/clinic-signup/clinic-signup.component';
 import {MatButtonModule} from "@angular/material/button";
@@ -28,7 +28,7 @@ import { AddDoctorComponent } from './components/add-doctor/add-doctor.component
   ],
   imports: [
     CommonModule,
-    DoctorRoutingModule,
+    ClinicRoutingModule,
     MatButtonModule,
     MatDatepickerModule,
     MatDividerModule,
@@ -44,4 +44,4 @@ import { AddDoctorComponent } from './components/add-doctor/add-doctor.component
     MatNativeDateModule,
   ]
 })
-export class DoctorModule { }
+export class ClinicModule { }

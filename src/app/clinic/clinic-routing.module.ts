@@ -34,4 +34,4 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ]
 })
-export class DoctorRoutingModule { }
+export class ClinicRoutingModule { }

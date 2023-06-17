@@ -8,8 +8,8 @@ const routes: Routes = [
   },
 
   {
-    path:'doctor',
-    loadChildren:()=>import('./doctor/doctor.module').then(m => m.DoctorModule)
+    path:'clinic',
+    loadChildren:()=>import('./clinic/clinic.module').then(m => m.ClinicModule)
   },
 
   {
