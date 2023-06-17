@@ -4,14 +4,21 @@
   .container-fluid  {
     margin-right: 100px;
   }
-  .bg-custom {
-    background-color: #11468F;
-  }
   @media (max-width: 996.98px) {
     .container-fluid  {
       margin-right: 0;
     }
   }
+  .bg-custom {
+    background-color: #11468F;
+  }
+  /* .navbar-nav {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; 
+  } */
+  
+ 
   .navbar .separator {
     border-right: 1px solid #ffffffc9;
     height: 20px;
@@ -21,7 +28,7 @@
     margin-bottom: auto;
   }
   .link:hover {
-    text-decoration: underline;
+    text-decoration: underline; 
   }
   @media (max-width: 991.5px) {
     .navbar .separator {
@@ -34,24 +41,45 @@
   }
 
   .navbar-brand {
-    padding-left: 10px; /* Add desired left padding */
+    padding-left: 40px; /* Add desired left padding */
     padding-right: 0; /* Reset the right padding */
   }
   .logo{
     height:20px;
     width: 60px;
   }
-  .btn-custom {
-    color: white;
-    border-color: white;
-  }
+ .btn-custom {
+  color: white;
+  border-color: white;
+  height: 25px; /* Adjust the height to your desired size */
+  padding: 0.25rem 0.5rem; /* Adjust the padding to your desired size */
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
 
+@media (min-width: 996.98px) {
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; 
+  }
+}
+  @media (max-width: 996.98px) {
+    .btn-custom {
+      border-color: #11468F;
+      text-align: left;
+      padding: 0%;
+    }
+  }
+  
   .btn-custom:hover {
     color: blue;
     background-color: white;
     border-color: white;
   }
-
+  
   /* .offcanvas-wrapper {
     position: fixed;
     top: 0;
@@ -65,7 +93,7 @@
     opacity: 0;
     transition: opacity 0.15s linear;
   }
-
+  
   .offcanvas-wrapper.show {
     visibility: visible;
     opacity: 1;
@@ -82,29 +110,27 @@
     transition: transform 0.3s ease-in-out;
     z-index: 1050;
   }
-
+  
   .offcanvas.show {
     transform: translateX(0);
   }
-
+  
   .offcanvas .nav-item {
     padding: 8px 16px;
   }
-
+  
   .offcanvas .nav-link {
     color: #000;
   }
-
+  
   .offcanvas .nav-link:hover {
     color: #007bff;
   } */
-
-span{
-  /*background-color: white;*/
-  /*color:--var(main-color)*/
-}
-
-
-
-
-
+  
+  
+  
+  
+  
+  
+  
+  
