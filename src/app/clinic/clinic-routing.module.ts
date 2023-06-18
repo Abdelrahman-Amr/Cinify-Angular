@@ -5,6 +5,7 @@ import {DoctorHomeComponent} from "./components/doctor-home/doctor-home.componen
 import {ClinicSignupComponent} from "./components/clinic-signup/clinic-signup.component";
 import {ClinicLoginComponent} from "./components/clinic-login/clinic-login.component";
 import {AddDoctorComponent} from "./components/add-doctor/add-doctor.component";
+import {ManageDoctorsComponent} from "./components/manage-doctors/manage-doctors.component";
 
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path:'add-doctor',
     component:AddDoctorComponent
+  },
+  {
+    path:'manage-doctors',
+    component:ManageDoctorsComponent
   }
 
 

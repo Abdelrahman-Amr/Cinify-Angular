@@ -1,0 +1,96 @@
+
+.login-page .login {
+  margin: 30px auto 30px auto;
+  padding: 1em;
+  /*width: 50%;*/
+  /*position: absolute;*/
+  /*top: 50%;*/
+  /*left: 50%;*/
+  /*transform: translate(-50%, -50%);*/
+  /*background: #FFF;*/
+  /*border-radius: 5px;*/
+  /*box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);*/
+}
+
+.login-page .login label {
+  margin-bottom: 2px
+}
+
+@media only screen and (max-width: 700px) {
+  .login-page .login {
+    margin: 20px auto 20px auto;
+    padding: 1em;
+    width: 90%;
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*transform: translate(-50%, -50%);*/
+    /*background: #FFF;*/
+    /*border-radius: 5px;*/
+    /*box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);*/
+  }
+
+  .login-page .login label {
+    margin-bottom: 2px
+  }
+}
+.login-page .login input{
+  border: none;
+  border-bottom: 1px solid #003147;
+  outline: none;
+  box-shadow: none;
+}
+
+button{
+  min-width: 110px;
+  /*background: #003147;*/
+  color: #FFF;
+  margin: auto auto 10px;
+
+}
+
+button:hover {
+  background: #FFF;
+  border: 1px solid var(--main-color);
+  transition: all 0.2s;
+  color: #000;
+}
+button:disabled{
+  cursor: not-allowed;
+}
+
+.login-page .login p {
+  margin-top: 20px;
+}
+
+.login-page .login p a {
+  color: #003147;
+  font-size: 14px;
+}
+
+
+.example-form {
+  min-width: 150px;
+  /*max-width: 500px;*/
+  width: 100%;
+}
+
+.header{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.row{
+  margin-left: 0px;
+}
+
+a{
+  text-align: center;
+}
+mat-form-field{
+  margin-bottom: 15px;
+}
+
+
+.fail-snackbar{
+  background-color: red;
+}

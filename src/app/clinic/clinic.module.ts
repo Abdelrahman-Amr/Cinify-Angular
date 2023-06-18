@@ -9,13 +9,17 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from "@angular/material/radio";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterLink} from "@angular/router";
 import {MatNativeDateModule, MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import { ClinicLoginComponent } from './components/clinic-login/clinic-login.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { AddDoctorComponent } from './components/add-doctor/add-doctor.component';
+import { ManageDoctorsComponent } from './components/manage-doctors/manage-doctors.component';
+import {MatIconModule} from "@angular/material/icon";
+import { EditDoctorComponent } from './components/edit-doctor/edit-doctor.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 
@@ -24,7 +28,9 @@ import { AddDoctorComponent } from './components/add-doctor/add-doctor.component
     DoctorHomeComponent,
     ClinicSignupComponent,
     ClinicLoginComponent,
-    AddDoctorComponent
+    AddDoctorComponent,
+    ManageDoctorsComponent,
+    EditDoctorComponent
   ],
   imports: [
     CommonModule,
@@ -42,6 +48,9 @@ import { AddDoctorComponent } from './components/add-doctor/add-doctor.component
     MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    FormsModule,
+    MatIconModule,
+    MatDialogModule
   ]
 })
 export class ClinicModule { }
