@@ -20,6 +20,7 @@ import { ManageDoctorsComponent } from './components/manage-doctors/manage-docto
 import {MatIconModule} from "@angular/material/icon";
 import { EditDoctorComponent } from './components/edit-doctor/edit-doctor.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {NgbPagination} from "@ng-bootstrap/ng-bootstrap";
 
 
 
@@ -50,7 +51,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatNativeDateModule,
     FormsModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    NgbPagination
   ]
 })
 export class ClinicModule { }
