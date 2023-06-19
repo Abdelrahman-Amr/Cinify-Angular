@@ -59,9 +59,12 @@
 <!--        </button>-->
         <button (click)="editDoctor(doctor)"  mat-raised-button class="request"
                  >  Edit Doctor</button>
+        <button (click)="editAppointments(doctor.id)"  mat-raised-button class="request"
+        >  {{(this.flags.get(doctor.id)?'Hide Appointments':'Edit Appointments')}}</button>
       </div>
-    <div class="white-card" >
-      <div class="row" *ngFor="let appointment of appointments" >
+
+    <div class="white-card"  *ngIf="flags.get(doctor.id)">
+      <div class="row" *ngFor="let appointment of forms.get(doctor.id)" >
         <mat-form-field appearance="outline" class="col-md-3 col-xs-12" >
           <mat-label>From</mat-label>
           <input  matInput name="name" required type="number" >
@@ -85,7 +88,7 @@
 
       </div>
       <div class="col-md-3 text-center" style="margin: auto">
-        <button [mat-dialog-close]="true" mat-raised-button color="primary" (click)="addAppointment()"
+        <button [mat-dialog-close]="true" mat-raised-button color="primary" (click)="addAppointment(doctor.id)"
         > <i class="fas fa-plus  text-white"></i > Add</button>
       </div>
     </div>
@@ -99,7 +102,7 @@
                     [collectionSize]="30"
                     [maxSize]="5"
                     [boundaryLinks]="true"
-                    (pageChange)="addAppointment()">
+                    (pageChange)="addAppointment(1)">
 
   </ngb-pagination>
 </div>

@@ -3,7 +3,7 @@ import {DoctorModel} from "../../../shared/model/clinic/doctor-model";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {EditDoctorComponent} from "../edit-doctor/edit-doctor.component";
 import {AppointmentModel} from "../../../shared/model/clinic/appointment-model";
-import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {Form, FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-manage-doctors',
@@ -13,9 +13,12 @@ import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 export class ManageDoctorsComponent implements OnInit{
   doctors:DoctorModel[]=[];
   appointments:AppointmentModel[]=[];
-  // forms:FormArray=[];
+  // forms:FormGroup[][]=[];
   doctor=new DoctorModel();
   doctor2=new DoctorModel();
+
+  flags:Map<number, boolean> = new Map<number, boolean>();
+  forms:Map<number, FormGroup[]> = new Map<number, FormGroup[]>();
 
   constructor(private editDialog: MatDialog, private  formBuilder:FormBuilder) {
   }
@@ -27,6 +30,7 @@ export class ManageDoctorsComponent implements OnInit{
     this.doctor.clinic="clinic";
     this.doctor.ticketPrice=200;
     this.doctor.phoneNumber="01111315033";
+    this.doctor.id=1;
     this.doctors.push(this.doctor);
 
     this.doctor2.fullName="Abdo Amr";
@@ -37,6 +41,7 @@ export class ManageDoctorsComponent implements OnInit{
     this.doctor.doctorSpecialization="eyes";
     this.doctor.doctorSpecialization="eyes";
     this.doctor2.doctorSpecialization="eyes";
+    this.doctor2.id=2;
 
     this.doctors.push(this.doctor2);
 
@@ -46,9 +51,21 @@ export class ManageDoctorsComponent implements OnInit{
     app.endTime=10.30;
     this.appointments.push(app);
 
-    // for(let i=0;i<this.doctors.length;i++){
+    for(let i=0;i<this.doctors.length;i++){
+      this.flags.set(this.doctors[i].id, false);
+      let appointment = this.formBuilder.group({
+              from:[9.30],
+              to:[10.00],
+              date:[new Date()]
+            });
+      let arr:FormGroup[] =[];
+      arr.push(appointment);
+        this.forms.set(this.doctors[i].id,arr);
+    }
     //   this.forms[i] = [];
-    //   for(let j=0;j<this.appointments.length;j++){
+      for(let j=0;j<this.doctors.length;j++){
+
+      }
     //     this.forms[i][j] = [];
     //     let appointment = this.formBuilder.group({
     //       from:[9.30],
@@ -74,7 +91,21 @@ export class ManageDoctorsComponent implements OnInit{
     dialogConfig.data = doctor;
     this.editDialog.open(EditDoctorComponent, dialogConfig);
   }
-  addAppointment(){
+
+  editAppointments(id:number){
+      this.flags.set(id,!this.flags.get(id));
+}
+  addAppointment(id:number){
+    // for(let i=0;i<this.doctors.length;i++) {
+    let appointment = this.formBuilder.group({
+      from:[9.30],
+      to:[10.00],
+      date:[new Date()]
+    });
+    let arr:FormGroup[] =[];
+    arr.push(appointment);
+    // @ts-ignore
+    this.forms.set(id,this.forms.get(id).concat(arr));
     this.appointments.push(new AppointmentModel());
   }
 }
