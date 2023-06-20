@@ -99,6 +99,7 @@
   font-size: 0.99rem;
   line-height: 1rem;
   color: var(--main-color);
+  margin-bottom: 10px;
 }
 
 .flex {

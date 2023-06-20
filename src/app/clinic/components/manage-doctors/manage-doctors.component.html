@@ -20,34 +20,34 @@
       <div class="card">
         <div class="infos">
           <img src="/assets/images/doctor-clinic-illustration_1270-69.avif"  class="image">
-          <div class="info">
-            <div>
+          <div class="info ">
+            <div >
               <p class="name">
-                {{doctor.doctorTitle +': '+doctor.fullName}}
+                {{doctor.doctorTitle.name +': '+doctor.fullName}}
               </p>
             </div>
-            <div class="phone">
+            <div class="phone row">
 
-              <span class="spec">
-                {{doctor.doctorSpecialization}}
+              <span class="spec col-md-6 col-xs-12">
+                {{doctor.doctorSpecialization.name}}
               </span>
-              <span class="spec">
+              <span class="spec col-md-6 col-xs-12">
                 {{doctor.phoneNumber}}
               </span>
             </div>
 
 <!--            </div>-->
-            <div class="stats">
+            <div class="stats col-md-12">
               <p class="flex flex-col">
                 Ticket Price
                 <span class="state-value">
-                            34 £
+                            {{doctor.ticketPrice}}
                         </span>
               </p>
               <p class="flex">
                 Rating
                 <span class="state-value">
-                            455
+                              {{doctor.averageRating}}
                         </span>
               </p>
 
@@ -57,7 +57,7 @@
 <!--        <button class="request" type="button" >-->
 <!--          Edit Doctor-->
 <!--        </button>-->
-        <button (click)="editDoctor(doctor)"  mat-raised-button class="request"
+        <button (click)="editDoctor(doctor, i)"  mat-raised-button class="request"
                  >  Edit Doctor</button>
         <button (click)="editAppointments(doctor.id)"  mat-raised-button class="request"
         >  {{(this.flags.get(doctor.id)?'Hide Appointments':'Edit Appointments')}}</button>

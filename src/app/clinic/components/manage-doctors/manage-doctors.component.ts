@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {DoctorModel} from "../../../shared/model/clinic/doctor-model";
+import {DoctorModel} from "../../../shared/model/doctor-model";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {EditDoctorComponent} from "../edit-doctor/edit-doctor.component";
-import {AppointmentModel} from "../../../shared/model/clinic/appointment-model";
+import {AppointmentModel} from "../../../shared/model/appointment-model";
 import {Form, FormBuilder, FormGroup} from "@angular/forms";
+import {DoctorService} from "../../../shared/services/doctor.service";
 
 @Component({
   selector: 'app-manage-doctors',
@@ -20,30 +21,35 @@ export class ManageDoctorsComponent implements OnInit{
   flags:Map<number, boolean> = new Map<number, boolean>();
   forms:Map<number, FormGroup[]> = new Map<number, FormGroup[]>();
 
-  constructor(private editDialog: MatDialog, private  formBuilder:FormBuilder) {
+  constructor(private editDialog: MatDialog, private  formBuilder:FormBuilder,
+              private doctorService:DoctorService) {
   }
   ngOnInit(): void {
 
-    this.doctor.fullName="Abdo Amr";
-    this.doctor.doctorTitle="Doctor";
-    this.doctor.averageRating=3;
-    this.doctor.clinic="clinic";
-    this.doctor.ticketPrice=200;
-    this.doctor.phoneNumber="01111315033";
-    this.doctor.id=1;
-    this.doctors.push(this.doctor);
-
-    this.doctor2.fullName="Abdo Amr";
-    this.doctor2.doctorTitle="Doctor";
-    this.doctor2.averageRating=3;
-    this.doctor2.clinic="clinic";
-    this.doctor2.ticketPrice=200;
-    this.doctor.doctorSpecialization="eyes";
-    this.doctor.doctorSpecialization="eyes";
-    this.doctor2.doctorSpecialization="eyes";
-    this.doctor2.id=2;
-
-    this.doctors.push(this.doctor2);
+    this.doctorService.getDoctorsPage(1, 5).subscribe(value => {
+      this.doctors = value.data;
+      // console.log(value.data);
+    });
+    // this.doctor.fullName="Abdo Amr";
+    // // this.doctor.doctorTitle="Doctor";
+    // this.doctor.averageRating=3;
+    // // this.doctor.clinic="clinic";
+    // this.doctor.ticketPrice=200;
+    // this.doctor.phoneNumber="01111315033";
+    // this.doctor.id=1;
+    // this.doctors.push(this.doctor);
+    //
+    // // this.doctor2.fullName="Abdo Amr";
+    // // this.doctor2.doctorTitle="Doctor";
+    // // this.doctor2.averageRating=3;
+    // // this.doctor2.clinic="clinic";
+    // // this.doctor2.ticketPrice=200;
+    // // this.doctor.doctorSpecialization="eyes";
+    // // this.doctor.doctorSpecialization="eyes";
+    // // this.doctor2.doctorSpecialization="eyes";
+    // // this.doctor2.id=2;
+    //
+    // this.doctors.push(this.doctor2);
 
     let app=new AppointmentModel();
     app.date=new Date();
@@ -79,7 +85,7 @@ export class ManageDoctorsComponent implements OnInit{
     // console.log(this.forms);
   }
 
-  editDoctor(doctor:DoctorModel){
+  editDoctor(doctor:DoctorModel, index:number){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -89,7 +95,12 @@ export class ManageDoctorsComponent implements OnInit{
     // data.st = row;
     // data.sel = selection;
     dialogConfig.data = doctor;
-    this.editDialog.open(EditDoctorComponent, dialogConfig);
+    this.editDialog.open(EditDoctorComponent, dialogConfig).afterClosed().subscribe(()=>{
+      console.log('hiiii');
+      this.doctorService.getDoctor(doctor.id).subscribe(value => {
+        this.doctors[index]  = value;
+      });
+    });
   }
 
   editAppointments(id:number){

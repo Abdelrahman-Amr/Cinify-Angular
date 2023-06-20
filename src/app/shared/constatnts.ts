@@ -1,5 +1,37 @@
+import {environment} from "../../environments/environment";
 
 export class Constants {
+
+  public static readonly baseURL = environment.baseURL;
+
+  // Doctor Urls
+  public static readonly getAllDoctorsUrl = this.baseURL + '/doctors/all';
+  public static readonly getDoctorsPageUrl = this.baseURL + '/doctors/getPage';
+  public static readonly getDoctor = this.baseURL + '/doctors/';
+  public static readonly updateDoctorURL = this.baseURL + '/doctors/updateDoctor';
+  public static readonly deleteDoctorUrl = this.baseURL + '/doctors/delete/';
+  public static readonly addDoctorURL = this.baseURL + '/doctors/add/';
+
+
+  // Doctor Titles Urls
+  public static readonly getAllDoctorTitlesUrl = this.baseURL + '/doctorTitles/all';
+  public static readonly getDoctorTitle = this.baseURL + '/doctorTitles/';
+  public static readonly updateDoctorTitleURL = this.baseURL + '/doctorTitles/update/';
+  public static readonly deleteDoctorTitleUrl = this.baseURL + '/doctorTitles/delete/';
+  public static readonly addDoctorTitleURL = this.baseURL + '/doctorTitles/add/';
+
+
+  // Doctor Specs Urls
+  public static readonly getAllDoctorSpecsUrl = this.baseURL + '/doctorSpecs/all';
+  public static readonly getDoctorSpec = this.baseURL + '/doctorSpecs/';
+  public static readonly updateDoctorSpecURL = this.baseURL + '/doctorSpecs/update/';
+  public static readonly deleteDoctorSpecUrl = this.baseURL + '/doctorSpecs/delete/';
+  public static readonly addDoctorSpecURL = this.baseURL + '/doctorSpecs/add/';
+
+
+
+
+
 
   /* Validation Regex */
   public static readonly ENGLISH_CHARACTERS = '^[a-zA-Z ]+$';
