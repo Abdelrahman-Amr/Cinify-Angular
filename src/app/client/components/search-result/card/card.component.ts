@@ -38,6 +38,12 @@ export class CardComponent {
       day: 'Mon 06/22',
       from: '8:00 PM',
       to: '10:00 PM'
+    },
+    {
+      title: '4',
+      day: 'Tues 8/1',
+      from: '8:00 PM',
+      to: '10:00 PM'
     }
   ];
   slides: any = [[]];
@@ -49,6 +55,6 @@ export class CardComponent {
     return R;
   }
   ngOnInit() {
-    this.slides = this.chunk(this.cards, 3);
+    this.slides = this.chunk(this.cards, 2);
   }
 }

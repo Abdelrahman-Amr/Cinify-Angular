@@ -40,12 +40,13 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div id="testimonials">
-                                        <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation"
-                                            [type]="'carousel-multi-item'" [animation]="'slide'">
-                                            <mdb-carousel-item *ngFor="let item of slides; let i = index">
+                                        <mdb-carousel>
+
+                                            <mdb-carousel-item  *ngFor="let item of slides; let i = index">
+                                                <div class="col-md-2 pb-2"></div>
                                                 <div class="col-md-4 pb-2"
                                                     *ngFor="let card of item; let cardIndex = index">
-                                                    <mdb-card style="padding: 0px;" class="my-1 h-100 ">
+                                                    <mdb-card  style="padding: 0px;" class="my-1 h-100 ">
                                                         <mdb-card-header>{{card.day}}</mdb-card-header>
                                                         <mdb-card-body>
                                                             <mdb-card-title>
@@ -69,7 +70,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="card-footer">Header</div> -->
     </div>
 </a>
 
