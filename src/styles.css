@@ -2,7 +2,8 @@
 
 :root {
   --main-color: #11468f;
-  --secondary-color: #03a9f4
+  --secondary-color: #03a9f4;
+  --darkgray:#404040
 }
 /*::ng-deep .mdc-text-field--invalid {*/
 /*  color:red;*/

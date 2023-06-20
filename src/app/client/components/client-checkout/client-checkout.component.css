@@ -1,0 +1,47 @@
+.mat-mdc-card-header {
+  justify-content: center;
+  text-align: center;
+}
+
+.clinic-details {
+  text-align: center;
+}
+
+.clinic-details .mat-mdc-card-avatar {
+  width: 10rem;
+  height: 10rem;
+}
+
+.clinic-details .mat-mdc-card-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.confirm-text {
+  color: var(--main-color);
+}
+
+.appointment-details .appointment-details-header {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.appointment-details .mat-mdc-card-header {
+  padding: 0.3rem;
+  font-size: 1.2rem;
+  border-radius: 4px 4px 0 0;
+}
+
+.appointment-details .mat-mdc-raised-button {
+  width: 100%;
+}
+
+
+.info{
+    color:  var(--darkgray);;
+}
+
+.book-btn{
+    font-size: 1.2rem;
+    font-weight: 500;
+}

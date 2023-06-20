@@ -22,6 +22,7 @@ import {SharedModule} from "../shared/shared.module";
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { CardComponent } from './components/search-result/card/card.component';
 import { FilterComponent } from './components/search-result/filter/filter.component';
+import { ClientCheckoutComponent } from './components/client-checkout/client-checkout.component';
 
 
 
@@ -36,6 +37,7 @@ import { FilterComponent } from './components/search-result/filter/filter.compon
     SearchResultComponent,
     CardComponent,
     FilterComponent,
+    ClientCheckoutComponent,
   ],
   imports: [
     CommonModule,
