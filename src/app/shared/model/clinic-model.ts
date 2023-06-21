@@ -13,4 +13,9 @@ export class ClinicModel extends BaseModel{
    address:string;
    status:string;
    isDeleted:boolean;
+
+  constructor(id:number) {
+    super();
+    this.id  = id;
+  }
 }

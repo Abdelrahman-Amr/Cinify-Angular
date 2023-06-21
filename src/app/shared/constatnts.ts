@@ -10,7 +10,7 @@ export class Constants {
   public static readonly getDoctor = this.baseURL + '/doctors/';
   public static readonly updateDoctorURL = this.baseURL + '/doctors/updateDoctor';
   public static readonly deleteDoctorUrl = this.baseURL + '/doctors/delete/';
-  public static readonly addDoctorURL = this.baseURL + '/doctors/add/';
+  public static readonly addDoctorURL = this.baseURL + '/doctors/addDoctor';
 
 
   // Doctor Titles Urls
@@ -27,6 +27,14 @@ export class Constants {
   public static readonly updateDoctorSpecURL = this.baseURL + '/doctorSpecs/update/';
   public static readonly deleteDoctorSpecUrl = this.baseURL + '/doctorSpecs/delete/';
   public static readonly addDoctorSpecURL = this.baseURL + '/doctorSpecs/add/';
+
+
+  // Clinic Urls
+  public static readonly getAllClinicsUrl = this.baseURL + '/clinics/all';
+  public static readonly getClinicURL = this.baseURL + '/clinics/';
+  public static readonly updateClinicURL = this.baseURL + '/clinics/update/';
+  public static readonly deleteClinicUrl = this.baseURL + '/clinics/delete/';
+  public static readonly addClinicURL = this.baseURL + '/clinics/add/';
 
 
 

@@ -21,24 +21,36 @@
 
           <mat-form-field appearance="outline" class="col-md-6">
             <mat-label>Mobile Number</mat-label>
-            <input  matInput name="phone" required type="tel" [formControlName]="'phone'">
-            <mat-error *ngIf="form.controls['phone'].errors?.['required']">Required</mat-error>
-            <mat-error *ngIf="form.controls['phone'].errors?.['pattern']">Invalid Number</mat-error>
+            <input  matInput name="phoneNumber" required type="tel" [formControlName]="'phoneNumber'">
+            <mat-error *ngIf="form.controls['phoneNumber'].errors?.['required']">Required</mat-error>
+            <mat-error *ngIf="form.controls['phoneNumber'].errors?.['pattern']">Invalid Number</mat-error>
+            <mat-error *ngIf="form.controls['phoneNumber'].errors?.['serverError']">{{errorMsg}}</mat-error>
+
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="col-md-6">
+            <mat-label>Clinic</mat-label>
+            <mat-select [formControlName]="'clinic'">
+              <mat-option *ngFor="let clinic of clinics" [value]="clinic.id">
+                {{clinic.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls['clinic'].errors?.['required']">Required</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="col-md-6">
             <mat-label>Title</mat-label>
             <mat-select [formControlName]="'title'">
-              <mat-option *ngFor="let title of titles" [value]="title">
-                {{title}}
+              <mat-option *ngFor="let title of titles" [value]="title.id">
+                {{title.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="outline" class="col-md-6">
             <mat-label>Specialization</mat-label>
             <mat-select [formControlName]="'specialization'">
-              <mat-option *ngFor="let spec of titles" [value]="spec">
-                {{spec}}
+              <mat-option *ngFor="let spec of specs" [value]="spec.id">
+                {{spec.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
