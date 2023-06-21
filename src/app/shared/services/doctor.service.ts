@@ -1,6 +1,6 @@
   import { Injectable } from '@angular/core';
   import {Observable} from "rxjs";
-  import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+  import {HttpClient, HttpParams} from "@angular/common/http";
   import {DoctorModel} from "../model/doctor-model";
   import {Constants} from "../constatnts";
   import {MessageResponse} from "../model/message-response";
