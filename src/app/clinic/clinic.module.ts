@@ -21,6 +21,8 @@ import {MatIconModule} from "@angular/material/icon";
 import { EditDoctorComponent } from './components/edit-doctor/edit-doctor.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {NgbPagination} from "@ng-bootstrap/ng-bootstrap";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 
@@ -52,7 +54,9 @@ import {NgbPagination} from "@ng-bootstrap/ng-bootstrap";
     FormsModule,
     MatIconModule,
     MatDialogModule,
-    NgbPagination
+    NgbPagination,
+    MatTooltipModule,
+    MatCheckboxModule
   ]
 })
 export class ClinicModule { }

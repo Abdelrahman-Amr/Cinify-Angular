@@ -52,13 +52,19 @@
             <mat-error *ngIf="form.controls['price'].errors?.['required']">Required</mat-error>
             <mat-error *ngIf="form.controls['price'].errors?.['min']">Min price = 1</mat-error>
           </mat-form-field>
+          <div class="col-md-6 col-xs-12" >
+<!--          <mat-form-field appearance="outline" ">-->
+              <mat-checkbox color="primary" formControlName="isDeleted">Hide Doctor</mat-checkbox>
+          </div>
+<!--          </mat-form-field>-->
+
 
 
           <mat-divider></mat-divider>
 
           <div class="row mt-3">
             <button (click)="update()" mat-raised-button color="primary" class="col-4 offset-4"
-                    [disabled]="!form.valid" >Update</button>
+                    [disabled]="!form.valid" >Update </button>
             <button [mat-dialog-close]="true" mat-raised-button color="primary" class="col-4 offset-4"
                   >Cancel</button>
           </div>

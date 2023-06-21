@@ -89,8 +89,3 @@ a{
 mat-form-field{
   margin-bottom: 15px;
 }
-
-
-.fail-snackbar{
-  background-color: red;
-}

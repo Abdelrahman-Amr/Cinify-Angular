@@ -57,8 +57,8 @@
 <!--        <button class="request" type="button" >-->
 <!--          Edit Doctor-->
 <!--        </button>-->
-        <button (click)="editDoctor(doctor, i)"  mat-raised-button class="request"
-                 >  Edit Doctor</button>
+          <button (click)="editDoctor(doctor, i)"  mat-raised-button class="request col-md-10"
+          >  Edit Doctor</button>
         <button (click)="editAppointments(doctor.id)"  mat-raised-button class="request"
         >  {{(this.flags.get(doctor.id)?'Hide Appointments':'Edit Appointments')}}</button>
       </div>
@@ -80,6 +80,7 @@
           <mat-datepicker #picker></mat-datepicker>
           <!--        <mat-error *ngIf="signupForm.controls['dob'].errors?.['required']">Required</mat-error>-->
         </mat-form-field>
+
         <div class="col-md-3 text-center" style="margin: auto">
           <button [mat-dialog-close]="true" mat-raised-button color="primary"
           >Save</button>
@@ -88,8 +89,8 @@
 
       </div>
       <div class="col-md-3 text-center" style="margin: auto">
-        <button [mat-dialog-close]="true" mat-raised-button color="primary" (click)="addAppointment(doctor.id)"
-        > <i class="fas fa-plus  text-white"></i > Add</button>
+          <button  class="add" [mat-dialog-close]="true" mat-raised-button color="primary" (click)="addAppointment(doctor.id)"
+          > <i class="fas fa-plus text-white"></i > Add</button>
       </div>
     </div>
 
@@ -97,12 +98,12 @@
   </div>
 
   <ngb-pagination   class="d-flex justify-content-center"
-                    [page]="1"
-                    [pageSize]="10"
-                    [collectionSize]="30"
+                    [(page)]="page"
+                    [pageSize]="limit"
+                    [collectionSize]="totalCount"
                     [maxSize]="5"
                     [boundaryLinks]="true"
-                    (pageChange)="addAppointment(1)">
+                    (pageChange)="nextPage()">
 
   </ngb-pagination>
 </div>

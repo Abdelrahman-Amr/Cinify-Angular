@@ -17,6 +17,9 @@ export class ManageDoctorsComponent implements OnInit{
   // forms:FormGroup[][]=[];
   doctor=new DoctorModel();
   doctor2=new DoctorModel();
+  page:number=1;
+  limit=5;
+  totalCount=0;
 
   flags:Map<number, boolean> = new Map<number, boolean>();
   forms:Map<number, FormGroup[]> = new Map<number, FormGroup[]>();
@@ -26,30 +29,10 @@ export class ManageDoctorsComponent implements OnInit{
   }
   ngOnInit(): void {
 
-    this.doctorService.getDoctorsPage(1, 5).subscribe(value => {
+    this.doctorService.getDoctorsPage(this.page, this.limit).subscribe(value => {
       this.doctors = value.data;
-      // console.log(value.data);
+      this.totalCount=value.totalCount;
     });
-    // this.doctor.fullName="Abdo Amr";
-    // // this.doctor.doctorTitle="Doctor";
-    // this.doctor.averageRating=3;
-    // // this.doctor.clinic="clinic";
-    // this.doctor.ticketPrice=200;
-    // this.doctor.phoneNumber="01111315033";
-    // this.doctor.id=1;
-    // this.doctors.push(this.doctor);
-    //
-    // // this.doctor2.fullName="Abdo Amr";
-    // // this.doctor2.doctorTitle="Doctor";
-    // // this.doctor2.averageRating=3;
-    // // this.doctor2.clinic="clinic";
-    // // this.doctor2.ticketPrice=200;
-    // // this.doctor.doctorSpecialization="eyes";
-    // // this.doctor.doctorSpecialization="eyes";
-    // // this.doctor2.doctorSpecialization="eyes";
-    // // this.doctor2.id=2;
-    //
-    // this.doctors.push(this.doctor2);
 
     let app=new AppointmentModel();
     app.date=new Date();
@@ -96,7 +79,6 @@ export class ManageDoctorsComponent implements OnInit{
     // data.sel = selection;
     dialogConfig.data = doctor;
     this.editDialog.open(EditDoctorComponent, dialogConfig).afterClosed().subscribe(()=>{
-      console.log('hiiii');
       this.doctorService.getDoctor(doctor.id).subscribe(value => {
         this.doctors[index]  = value;
       });
@@ -118,5 +100,11 @@ export class ManageDoctorsComponent implements OnInit{
     // @ts-ignore
     this.forms.set(id,this.forms.get(id).concat(arr));
     this.appointments.push(new AppointmentModel());
+  }
+
+  nextPage(){
+    this.doctorService.getDoctorsPage(this.page, this.limit).subscribe(value => {
+      this.doctors = value.data;
+    });
   }
 }

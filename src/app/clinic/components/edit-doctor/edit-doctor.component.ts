@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
 import {Constants} from "../../../shared/constatnts";
@@ -15,7 +15,7 @@ import {DoctorSpecializationService} from "../../../shared/services/doctor-speci
   templateUrl: './edit-doctor.component.html',
   styleUrls: ['./edit-doctor.component.css']
 })
-export class EditDoctorComponent {
+export class EditDoctorComponent implements OnInit{
 
   form:FormGroup;
   titles:DoctorTitleModel[]=[];
@@ -28,6 +28,7 @@ export class EditDoctorComponent {
   }
 
   ngOnInit(): void {
+    console.log(this.doctor.isDeleted)
     this.doctorTitleService.getAllDoctorTitles().subscribe(value => {
       this.titles = value;
     });
@@ -42,6 +43,7 @@ export class EditDoctorComponent {
       specialization:[this.doctor.doctorSpecialization.id, Validators.required],
       title:[this.doctor.doctorTitle.id, [Validators.required]],
       price:[this.doctor.ticketPrice, [Validators.required, Validators.min(1)]],
+      isDeleted:[this.doctor.isDeleted]
     });
   }
 
@@ -58,6 +60,7 @@ export class EditDoctorComponent {
       doctor.ticketPrice = +this.form.controls['price'].value;
       doctor.phoneNumber = this.form.controls['phoneNumber'].value;
       doctor.fullName = this.form.controls['name'].value;
+      doctor.isDeleted = this.form.controls['isDeleted'].value;
 
       this.doctorService.updateDoctor(doctor).subscribe(value => {
         this.swAlertService.success('Updated Successfully');
