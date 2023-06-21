@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import Swal from "sweetalert2";
+import Swal, {SweetAlertResult} from "sweetalert2";
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +8,8 @@ export class SwAlertService {
 
   constructor() { }
 
-   success(message:string){
-    Swal.fire({
+   success(message:string):Promise<SweetAlertResult<any>>{
+    return Swal.fire({
       // position: 'top-end',
       icon: 'success',
       text:message,

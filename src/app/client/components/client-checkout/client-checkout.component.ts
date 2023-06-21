@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import {SwAlertService} from "../../../shared/services/sw-alert.service";
 
 @Component({
   selector: 'app-client-checkout',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./client-checkout.component.css']
 })
 export class ClientCheckoutComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private swAlertService:SwAlertService) {}
   book() {
     Swal.fire({
       title: 'Confirmation',
@@ -16,11 +17,15 @@ export class ClientCheckoutComponent {
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Yes',
-      cancelButtonText: 'No'
+      cancelButtonText: 'No',
+      toast:true,
+      iconColor:'#11468f',
+      confirmButtonColor: '#11468f',
     }).then((result) => {
       if (result.isConfirmed) {
+
         // Book logic here
-        Swal.fire('Booked!', 'Your booking has been confirmed.', 'success').then(() => {
+        this.swAlertService.success('Your booking has been confirmed.').then(() => {
           this.router.navigate(['/']);
         });
 
