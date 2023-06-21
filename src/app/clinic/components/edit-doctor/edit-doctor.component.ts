@@ -28,7 +28,6 @@ export class EditDoctorComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log(this.doctor.isDeleted)
     this.doctorTitleService.getAllDoctorTitles().subscribe(value => {
       this.titles = value;
     });

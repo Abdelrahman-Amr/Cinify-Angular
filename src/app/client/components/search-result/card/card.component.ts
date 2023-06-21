@@ -1,16 +1,23 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import {DoctorService} from "../../../../shared/services/doctor.service";
+import {DoctorModel} from "../../../../shared/model/doctor-model";
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
-export class CardComponent {
+export class CardComponent implements OnInit{
   stars = [1, 2, 3, 4, 5];
   @Input() rate = 4;
   setRate(newRate: number) {
     this.rate = newRate;
   }
+  doctors:DoctorModel[]=[];
+  page:number=1;
+  limit=10;
+  totalCount=0;
+
 
   cards = [
     {
@@ -44,5 +51,23 @@ export class CardComponent {
       to: '10:00 PM'
     }
   ];
+
+  constructor(private doctorService:DoctorService) {
+  }
+
+  ngOnInit(): void {
+
+    this.doctorService.getDoctorsPage(this.page, this.limit).subscribe(value => {
+      this.doctors = value.data;
+      this.totalCount=value.totalCount;
+    });
+
+  }
+
+  nextPage(){
+    this.doctorService.getDoctorsPage(this.page, this.limit).subscribe(value => {
+      this.doctors = value.data;
+    });
+  }
 
 }

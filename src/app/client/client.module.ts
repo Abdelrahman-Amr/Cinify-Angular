@@ -23,7 +23,7 @@ import { SearchResultComponent } from './components/search-result/search-result.
 import { CardComponent } from './components/search-result/card/card.component';
 import { FilterComponent } from './components/search-result/filter/filter.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbCarouselModule, NgbPagination} from '@ng-bootstrap/ng-bootstrap';
 import { NgIf } from '@angular/common';
 
 @NgModule({
@@ -38,27 +38,27 @@ import { NgIf } from '@angular/common';
     CardComponent,
     FilterComponent
   ],
-  imports: [
-    CommonModule,
-    ClientRoutingModule,
-    MatIconModule,
-    MatDividerModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatInputModule,
-    RouterLink,
-    RouterOutlet,
-    MatSnackBarModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatRadioModule,
-    MatSelectModule,
-    SharedModule,
-    MDBBootstrapModule.forRoot(),
-    NgbCarouselModule, NgIf
- 
-  ],
+    imports: [
+        CommonModule,
+        ClientRoutingModule,
+        MatIconModule,
+        MatDividerModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatInputModule,
+        RouterLink,
+        RouterOutlet,
+        MatSnackBarModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatRadioModule,
+        MatSelectModule,
+        SharedModule,
+        MDBBootstrapModule.forRoot(),
+        NgbCarouselModule, NgIf, NgbPagination
+
+    ],
   providers:[MatDatepickerModule]
 })
 export class ClientModule { }
