@@ -85,3 +85,14 @@
   background-color: white;
   color: #11468f;
 }
+
+/*ng paginator*/
+.page-link {
+  color: var(--main-color) !important;
+}
+.active>.page-link, .page-link.active {
+  background-color: var(--main-color)!important;
+  color: white !important;
+  border: none;
+  box-shadow: none;
+}

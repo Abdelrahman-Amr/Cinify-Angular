@@ -1,0 +1,111 @@
+<div class="container p-5 col-md-7">
+  <div class="" *ngFor="let doctor of doctors ; let i = index">
+<!--    <div class="search-title">-->
+<!--      <h3><mat-icon class="search-icon">calendar_month</mat-icon>-->
+<!--        {{doctor.fullName}}</h3>-->
+<!--    </div>-->
+<!--    <mat-divider></mat-divider>-->
+<!--    <form action="" class="form-container pt-3">-->
+<!--      <div class="row gx-1">-->
+<!--        <mat-form-field class="col-12 col-sm-6 col-lg ">-->
+<!--          <mat-label>Clinic Name</mat-label>-->
+<!--          <input type="text" matInput>-->
+<!--        </mat-form-field>-->
+
+
+<!--        <button mat-raised-button color="accent" class="search-button col-12 col-lg-2">-->
+<!--          <mat-icon class="btn-search-icon">search</mat-icon>Search</button>-->
+<!--      </div>-->
+
+      <div class="card">
+        <div class="infos">
+          <img src="/assets/images/doctor-clinic-illustration_1270-69.avif"  class="image">
+          <div class="info ">
+            <div >
+              <p class="name">
+                {{doctor.doctorTitle.name +': '+doctor.fullName}}
+              </p>
+            </div>
+            <div class="phone row">
+
+              <span class="spec col-md-6 col-xs-12">
+                {{doctor.doctorSpecialization.name}}
+              </span>
+              <span class="spec col-md-6 col-xs-12">
+                {{doctor.phoneNumber}}
+              </span>
+            </div>
+
+<!--            </div>-->
+            <div class="stats col-md-12">
+              <p class="flex flex-col">
+                Ticket Price
+                <span class="state-value">
+                            {{doctor.ticketPrice}}
+                        </span>
+              </p>
+              <p class="flex">
+                Rating
+                <span class="state-value">
+                              {{doctor.averageRating}}
+                        </span>
+              </p>
+
+            </div>
+          </div>
+        </div>
+<!--        <button class="request" type="button" >-->
+<!--          Edit Doctor-->
+<!--        </button>-->
+          <button (click)="editDoctor(doctor, i)"  mat-raised-button class="request col-md-10"
+          >  Edit Doctor</button>
+        <button (click)="editAppointments(doctor.id)"  mat-raised-button class="request"
+        >  {{(this.flags.get(doctor.id)?'Hide Appointments':'Edit Appointments')}}</button>
+      </div>
+
+    <div class="white-card"  *ngIf="flags.get(doctor.id)">
+      <div class="row" *ngFor="let appointment of forms.get(doctor.id)" >
+        <mat-form-field appearance="outline" class="col-md-3 col-xs-12" >
+          <mat-label>From</mat-label>
+          <input  matInput name="name" required type="number" >
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-md-3 col-xs-12">
+          <mat-label>To</mat-label>
+          <input  matInput name="name" required type="number" >
+        </mat-form-field>
+        <mat-form-field   appearance="outline" class="col-md-3">
+          <mat-label>Date</mat-label>
+          <input  matInput [matDatepicker]="picker" name="dob" required >
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <!--        <mat-error *ngIf="signupForm.controls['dob'].errors?.['required']">Required</mat-error>-->
+        </mat-form-field>
+
+        <div class="col-md-3 text-center" style="margin: auto">
+          <button [mat-dialog-close]="true" mat-raised-button color="primary"
+          >Save</button>
+        </div>
+        <mat-divider style="margin: 15px"/>
+
+      </div>
+      <div class="col-md-3 text-center" style="margin: auto">
+          <button  class="add" [mat-dialog-close]="true" mat-raised-button color="primary" (click)="addAppointment(doctor.id)"
+          > <i class="fas fa-plus text-white"></i > Add</button>
+      </div>
+    </div>
+
+<!--    </form>-->
+  </div>
+
+  <ngb-pagination   class="d-flex justify-content-center"
+                    [(page)]="page"
+                    [pageSize]="limit"
+                    [collectionSize]="totalCount"
+                    [maxSize]="5"
+                    [boundaryLinks]="true"
+                    (pageChange)="nextPage()">
+
+  </ngb-pagination>
+</div>
+
+
