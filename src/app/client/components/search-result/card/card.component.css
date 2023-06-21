@@ -3,7 +3,7 @@ a.card-link {
   color: inherit;
 }
 
-.card {
+.doctor-card {
   border-radius: 4px;
   background: #fff;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
@@ -12,9 +12,10 @@ a.card-link {
     0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
   padding: 14px 80px 18px 36px;
   cursor: pointer;
+  max-width: 600;
 }
 
-.card:hover {
+.doctor-card:hover {
   transform: scale(1.03);
   background-color: #f1f1f1;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
@@ -51,63 +52,8 @@ a.card-link {
   color: gold;
 }
 
-.fa-star.checked,
-.fa-star:hover {
-  color: gold;
-  cursor: pointer;
-}
-
 .main-color {
   color: var(--main-color);
-}
-
-@import url("https://fonts.googleapis.com/css2?family=Yellowtail&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Cookie&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Marck+Script&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Playball&display=swap");
-
-.carousel-item.active,
-.carousel-item.carousel-item-right,
-.carousel-item.carousel-item-next {
-  display: flex !important;
-  flex-wrap: wrap;
-  height: 300px;
-  font-size: 10;
-}
-
-:root :not(.carousel) .carousel-indicators li {
-  font-size: 0px;
-}
-
-/* mdb-card{
-    width: 200px;
-} */
-mdb-card {
-  width: 130px;
-  margin-right: 10px;
-}
-
-mdb-card-header {
-  background-color: var(--main-color);
-  color: white;
-  /* margin: 5%; */
-}
-
-mdb-card-body,
-mdb-card-footer {
-  /* margin: 5%; */
-}
-
-.book-btn {
-  background-color: #da1212;
-  color: white;
-  font-size: 15px;
-  /* font-weight: bold; */
-  padding: 10px;
-}
-
-::ng-deep .carousel-indicators {
-  display: none;
 }
 
 ::ng-deep .carousel-control-next-icon {
@@ -116,5 +62,17 @@ mdb-card-footer {
 
 ::ng-deep .carousel-control-prev-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgb(6.67%, 27.45%, 56.08%)' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
-  margin-right: 10px;
+}
+
+.card-header {
+  background-color: var(--main-color);
+  color: white;
+  font-size: 20px;
+}
+
+.book-btn {
+  background-color: #da1212;
+  color: white;
+  font-size: 15px;
+  padding: 10px;
 }

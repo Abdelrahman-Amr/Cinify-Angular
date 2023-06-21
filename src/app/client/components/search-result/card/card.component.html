@@ -1,6 +1,5 @@
-<!-- <a class="card-link" href="https://www.google.com"> -->
 <a class="card-link">
-    <div class="card border-light mb-5" style="padding: 0px;">
+    <div class="doctor-card border-light mb-5 " style="padding: 30px;">
 
         <div class="card-body">
             <div class="row">
@@ -8,14 +7,15 @@
                     <img class="rounded-circle border border-2"
                         src="https://www.pngplay.com/wp-content/uploads/9/Kitten-PNG-HD-Quality.png" />
                 </div>
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-7">
                     <div class="name-container">
                         <span>Doctor</span>
                         <h5>Esraa Naser</h5>
                     </div>
                     <p class="color-gray">Ortho-Spine Surgery Consultant</p>
-                    <p *ngFor="let star of stars" class="fa fa-star " (click)="setRate(star)"
-                        [class.checked]="rate>=star"></p>
+                    <p *ngFor="let star of stars" class="fa fa-star "
+                        [class.checked]="rate>=star">
+                    </p>
                     <p>
                         <i class="fas fa-stethoscope me-1 main-color"></i>
                         <span class="color-gray">Surgeon Specialized in MicroscopicSurgery</span>
@@ -34,73 +34,31 @@
                     </p>
 
                 </div>
-                <div class="col-12 col-md-6">
-                    <main class="text-center">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="testimonials">
-                                        <mdb-carousel>
-
-                                            <mdb-carousel-item  *ngFor="let item of slides; let i = index">
-                                                <div class="col-md-2 pb-2"></div>
-                                                <div class="col-md-4 pb-2"
-                                                    *ngFor="let card of item; let cardIndex = index">
-                                                    <mdb-card  style="padding: 0px;" class="my-1 h-100 ">
-                                                        <mdb-card-header>{{card.day}}</mdb-card-header>
-                                                        <mdb-card-body>
-                                                            <mdb-card-title>
-                                                                <p>From {{card.from}}</p>
-                                                            </mdb-card-title>
-                                                            <p>To {{card.to}}</p>
-                                                        </mdb-card-body>
-                                                        <mdb-card-footer>
-                                                            <a href="#" mdbBtn class="waves-light book-btn"
-                                                                mdbWavesEffect>BOOK</a>
-                                                        </mdb-card-footer>
-                                                    </mdb-card>
-                                                </div>
-                                            </mdb-carousel-item>
-                                        </mdb-carousel>
+                <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-12">
+                        <ngb-carousel *ngIf="cards" [interval]=100000000000 [showNavigationIndicators]=false>
+                            <ng-template ngbSlide *ngFor="let card of cards">
+                                <div class="card bg-light mb-3" style="width: 100%; padding: 0px;">
+                                    <div class="card-header text-center">
+                                        {{card.day}}
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <p class="card-text">
+                                            From {{card.from}}
+                                        </p>
+                                        <p>
+                                            To {{card.to}}
+                                        </p>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <a href="#" mdbBtn class="waves-light book-btn" mdbWavesEffect>BOOK</a>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </main>
+                            </ng-template>
+                        </ngb-carousel>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </a>
-
-<!-- <main class="text-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div id="testimonials">
-                    <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation"
-                        [type]="'carousel-multi-item'" [animation]="'slide'">
-                        <mdb-carousel-item *ngFor="let item of slides; let i = index">
-                            <div class="col-md-4 pb-2"
-                                *ngFor="let card of item; let cardIndex = index">
-                                <mdb-card style="padding: 0px;" class="my-1 h-100 ">
-                                    <mdb-card-header>{{card.day}}</mdb-card-header>
-                                    <mdb-card-body>
-                                        <mdb-card-title>
-                                            <p>From {{card.from}}</p>
-                                        </mdb-card-title>
-                                        <p>To {{card.to}}</p>
-                                    </mdb-card-body>
-                                    <mdb-card-footer>
-                                        <a href="#" mdbBtn class="waves-light book-btn"
-                                            mdbWavesEffect>BOOK</a>
-                                    </mdb-card-footer>
-                                </mdb-card>
-                            </div>
-                        </mdb-carousel-item>
-                    </mdb-carousel>
-                </div>
-            </div>
-        </div>
-    </div>
-</main> -->

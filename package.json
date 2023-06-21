@@ -32,7 +32,6 @@
     "flag-icon-css": "^4.1.7",
     "flag-icons": "^6.7.0",
     "jquery": "^3.7.0",
-    "mdb-angular-ui-kit": "^4.1.0",
     "ng-starrating": "^1.0.20",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.7.12",

@@ -22,8 +22,8 @@ import {SharedModule} from "../shared/shared.module";
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { CardComponent } from './components/search-result/card/card.component';
 import { FilterComponent } from './components/search-result/filter/filter.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgIf } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -54,8 +54,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     MatRadioModule,
     MatSelectModule,
     SharedModule,
-    MDBBootstrapModule.forRoot()
- 
+    NgbCarouselModule, 
+    NgIf
   ],
   providers:[MatDatepickerModule]
 })

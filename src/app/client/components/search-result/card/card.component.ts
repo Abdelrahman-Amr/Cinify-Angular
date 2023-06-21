@@ -8,10 +8,8 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 export class CardComponent {
   stars = [1, 2, 3, 4, 5];
   @Input() rate = 4;
-  @Output() change = new EventEmitter<number>();
   setRate(newRate: number) {
     this.rate = newRate;
-    this.change.emit(newRate);
   }
 
   cards = [
@@ -46,15 +44,5 @@ export class CardComponent {
       to: '10:00 PM'
     }
   ];
-  slides: any = [[]];
-  chunk(arr: any, chunkSize: any) {
-    let R = [];
-    for (let i = 0, len = arr.length; i < len; i += chunkSize) {
-      R.push(arr.slice(i, i + chunkSize));
-    }
-    return R;
-  }
-  ngOnInit() {
-    this.slides = this.chunk(this.cards, 2);
-  }
+
 }
