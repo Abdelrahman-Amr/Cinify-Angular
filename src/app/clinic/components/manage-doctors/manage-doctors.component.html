@@ -64,26 +64,31 @@
       </div>
 
     <div class="white-card"  *ngIf="flags.get(doctor.id)">
-      <div class="row" *ngFor="let appointment of forms.get(doctor.id)" >
+      <div class="row" *ngFor="let appointment of forms.get(doctor.id)"   [formGroup]="appointment">
         <mat-form-field appearance="outline" class="col-md-3 col-xs-12" >
           <mat-label>From</mat-label>
-          <input  matInput name="name" required type="number" >
+          <input  matInput name="name" required type="time" formControlName="from" >
+          <mat-error *ngIf="appointment.controls['from'].errors?.['required']">Required</mat-error>
+
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-md-3 col-xs-12">
           <mat-label>To</mat-label>
-          <input  matInput name="name" required type="number" >
+          <input  matInput name="name" required type="time" formControlName="to">
+          <mat-error *ngIf="appointment.controls['to'].errors?.['required']">Required</mat-error>
+
         </mat-form-field>
         <mat-form-field   appearance="outline" class="col-md-3">
           <mat-label>Date</mat-label>
-          <input  matInput [matDatepicker]="picker" name="dob" required >
+          <input  matInput [matDatepicker]="picker" name="dob" required formControlName="date" >
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
-          <!--        <mat-error *ngIf="signupForm.controls['dob'].errors?.['required']">Required</mat-error>-->
+          <mat-error *ngIf="appointment.controls['date'].errors?.['required']">Required</mat-error>
+
         </mat-form-field>
 
         <div class="col-md-3 text-center" style="margin: auto">
           <button [mat-dialog-close]="true" mat-raised-button color="primary"
-          >Save</button>
+          (click)="saveApp(appointment)">Save</button>
         </div>
         <mat-divider style="margin: 15px"/>
 

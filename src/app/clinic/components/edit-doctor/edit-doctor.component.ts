@@ -63,15 +63,16 @@ export class EditDoctorComponent implements OnInit{
 
       this.doctorService.updateDoctor(doctor).subscribe(value => {
         this.swAlertService.success('Updated Successfully');
-        console.log("noo")
       }, error=>{
-        console.log("errorr")
         const formControl = this.form.get(error.error.field);
         this.errorMsg = error.error.message;
         if (formControl) {
           formControl.setErrors({
             serverError: true
           });
+        }else{
+          this.swAlertService.fail("Failed to Update Doctor");
+
         }
       });
     }

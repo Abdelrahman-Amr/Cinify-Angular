@@ -20,4 +20,17 @@ export class SwAlertService {
       iconColor:'#11468f',
     });
   }
+
+  fail(message:string){
+    Swal.fire({
+      // position: 'top-end',
+      icon: 'error',
+      text:message,
+      title: 'Fail',
+      showConfirmButton: false,
+      timer: 2000,
+      toast:true,
+      iconColor:'red',
+    });
+  }
 }
