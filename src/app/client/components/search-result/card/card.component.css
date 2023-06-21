@@ -1,0 +1,78 @@
+a.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.doctor-card {
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+  padding: 14px 80px 18px 36px;
+  cursor: pointer;
+  max-width: 600;
+}
+
+.doctor-card:hover {
+  transform: scale(1.03);
+  background-color: #f1f1f1;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+.card-link img.rounded-circle {
+  width: 90px;
+  height: 90px;
+}
+
+.card-link .name-container {
+  display: flex;
+  align-items: center;
+  color: var(--main-color);
+}
+
+.card-link .name-container span {
+  margin-right: 5px;
+}
+
+.card-link .name-container h5 {
+  margin-bottom: 0;
+}
+
+.color-gray {
+  color: #808184;
+}
+
+.fa-star {
+  cursor: pointer;
+}
+
+.fa-star.checked {
+  color: gold;
+}
+
+.main-color {
+  color: var(--main-color);
+}
+
+::ng-deep .carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgb(6.67%, 27.45%, 56.08%)' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+
+::ng-deep .carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgb(6.67%, 27.45%, 56.08%)' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+.card-header {
+  background-color: var(--main-color);
+  color: white;
+  font-size: 20px;
+}
+
+.book-btn {
+  background-color: #da1212;
+  color: white;
+  font-size: 15px;
+  padding: 10px;
+}
