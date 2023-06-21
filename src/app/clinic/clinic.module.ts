@@ -57,6 +57,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     NgbPagination,
     MatTooltipModule,
     MatCheckboxModule
+
   ]
 })
 export class ClinicModule { }
