@@ -33,7 +33,6 @@ export class ManageDoctorsComponent implements OnInit{
               private swAlertService:SwAlertService) {
   }
   ngOnInit(): void {
-
     this.doctorService.getDoctorsPage(this.page, this.limit).subscribe(value => {
       this.doctors = value.data;
       this.totalCount=value.totalCount;
