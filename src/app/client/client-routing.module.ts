@@ -6,8 +6,6 @@ import {ClientLoginComponent} from "./components/client-login/client-login.compo
 import {ClientSignupComponent} from "./components/client-signup/client-signup.component";
 import { SearchResultComponent } from './components/search-result/search-result.component';
 
-
-
 const routes: Routes = [
   {
     path:'',
