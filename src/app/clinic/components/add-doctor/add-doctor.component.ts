@@ -25,6 +25,10 @@ export class AddDoctorComponent implements OnInit{
   clinics:ClinicModel[]=[];
   errorMsg='';
   form:FormGroup;
+  imgTitle='Click to upload image';
+
+  imgFile: any;
+  imgUrl: string;
 
 constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService,
             private doctorService:DoctorService, private doctorTitleService:DoctorTitleService,
@@ -72,7 +76,9 @@ signup(){
     doctor.clinic =  new ClinicModel(+this.form.controls['clinic'].value);
 
     this.doctorService.addDoctor(doctor).subscribe(value => {
-      this.swAlertService.success('Added Successfully');
+      this.doctorService.upload(this.imgFile, this.imgTitle).subscribe(() => {
+        this.swAlertService.success('Added Successfully');
+      });
     }, error=>{
       const formControl = this.form.get(error.error.field);
       this.errorMsg = error.error.message;
@@ -83,6 +89,11 @@ signup(){
       }
     });
   }
+  }
+
+  onImageChange(event:any){
+     this.imgTitle = event.target.files[0].name;
+     this.imgFile = event.target.files[0];
   }
 
 

@@ -6,7 +6,9 @@
   <div class="" *ngFor="let doctor of doctors ; let i = index" >
       <div class="card" *ngIf="!isLoading">
         <div class="infos">
-          <img src="/assets/images/doctor-clinic-illustration_1270-69.avif"  class="image">
+<!--          <img src="/assets/images/doctor-clinic-illustration_1270-69.avif"  class="image">-->
+          <img [src]="this.imgUrl"  class="image">
+
           <div class="info ">
             <div >
               <p class="name">

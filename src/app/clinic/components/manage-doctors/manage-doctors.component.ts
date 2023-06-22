@@ -8,6 +8,7 @@ import {DoctorService} from "../../../shared/services/doctor.service";
 import {AppointmentWithoutRatingService} from "../../../shared/services/appointment-without-rating.service";
 import {AppointmentWithoutRatingModel} from "../../../shared/model/appointment-without-rating-model";
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
+import {Constants} from "../../../shared/constatnts";
 
 @Component({
   selector: 'app-manage-doctors',
@@ -27,6 +28,7 @@ export class ManageDoctorsComponent implements OnInit{
 
   flags:Map<number, boolean> = new Map<number, boolean>();
   forms:Map<number, FormGroup[]> = new Map<number, FormGroup[]>();
+  imgUrl=Constants.downloadDoctorImgUrl+'Bodi.jpg';
 
   constructor(private editDialog: MatDialog, private  formBuilder:FormBuilder,
               private doctorService:DoctorService,
@@ -79,7 +81,7 @@ export class ManageDoctorsComponent implements OnInit{
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '90%';
-    dialogConfig.height = '540px';
+    dialogConfig.height = '580px';
     // const data = new  UpdatePreviewData();
     // data.st = row;
     // data.sel = selection;
