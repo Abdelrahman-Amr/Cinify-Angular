@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { SearchResultService } from '../../search-result-service.service';
 import { Constants } from 'src/app/shared/constatnts';
+import { SearchResultService } from 'src/app/shared/services/search-result-service.service';
 
 @Component({
   selector: 'app-clinic-search',

@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-result.component.css']
 })
 export class SearchResultComponent {
-
+constructor(){
+}
 }

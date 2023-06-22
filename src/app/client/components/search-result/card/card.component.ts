@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import {DoctorService} from "../../../../shared/services/doctor.service";
-import {DoctorModel} from "../../../../shared/model/doctor-model";
+import {DoctorModel} from "../../../../shared/components/header/model/doctor-model";
+import { SearchResultService } from 'src/app/shared/services/search-result-service.service';
 
 @Component({
   selector: 'app-card',
