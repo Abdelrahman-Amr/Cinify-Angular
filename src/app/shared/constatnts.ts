@@ -10,6 +10,7 @@ export class Constants {
   public static readonly loginURL = this.baseAuthURL+'/login';
   public static readonly authURL = this.baseAuthURL+'/oauth2/authorize';
   public static readonly jwtURL = this.baseAuthURL+'/oauth2/token';
+  public static readonly test = this.baseAuthURL+'/test';
 
 
   //Doctor URLs

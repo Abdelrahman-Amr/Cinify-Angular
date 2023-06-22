@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Constants} from "../../../shared/constatnts";
-import Swal from "sweetalert2";
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
 import {SecurityService} from "../../../shared/services/security.service";
 import {LoginModel} from "../../../shared/model/login-model";
@@ -32,12 +31,25 @@ export class ClientLoginComponent implements OnInit{
     if(this.loginForm.valid){
       const emailOrMobileNumber = this.loginForm.controls['emailOrMobileNumber'].value;
       if (emailOrMobileNumber.match(Constants.EMAIL)){
-        this.securityService.login(new LoginModel(this.loginForm.controls['emailOrMobileNumber'].value,
-          this.loginForm.controls['password'].value,)).subscribe(value => {
-           console.log(value);
-          this.swAlertService.success("Logged in Successfully");
+        let loginModel = new LoginModel();
+        loginModel.username=this.loginForm.controls['emailOrMobileNumber'].value;
+        loginModel.password=this.loginForm.controls['password'].value;
+        this.securityService.login(loginModel).subscribe(value => {
+
+
         },error => {
-          this.swAlertService.fail("Failed to Login");
+          if(error.status == '200'){
+
+              const cookies = error.headers.get('Set-Cookie');
+              console.log(error.headers);
+              if (cookies) {
+                document.cookie = cookies; // Save the cookies in the browser
+              }
+
+            this.loginSuccess();
+          }else{
+            this.swAlertService.fail('Failed to Login');
+          }
         });
       }else if(emailOrMobileNumber.match(Constants.DIGITS_ONLY_11)){
         //login by mobileNumber request
@@ -57,4 +69,10 @@ export class ClientLoginComponent implements OnInit{
     }
   }
 
+  loginSuccess(){
+    this.swAlertService.success("Logged in Successfully");
+    this.securityService.getAuthCode().subscribe(value => {
+      console.log(value);
+    });
+  }
 }
