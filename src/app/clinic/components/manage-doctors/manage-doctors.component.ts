@@ -23,6 +23,7 @@ export class ManageDoctorsComponent implements OnInit{
   page:number=1;
   limit=5;
   totalCount=0;
+  isLoading=true;
 
   flags:Map<number, boolean> = new Map<number, boolean>();
   forms:Map<number, FormGroup[]> = new Map<number, FormGroup[]>();
@@ -36,6 +37,7 @@ export class ManageDoctorsComponent implements OnInit{
     this.doctorService.getDoctorsPage(this.page, this.limit).subscribe(value => {
       this.doctors = value.data;
       this.totalCount=value.totalCount;
+      this.isLoading = false;
     });
 
     let app=new AppointmentModel();
@@ -89,29 +91,31 @@ export class ManageDoctorsComponent implements OnInit{
     });
   }
 
-  editAppointments(id:number){
-    if(!this.flags.get(id)){
-      this.appointmentService.getAppointmentUpcomingByDoctorId(id).subscribe(value => {
+  editAppointments(docId:number){
+    if(!this.flags.get(docId)){
+      this.appointmentService.getAppointmentUpcomingByDoctorId(docId).subscribe(value => {
         this.appointments = value;
-        this.createForms();
-        this.flags.set(id,true);
+        this.createForms(docId);
+        this.flags.set(docId,true);
       });
 
     }else{
-      this.flags.set(id,false);
-
+      this.flags.set(docId,false);
     }
 
   }
   addAppointment(id:number){
     // for(let i=0;i<this.doctors.length;i++) {
-    let appointment = this.formBuilder.group({
-      from:[9.30],
-      to:[10.00],
-      date:[new Date()]
+    let app = this.formBuilder.group({
+      id:[''],
+      doctorId:[id],
+      from:[''],
+      to:[''],
+      date:['']
     });
+    // appointment.addControl(new FormControl());
     let arr:FormGroup[] =[];
-    arr.push(appointment);
+    arr.push(app);
     // @ts-ignore
     this.forms.set(id,this.forms.get(id).concat(arr));
     // this.appointments.push(new AppointmentModel());
@@ -123,27 +127,35 @@ export class ManageDoctorsComponent implements OnInit{
     });
   }
 
-  createForms(){
+  createForms(docId:number){
+    this.forms.set(docId,[]);
     for(let i=0;i<this.appointments.length;i++){
-      this.flags.set(this.doctors[i].id, false);
+      this.flags.set(docId, false);
       let appointment = this.formBuilder.group({
         id:[this.appointments[i].id],
         doctorId:[this.appointments[i].doctor.id],
-        from:[this.appointments[i].endTime],
+        from:[this.appointments[i].startTime],
         to:[this.appointments[i].endTime],
         date:[this.appointments[i].date]
       });
 
-      // console.log(this.appointments[i].date);
+      // console.log(this.forms.get(this.doctors[i].id));
       let arr:FormGroup[] =[];
       arr.push(appointment);
-      this.forms.set(this.doctors[i].id,arr);
+      if(!this.forms.get(docId)){
+        this.forms.set(docId,arr);
+      }else {
+        // @ts-ignore
+        this.forms.set(docId, this.forms.get(docId).concat(arr));
+      }
+
     }
   }
 
   saveApp(appointment:FormGroup){
+      // console.log(appointment);
       let app = new AppointmentWithoutRatingModel();
-      app.id = +appointment.controls['id'].value;
+      app.id = +appointment.controls['id']?.value;
       let doctor = new DoctorModel();
       doctor.id = +appointment.controls['doctorId'].value;
       app.doctor = doctor ;
@@ -151,10 +163,15 @@ export class ManageDoctorsComponent implements OnInit{
         app.endTime = appointment.controls['to'].value;
       }else{
         app.endTime = appointment.controls['to'].value+":00";
-
       }
-    app.date = appointment.controls['date'].value;
 
+    if(appointment.controls['from'].value.length==8){
+      app.startTime = appointment.controls['from'].value;
+    }else{
+      app.startTime = appointment.controls['from'].value+":00";
+    }
+    app.date = appointment.controls['date'].value;
+console.log(app);
     this.appointmentService.updateAppointment(app).subscribe(value => {
         this.swAlertService.success("Saved Successfully");
       }, error => {

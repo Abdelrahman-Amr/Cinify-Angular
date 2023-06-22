@@ -11,6 +11,7 @@ import {DoctorTitleService} from "../../../shared/services/doctorTitle.service";
 import {DoctorSpecializationService} from "../../../shared/services/doctor-specialization.service";
 import {ClinicService} from "../../../shared/services/clinic.service";
 import {ClinicModel} from "../../../shared/model/clinic-model";
+import {SessionStorageService} from "../../../shared/services/session-storage.service";
 
 @Component({
   selector: 'app-add-doctor',
@@ -28,22 +29,26 @@ export class AddDoctorComponent implements OnInit{
 constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService,
             private doctorService:DoctorService, private doctorTitleService:DoctorTitleService,
             private doctorSpecializationService:DoctorSpecializationService,
-            private clinicService:ClinicService) {
+            private clinicService:ClinicService,  private sessionStorageService:SessionStorageService) {
 }
 
 ngOnInit(): void {
-  this.doctorTitleService.getAllDoctorTitles().subscribe(value => {
-    this.titles = value;
-  });
-
-  this.doctorSpecializationService.getAllDoctorSpecs().subscribe(value => {
-    this.specs = value;
-  });
-
-  this.clinicService.getAllClinics().subscribe(value => {
-    this.clinics = value;
-    console.log(value)
-  });
+  this.titles = this.sessionStorageService.getTitles();
+  this.specs = this.sessionStorageService.getSpecs();
+  this.clinics = this.sessionStorageService.getClinics();
+  //
+  // this.doctorTitleService.getAllDoctorTitles().subscribe(value => {
+  //   this.titles = value;
+  // });
+  //
+  // this.doctorSpecializationService.getAllDoctorSpecs().subscribe(value => {
+  //   this.specs = value;
+  // });
+  //
+  // this.clinicService.getAllClinics().subscribe(value => {
+  //   this.clinics = value;
+  //
+  // });
   this.form = this.formBuilder.group({
     name:['', [Validators.required, Validators.minLength(3),
       Validators.maxLength(30)]],
