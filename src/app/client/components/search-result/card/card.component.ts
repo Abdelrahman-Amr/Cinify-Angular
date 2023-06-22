@@ -12,6 +12,7 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
+
   stars = [1, 2, 3, 4, 5];
   @Input() rate = 0;
   setRate(newRate: number) {
@@ -30,29 +31,33 @@ export class CardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.doctorService.getDoctorsPage(this.page, this.limit).subscribe(value => {
       this.doctors = value.data;
       this.totalCount = value.totalCount;
-  
+
       const appointmentObservables = this.doctors.map(doctor => {
         return this.appointmentService.getAppointmentUpcomingByDoctorId(doctor.id);
       });
-  
+
       forkJoin(appointmentObservables).subscribe(appointmentsArray => {
         appointmentsArray.forEach((appointments, index) => {
           this.doctors[index].appointments = appointments;
         });
-  
+        console.log(this.doctors[0])
       });
     });
+
+
   }
 
   formatAppointmentDate(date: Date): string {
+
     const appointmentDate = new Date(date);
     const today = new Date();
     const tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
-  
+
     if (this.isSameDate(appointmentDate, today)) {
       return 'Today';
     } else if (this.isSameDate(appointmentDate, tomorrow)) {
@@ -60,32 +65,53 @@ export class CardComponent implements OnInit {
     } else {
       return formatDate(appointmentDate, 'EEEE dd/MM', 'en-US');
     }
+
   }
-  
+
+
   isSameDate(date1: Date, date2: Date): boolean {
+
     const d1 = new Date(date1);
     const d2 = new Date(date2);
     d1.setHours(0, 0, 0, 0);
     d2.setHours(0, 0, 0, 0);
+
     return d1.getTime() === d2.getTime();
+
   }
 
   formatTime(time: string): string {
-    if(time != null){
+
+    if (time != null) {
       const date = new Date();
       const [hours, minutes] = time.split(':');
       date.setHours(Number(hours));
       date.setMinutes(Number(minutes));
-    
+
       return formatDate(date, 'h:mm a', 'en-US');
     }
     return "";
+
+  }
+
+  getTimesForDay(date: Date, id: number): string[] {
+
+    const doctor = this.doctors.find(doctor => doctor.id === id);
+
+    if (doctor && doctor.appointments) {
+      const dayAppointments = doctor.appointments.filter(appointment => this.isSameDate(appointment.date, date));
+      return dayAppointments.map(appointment => this.formatTime(appointment.endTime));
+    }
+    return [];
+
   }
 
   nextPage() {
+
     this.doctorService.getDoctorsPage(this.page, this.limit).subscribe(value => {
       this.doctors = value.data;
     });
+
   }
 
 }
