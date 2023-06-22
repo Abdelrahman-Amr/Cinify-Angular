@@ -22,9 +22,9 @@ const routes: Routes = [
     component:ClientSignupComponent
   },
   {
-    path:'doctor',
+    path: 'doctor/:specialization/:area',
     component:SearchResultComponent
-  }
+  },
 
 ];
 @NgModule({

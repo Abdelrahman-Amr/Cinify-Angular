@@ -28,8 +28,11 @@ export class Constants {
   public static readonly deleteDoctorSpecUrl = this.baseURL + '/doctorSpecs/delete/';
   public static readonly addDoctorSpecURL = this.baseURL + '/doctorSpecs/add/';
 
+//Areas
+public static readonly getAllAreasUrl=this.baseURL+ '/areas/all';
 
-
+//Cities
+public static readonly getAllCities=this.baseURL+'/cities/all'
 
 
 
