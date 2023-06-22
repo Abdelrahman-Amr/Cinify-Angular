@@ -5,6 +5,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NgbCarouselModule , NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSelectModule } from '@angular/material/select';
 import {RouterLink, RouterLinkActive} from "@angular/router";
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
     NgbCarouselModule,
     NgbDropdownModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    MatCardModule
   ],
   exports:
   [
@@ -25,7 +27,8 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
     NgbCarouselModule,
     NgbDropdownModule,
     MatSelectModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    MatCardModule
   ]
 })
 export class SharedModule { }

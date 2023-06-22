@@ -5,6 +5,7 @@ import {ClientHomeComponent} from "./components/client-home/client-home.componen
 import {ClientLoginComponent} from "./components/client-login/client-login.component";
 import {ClientSignupComponent} from "./components/client-signup/client-signup.component";
 import { SearchResultComponent } from './components/search-result/search-result.component';
+import { ClientCheckoutComponent } from './components/client-checkout/client-checkout.component';
 
 
 
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path:'doctor',
     component:SearchResultComponent
+  },
+  {
+    path:'checkout',
+    component:ClientCheckoutComponent
   }
 
 ];

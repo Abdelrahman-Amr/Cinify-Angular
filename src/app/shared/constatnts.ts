@@ -10,23 +10,41 @@ export class Constants {
   public static readonly getDoctor = this.baseURL + '/doctors/';
   public static readonly updateDoctorURL = this.baseURL + '/doctors/updateDoctor';
   public static readonly deleteDoctorUrl = this.baseURL + '/doctors/delete/';
-  public static readonly addDoctorURL = this.baseURL + '/doctors/add/';
+  public static readonly addDoctorURL = this.baseURL + '/doctors/addDoctor';
 
 
   // Doctor Titles Urls
   public static readonly getAllDoctorTitlesUrl = this.baseURL + '/doctorTitles/all';
   public static readonly getDoctorTitle = this.baseURL + '/doctorTitles/';
-  public static readonly updateDoctorTitleURL = this.baseURL + '/doctorTitles/update/';
+  public static readonly updateDoctorTitleURL = this.baseURL + '/doctorTitles/update';
   public static readonly deleteDoctorTitleUrl = this.baseURL + '/doctorTitles/delete/';
-  public static readonly addDoctorTitleURL = this.baseURL + '/doctorTitles/add/';
+  public static readonly addDoctorTitleURL = this.baseURL + '/doctorTitles/add';
 
 
   // Doctor Specs Urls
   public static readonly getAllDoctorSpecsUrl = this.baseURL + '/doctorSpecs/all';
   public static readonly getDoctorSpec = this.baseURL + '/doctorSpecs/';
-  public static readonly updateDoctorSpecURL = this.baseURL + '/doctorSpecs/update/';
+  public static readonly updateDoctorSpecURL = this.baseURL + '/doctorSpecs/update';
   public static readonly deleteDoctorSpecUrl = this.baseURL + '/doctorSpecs/delete/';
-  public static readonly addDoctorSpecURL = this.baseURL + '/doctorSpecs/add/';
+  public static readonly addDoctorSpecURL = this.baseURL + '/doctorSpecs/add';
+
+
+  // Clinic Urls
+  public static readonly getAllClinicsUrl = this.baseURL + '/clinics/all';
+  public static readonly getClinicURL = this.baseURL + '/clinics/';
+  public static readonly updateClinicURL = this.baseURL + '/clinics/update';
+  public static readonly deleteClinicUrl = this.baseURL + '/clinics/delete/';
+  public static readonly addClinicURL = this.baseURL + '/clinics/add';
+
+
+  // AppointmentWithoutRating Urls
+  public static readonly getAllAppointmentWithoutRatingsUrl = this.baseURL + '/appointmentsForClinics/all';
+  public static readonly getAppointmentWithoutRatingURL = this.baseURL + '/appointmentsForClinics/';
+  public static readonly updateAppointmentWithoutRatingURL = this.baseURL + '/appointmentsForClinics/update';
+  public static readonly deleteAppointmentWithoutRatingUrl = this.baseURL + '/appointmentsForClinics/delete/';
+  public static readonly addAppointmentWithoutRatingURL = this.baseURL + '/appointmentsForClinics/add';
+  public static readonly getAppointmentByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/';
+  public static readonly getAppointmentUpcomingByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/upcoming/';
 
 
 

@@ -1,23 +1,10 @@
 <div class="container p-5 col-md-7">
-  <div class="" *ngFor="let doctor of doctors ; let i = index">
-<!--    <div class="search-title">-->
-<!--      <h3><mat-icon class="search-icon">calendar_month</mat-icon>-->
-<!--        {{doctor.fullName}}</h3>-->
-<!--    </div>-->
-<!--    <mat-divider></mat-divider>-->
-<!--    <form action="" class="form-container pt-3">-->
-<!--      <div class="row gx-1">-->
-<!--        <mat-form-field class="col-12 col-sm-6 col-lg ">-->
-<!--          <mat-label>Clinic Name</mat-label>-->
-<!--          <input type="text" matInput>-->
-<!--        </mat-form-field>-->
-
-
-<!--        <button mat-raised-button color="accent" class="search-button col-12 col-lg-2">-->
-<!--          <mat-icon class="btn-search-icon">search</mat-icon>Search</button>-->
-<!--      </div>-->
-
-      <div class="card">
+  <div class="loader mb-4" *ngIf="isLoading" style="margin: auto">
+    <span class="loader-text">loading</span>
+    <span class="load"></span>
+  </div>
+  <div class="" *ngFor="let doctor of doctors ; let i = index" >
+      <div class="card" *ngIf="!isLoading">
         <div class="infos">
           <img src="/assets/images/doctor-clinic-illustration_1270-69.avif"  class="image">
           <div class="info ">
@@ -64,26 +51,31 @@
       </div>
 
     <div class="white-card"  *ngIf="flags.get(doctor.id)">
-      <div class="row" *ngFor="let appointment of forms.get(doctor.id)" >
+      <div class="row" *ngFor="let appointment of forms.get(doctor.id)"   [formGroup]="appointment">
         <mat-form-field appearance="outline" class="col-md-3 col-xs-12" >
           <mat-label>From</mat-label>
-          <input  matInput name="name" required type="number" >
+          <input  matInput name="from" required type="time" formControlName="from" >
+          <mat-error *ngIf="appointment.controls['from'].errors?.['required']">Required</mat-error>
+
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-md-3 col-xs-12">
           <mat-label>To</mat-label>
-          <input  matInput name="name" required type="number" >
+          <input  matInput name="to" required type="time" formControlName="to">
+          <mat-error *ngIf="appointment.controls['to'].errors?.['required']">Required</mat-error>
+
         </mat-form-field>
         <mat-form-field   appearance="outline" class="col-md-3">
           <mat-label>Date</mat-label>
-          <input  matInput [matDatepicker]="picker" name="dob" required >
+          <input  matInput [matDatepicker]="picker" name="date" required formControlName="date" >
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
-          <!--        <mat-error *ngIf="signupForm.controls['dob'].errors?.['required']">Required</mat-error>-->
+          <mat-error *ngIf="appointment.controls['date'].errors?.['required']">Required</mat-error>
+
         </mat-form-field>
 
         <div class="col-md-3 text-center" style="margin: auto">
-          <button [mat-dialog-close]="true" mat-raised-button color="primary"
-          >Save</button>
+          <button  mat-raised-button color="primary"
+          (click)="saveApp(appointment)">Save</button>
         </div>
         <mat-divider style="margin: 15px"/>
 
@@ -107,5 +99,7 @@
 
   </ngb-pagination>
 </div>
+
+
 
 

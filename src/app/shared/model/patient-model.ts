@@ -2,20 +2,18 @@ import {BaseModel} from "./base-model";
 import {AreaModel} from "./area-model";
 import {CityModel} from "./city-model";
 
-export class ClinicModel extends BaseModel{
+export class PatientModel extends BaseModel{
+
   area:AreaModel;
-  city:CityModel;
-  username:string;
-   password:string;
-   name:string;
+   city:CityModel;
    phoneNumber:string;
+   password:string;
+   fullName:string;
    email:string;
+   birthDate:Date;
+   gender:string;
    address:string;
-   status:string;
+   preperationTime:number;
    isDeleted:boolean;
 
-  constructor(id:number) {
-    super();
-    this.id  = id;
-  }
 }
