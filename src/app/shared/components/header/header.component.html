@@ -19,33 +19,62 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/login" ><span  (click)="collapse()" >Login</span></a>
         </li>
+
         <li class="nav-item separator"></li>
         <li class="nav-item">
-          <a class="nav-link active " routerLink="/" (click)="collapse()">Contact Us</a>
+          <a class="nav-link active " routerLink="/clinic/login" (click)="collapse()">Clinic Login</a>
         </li>
+
         <li class="nav-item separator"></li>
         <li class="nav-item">
-          <a class="nav-link active " routerLink="/">Language</a>
+          <a class="nav-link active " routerLink="/clinic/signup" (click)="collapse()">Clinic Signup</a>
         </li>
+
         <li class="nav-item separator"></li>
-        <li class="nav-item dropdown">
-          <div ngbDropdown class="d-inline-block" placement="end">
-            <button type="button" class="nav-link active dropdown-toggle" id="dropdownBasic1" ngbDropdownToggle>
-              <i ngbDropdownItem href="#" class="dropdown-item flag-icon" [ngClass]="countryFlagMap.get(getSelectCountry())"></i> {{ getSelectCountry()}}
-            </button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu dropdown-menu-end font-weight-bold">
-              <a ngbDropdownItem href="#" class="dropdown-item" (click)="selectCountry('US')">
-                <i class="flag-icon" [ngClass]="countryFlagMap.get('US')"></i> US
-              </a>
-              <a ngbDropdownItem href="#" class="dropdown-item" (click)="selectCountry('UK')">
-                <i class="flag-icon" [ngClass]="countryFlagMap.get('UK')"></i> UK
-              </a>
-              <a ngbDropdownItem href="#" class="dropdown-item" (click)="selectCountry('Egypt')">
-                <i class="flag-icon" [ngClass]="countryFlagMap.get('Egypt')"></i> Egypt
-              </a>
-            </div>
-          </div>
+        <li class="nav-item">
+          <a class="nav-link active " routerLink="/clinic/add-doctor" (click)="collapse()">Add Doctor</a>
         </li>
+
+        <li class="nav-item separator"></li>
+        <li class="nav-item">
+          <a class="nav-link active " routerLink="/clinic/manage-doctors" (click)="collapse()">Edit Doctors</a>
+        </li>
+
+        <li class="nav-item separator"></li>
+        <li class="nav-item">
+          <a class="nav-link active " routerLink="/doctor" (click)="collapse()">Book Doctor</a>
+        </li>
+
+
+        <li class="nav-item separator"></li>
+        <li class="nav-item">
+          <a class="nav-link active " routerLink="/checkout" (click)="collapse()">Checkout</a>
+        </li>
+
+        <!--        <li class="nav-item separator"></li>-->
+
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link active " routerLink="/">Language</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item separator"></li>-->
+<!--        <li class="nav-item dropdown">-->
+<!--          <div ngbDropdown class="d-inline-block" placement="end">-->
+<!--            <button type="button" class="nav-link active dropdown-toggle" id="dropdownBasic1" ngbDropdownToggle>-->
+<!--              <i ngbDropdownItem href="#" class="dropdown-item flag-icon" [ngClass]="countryFlagMap.get(getSelectCountry())"></i> {{ getSelectCountry()}}-->
+<!--            </button>-->
+<!--            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu dropdown-menu-end font-weight-bold">-->
+<!--              <a ngbDropdownItem href="#" class="dropdown-item" (click)="selectCountry('US')">-->
+<!--                <i class="flag-icon" [ngClass]="countryFlagMap.get('US')"></i> US-->
+<!--              </a>-->
+<!--              <a ngbDropdownItem href="#" class="dropdown-item" (click)="selectCountry('UK')">-->
+<!--                <i class="flag-icon" [ngClass]="countryFlagMap.get('UK')"></i> UK-->
+<!--              </a>-->
+<!--              <a ngbDropdownItem href="#" class="dropdown-item" (click)="selectCountry('Egypt')">-->
+<!--                <i class="flag-icon" [ngClass]="countryFlagMap.get('Egypt')"></i> Egypt-->
+<!--              </a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </li>-->
       </ul>
     </div>
   </div>
