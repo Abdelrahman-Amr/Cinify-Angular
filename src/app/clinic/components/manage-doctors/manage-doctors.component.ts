@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {DoctorModel} from "../../../shared/model/doctor-model";
+import {DoctorModel} from "../../../shared/components/header/model/doctor-model";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {EditDoctorComponent} from "../edit-doctor/edit-doctor.component";
-import {AppointmentModel} from "../../../shared/model/appointment-model";
+import {AppointmentModel} from "../../../shared/components/header/model/appointment-model";
 import {Form, FormBuilder, FormGroup} from "@angular/forms";
 import {DoctorService} from "../../../shared/services/doctor.service";
 

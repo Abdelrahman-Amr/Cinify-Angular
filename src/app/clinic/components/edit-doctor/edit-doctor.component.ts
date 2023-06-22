@@ -2,12 +2,12 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
 import {Constants} from "../../../shared/constatnts";
-import {DoctorModel} from "../../../shared/model/doctor-model";
+import {DoctorModel} from "../../../shared/components/header/model/doctor-model";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {DoctorService} from "../../../shared/services/doctor.service";
 import {DoctorTitleService} from "../../../shared/services/doctorTitle.service";
-import {DoctorTitleModel} from "../../../shared/model/doctor-title-model";
-import {DoctorSpecializationModel} from "../../../shared/model/doctor-specialization-model";
+import {DoctorTitleModel} from "../../../shared/components/header/model/doctor-title-model";
+import {DoctorSpecializationModel} from "../../../shared/components/header/model/doctor-specialization-model";
 import {DoctorSpecializationService} from "../../../shared/services/doctor-specialization.service";
 
 @Component({
