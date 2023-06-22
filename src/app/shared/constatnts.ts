@@ -46,8 +46,11 @@ export class Constants {
   public static readonly getAppointmentByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/';
   public static readonly getAppointmentUpcomingByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/upcoming/';
 
+//Areas
+public static readonly getAllAreasUrl=this.baseURL+ '/areas/all';
 
-
+//Cities
+public static readonly getAllCities=this.baseURL+'/cities/all'
 
 
 
