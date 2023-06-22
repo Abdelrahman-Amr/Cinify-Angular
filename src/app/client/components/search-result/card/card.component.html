@@ -15,7 +15,7 @@
                           <h5>{{doctor.fullName}}</h5>
                       </div>
                       <p class="color-gray">{{doctor.doctorTitle.name}}</p>
-                      <p *ngFor="let star of stars" class="fa fa-star " >
+                      <p *ngFor="let star of stars" class="fa fa-star "[class.checked]="doctor.averageRating >= star" >
                       </p>
                       <p>
                           <i class="fas fa-stethoscope me-1 main-color"></i>
