@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {DoctorModel} from "../../../shared/model/doctor-model";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {EditDoctorComponent} from "../edit-doctor/edit-doctor.component";
-import {AppointmentModel} from "../../../shared/model/appointment-model";
 import {Form, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {DoctorService} from "../../../shared/services/doctor.service";
 import {AppointmentWithoutRatingService} from "../../../shared/services/appointment-without-rating.service";
-import {AppointmentWithoutRatingModel} from "../../../shared/model/appointment-without-rating-model";
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
 import {Constants} from "../../../shared/constatnts";
+import {DoctorModel} from "../../../shared/components/header/model/doctor-model";
+import {AppointmentWithoutRatingModel} from "../../../shared/components/header/model/appointment-without-rating-model";
+import {AppointmentModel} from "../../../shared/components/header/model/appointment-model";
 
 @Component({
   selector: 'app-manage-doctors',
@@ -20,7 +20,6 @@ export class ManageDoctorsComponent implements OnInit{
   appointments:AppointmentWithoutRatingModel[]=[];
   // forms:FormGroup[][]=[];
   doctor=new DoctorModel();
-  doctor2=new DoctorModel();
   page:number=1;
   limit=5;
   totalCount=0;

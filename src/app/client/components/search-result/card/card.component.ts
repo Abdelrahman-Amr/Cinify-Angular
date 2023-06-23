@@ -7,6 +7,7 @@ import {DoctorModel} from "../../../../shared/components/header/model/doctor-mod
 import {
   AppointmentWithoutRatingModel
 } from "../../../../shared/components/header/model/appointment-without-rating-model";
+import {Constants} from "../../../../shared/constatnts";
 
 @Component({
   selector: 'app-card',
@@ -28,6 +29,8 @@ export class CardComponent implements OnInit {
   limit = 10;
   totalCount = 0;
   isLoading = true;
+  imgUrl=Constants.downloadDoctorImgUrl+'Screenshot (13).png';
+
 
   constructor(private doctorService: DoctorService, private appointmentService: AppointmentWithoutRatingService) {
   }
