@@ -6,9 +6,9 @@ import {DoctorService} from "../../../shared/services/doctor.service";
 import {AppointmentWithoutRatingService} from "../../../shared/services/appointment-without-rating.service";
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
 import {Constants} from "../../../shared/constatnts";
-import {DoctorModel} from "../../../shared/components/header/model/doctor-model";
-import {AppointmentWithoutRatingModel} from "../../../shared/components/header/model/appointment-without-rating-model";
-import {AppointmentModel} from "../../../shared/components/header/model/appointment-model";
+import {DoctorModel} from "../../../shared/model/doctor-model";
+import {AppointmentWithoutRatingModel} from "../../../shared/model/appointment-without-rating-model";
+import {AppointmentModel} from "../../../shared/model/appointment-model";
 
 @Component({
   selector: 'app-manage-doctors',
@@ -27,7 +27,7 @@ export class ManageDoctorsComponent implements OnInit{
 
   flags:Map<number, boolean> = new Map<number, boolean>();
   forms:Map<number, FormGroup[]> = new Map<number, FormGroup[]>();
-  imgUrl=Constants.downloadDoctorImgUrl+'Screenshot (13).png';
+  imgUrl=Constants.downloadDoctorImgUrl+'doctor-clinic-illustration_1270-69.avif';
 
   constructor(private editDialog: MatDialog, private  formBuilder:FormBuilder,
               private doctorService:DoctorService,

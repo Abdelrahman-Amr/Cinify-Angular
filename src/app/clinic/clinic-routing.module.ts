@@ -6,7 +6,6 @@ import {ClinicSignupComponent} from "./components/clinic-signup/clinic-signup.co
 import {ClinicLoginComponent} from "./components/clinic-login/clinic-login.component";
 import {AddDoctorComponent} from "./components/add-doctor/add-doctor.component";
 import {ManageDoctorsComponent} from "./components/manage-doctors/manage-doctors.component";
-import { SearchResultComponent } from '../client/components/search-result/search-result.component';
 
 
 const routes: Routes = [
@@ -30,7 +29,7 @@ const routes: Routes = [
     path:'manage-doctors',
     component:ManageDoctorsComponent
   }
-  
+
 
 
   ];

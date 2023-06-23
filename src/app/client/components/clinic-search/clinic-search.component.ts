@@ -61,7 +61,7 @@ export class ClinicSearchComponent {
       {
         next:response=>{
           this.cities = response;
-          console.log(response);  
+          console.log(response);
         },
         error:error=>{}
       }
@@ -85,7 +85,8 @@ export class ClinicSearchComponent {
       {
         next:response=>{
           this.searchResult.doctorsSearchResult = response.data;
-            
+          this.searchResult.doctorsSubject.next(response);
+
         },
         error:error=>{}
       }
@@ -112,11 +113,11 @@ export class ClinicSearchComponent {
     }
     this.getSearchResult();
     console.log(this.searchResult.doctorsSearchResult);
-    
+
   }
   onCitySelectionChange(selectedCity: any): void {
     this.filteredAreas = this.areas.filter(area => area.city.name === selectedCity.name);
   }
-  
+
 
 }

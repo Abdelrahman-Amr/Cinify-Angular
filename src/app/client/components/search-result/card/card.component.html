@@ -1,6 +1,11 @@
 <div class="container">
-
-    <a class="card-link" *ngFor="let doctor of doctors">
+  <div class="loading mb-4 text-center" *ngIf="isLoading" style="margin: auto">
+    <svg width="64px" height="48px">
+      <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back"></polyline>
+      <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="front"></polyline>
+    </svg>
+  </div>
+    <a class="card-link" *ngFor="let doctor of this.searchResultService.doctorsSearchResult">
         <div class="doctor-card border-light mb-5 " style="padding: 30px;">
 
             <div class="card-body">

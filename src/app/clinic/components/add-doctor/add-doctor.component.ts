@@ -9,10 +9,10 @@ import {DoctorTitleService} from "../../../shared/services/doctorTitle.service";
 import {DoctorSpecializationService} from "../../../shared/services/doctor-specialization.service";
 import {ClinicService} from "../../../shared/services/clinic.service";
 import {SessionStorageService} from "../../../shared/services/session-storage.service";
-import { DoctorTitleModel } from 'src/app/shared/components/header/model/doctor-title-model';
-import { DoctorSpecializationModel } from 'src/app/shared/components/header/model/doctor-specialization-model';
-import { ClinicModel } from 'src/app/shared/components/header/model/clinic-model';
-import { DoctorModel } from 'src/app/shared/components/header/model/doctor-model';
+import { DoctorTitleModel } from 'src/app/shared/model/doctor-title-model';
+import { DoctorSpecializationModel } from 'src/app/shared/model/doctor-specialization-model';
+import { ClinicModel } from 'src/app/shared/model/clinic-model';
+import { DoctorModel } from 'src/app/shared/model/doctor-model';
 
 @Component({
   selector: 'app-add-doctor',
@@ -77,8 +77,8 @@ signup(){
     doctor.clinic =  new ClinicModel(+this.form.controls['clinic'].value);
 
     this.doctorService.addDoctor(doctor).subscribe(value => {
+      this.swAlertService.success('Added Successfully');
       this.doctorService.upload(this.imgFile, this.imgTitle).subscribe(() => {
-        this.swAlertService.success('Added Successfully');
       });
     }, error=>{
       const formControl = this.form.get(error.error.field);

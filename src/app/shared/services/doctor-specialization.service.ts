@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {DoctorTitleModel} from "../components/header/model/doctor-title-model";
+import {DoctorTitleModel} from "../model/doctor-title-model";
 import {Constants} from "../constatnts";
-import {MessageResponse} from "../components/header/model/message-response";
-import {DoctorSpecializationModel} from "../components/header/model/doctor-specialization-model";
+import {MessageResponse} from "../model/message-response";
+import {DoctorSpecializationModel} from "../model/doctor-specialization-model";
 
 @Injectable({
   providedIn: 'root'

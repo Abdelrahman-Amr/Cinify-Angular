@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Constants} from "../constatnts";
-import { AppointmentWithoutRatingModel } from '../components/header/model/appointment-without-rating-model';
-import { MessageResponse } from '../components/header/model/message-response';
+import { AppointmentWithoutRatingModel } from '../model/appointment-without-rating-model';
+import { MessageResponse } from '../model/message-response';
 
 
 @Injectable({

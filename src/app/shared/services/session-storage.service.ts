@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ClinicModel } from '../components/header/model/clinic-model';
-import { DoctorSpecializationModel } from '../components/header/model/doctor-specialization-model';
-import { DoctorTitleModel } from '../components/header/model/doctor-title-model';
+import { ClinicModel } from '../model/clinic-model';
+import { DoctorSpecializationModel } from '../model/doctor-specialization-model';
+import { DoctorTitleModel } from '../model/doctor-title-model';
 
 
 @Injectable({
