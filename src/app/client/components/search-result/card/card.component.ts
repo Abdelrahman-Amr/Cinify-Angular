@@ -30,7 +30,7 @@ export class CardComponent implements OnInit , OnDestroy{
   limit = 10;
   totalCount = 0;
   isLoading = true;
-  imgUrl=Constants.downloadDoctorImgUrl+'doctor-clinic-illustration_1270-69.avif';
+  imgUrl=Constants.downloadDoctorImgUrl;
   doctorSubscription:Subscription;
 
   constructor(private doctorService: DoctorService, private appointmentService: AppointmentWithoutRatingService,
