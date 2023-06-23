@@ -14,6 +14,7 @@ a.card-link {
   padding: 14px 80px 18px 36px;
   cursor: pointer;
   max-width: 600;
+  margin-top: 20px;
 }
 
 .doctor-card:hover {
@@ -69,6 +70,9 @@ a.card-link {
   background-color: var(--main-color);
   color: white;
   font-size: 20px;
+}
+.card-body{
+  min-height: 80px;
 }
 
 .book-btn {
