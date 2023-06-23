@@ -1,0 +1,35 @@
+<div class="search">
+    <app-clinic-search></app-clinic-search>   
+</div>
+  <div class="centrlize">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="header-cell text-center">Doctor name</th>
+          <th class="header-cell text-center">Address</th>
+          <th class="header-cell text-center">Reservation Date</th>
+          <th class="header-cell text-center">Statues</th>
+          <th class="header-cell text-center">From</th>
+          <th class="header-cell text-center">To</th>
+          <th class="header-cell text-center">Cancel Reservation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of tableData">
+          <td class="text-center">{{ row.doctorName }}</td>
+          <td class="text-center">{{ row.address }}</td>
+          <td class="text-center">{{ row.reservationDate }}</td>
+          <td class="text-center">{{ row.statues }}</td>
+          <td class="text-center">{{ row.from }}</td>
+          <td class="text-center">{{ row.to }}</td>
+          <td class="text-center cancel-icon-cell">
+            <button class="btn btn-danger">
+              <i class="bi bi-x"></i> Cancel
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  

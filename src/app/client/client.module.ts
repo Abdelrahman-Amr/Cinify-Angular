@@ -23,11 +23,10 @@ import { SearchResultComponent } from './components/search-result/search-result.
 import { CardComponent } from './components/search-result/card/card.component';
 import { FilterComponent } from './components/search-result/filter/filter.component';
 import { ClientCheckoutComponent } from './components/client-checkout/client-checkout.component';
-
-
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {NgbCarouselModule, NgbPagination} from '@ng-bootstrap/ng-bootstrap';
 import { NgIf } from '@angular/common';
+import { ClientAppointmentComponent } from './components/client-appointment/client-appointment.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +37,7 @@ import { NgIf } from '@angular/common';
     FeaturesComponent,
     ClientSignupComponent,
     SearchResultComponent,
+    ClientAppointmentComponent,
     CardComponent,
     FilterComponent,
     ClientCheckoutComponent,
