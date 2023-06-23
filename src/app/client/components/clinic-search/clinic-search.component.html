@@ -13,42 +13,37 @@
                         Speciality</mat-label>
                     <mat-select [(ngModel)]="selectedSpeciality" name="speciality">
                         <mat-option *ngFor="let speciality of specialties" [value]="speciality">
-                            {{speciality}}
+                            {{speciality.name}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
 
+                <mat-form-field class="col-12 col-sm-6 col-lg">
+                    <mat-label><mat-icon>location_city</mat-icon> City</mat-label>
+                    <mat-select [(ngModel)]="selectedCity" name="city" (selectionChange)="onCitySelectionChange($event.value)">
+                      <mat-option *ngFor="let city of cities" [value]="city">
+                        {{ city.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>                  
 
                 <mat-form-field class="col-12 col-sm-6 col-lg">
                     <mat-label><mat-icon>my_location</mat-icon>
-                        Governorate</mat-label>
-                    <mat-select [(ngModel)]="selectedGovernorate" name="governorate">
-                        <mat-option *ngFor="let governorate of governorates" [value]="governorate">
-                            {{governorate}}
+                        Area</mat-label>
+                    <mat-select [(ngModel)]="selectedArea" name="selectedArea">
+                        <mat-option *ngFor="let Area of filteredAreas" [value]="Area">
+                            {{Area.name}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-
-
-                <mat-form-field class="col-12 col-sm-6 col-lg">
-                    <mat-label><mat-icon>location_city</mat-icon>
-                        City</mat-label>
-                    <mat-select [(ngModel)]="selectedGovernorate" name="city">
-                        <mat-option *ngFor="let city of cities" [value]="city">
-                            {{city}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
 
                 <mat-form-field class="col-12 col-sm-6 col-lg ">
                     <mat-label>Clinic Name</mat-label>
-                    <input type="text" matInput>
+                    <input type="text" matInput [(ngModel)]="doctorName" name="doctorName">
                 </mat-form-field>
 
-
-                <button mat-raised-button color="accent" class="search-button col-12 col-lg-2">
-                    <mat-icon class="btn-search-icon">search</mat-icon>Search</button>
+                <button mat-raised-button color="accent" class="search-button col-12 col-lg-2" (click)="submitSearchbutton()">
+                    <mat-icon class="btn-search-icon" >search</mat-icon>Search</button>
 
             </div>
         </form>

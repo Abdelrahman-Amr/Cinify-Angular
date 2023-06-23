@@ -1,4 +1,8 @@
-.search {
-  background-color: #eeeeee;
-  margin-bottom: 1rem;
+/*.search {*/
+/*  background-color: #eeeeee;*/
+/*  margin-bottom: 1rem;*/
+/*}*/
+.search{
+  background-image:url("/assets/images/search-bg.jpg");
+  background-size: contain;
 }

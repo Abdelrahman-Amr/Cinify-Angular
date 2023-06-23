@@ -5,6 +5,10 @@ import {ClientHomeComponent} from "./components/client-home/client-home.componen
 import {ClientLoginComponent} from "./components/client-login/client-login.component";
 import {ClientSignupComponent} from "./components/client-signup/client-signup.component";
 import { SearchResultComponent } from './components/search-result/search-result.component';
+import { ClientCheckoutComponent } from './components/client-checkout/client-checkout.component';
+import { AppointmentWithoutRatingService } from '../shared/services/appointment-without-rating.service';
+import { ClientAppointmentComponent } from './components/client-appointment/client-appointment.component';
+
 
 const routes: Routes = [
   {
@@ -22,8 +26,20 @@ const routes: Routes = [
   {
     path:'doctor',
     component:SearchResultComponent
+  },
+  {
+    path:'checkout',
+    component:ClientCheckoutComponent
   }
-
+,
+{
+  path:'doctor/:spectialies/:area',
+  component:SearchResultComponent
+},
+{
+  path:'appointment',
+  component:ClientAppointmentComponent
+},
 ];
 @NgModule({
   declarations: [],

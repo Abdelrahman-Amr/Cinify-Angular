@@ -1,0 +1,77 @@
+<div class="container py-5">
+    <div class="mb-4 confirm-text">
+        <h1>Confirm Appointment</h1>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-6 mb-3">
+            <mat-card class="example-card">
+                <mat-card-header>
+
+
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="clinic-details">
+                        <img src="/assets/images/Cat-Doctor.jpg"
+                            mat-card-avatar />
+                        <mat-card-title>Dr. Abdulrahman Zaki</mat-card-title>
+                        <mat-card-subtitle>
+                            Software Engineer
+                        </mat-card-subtitle>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <mat-card class="example-card appointment-details">
+                <mat-card-header class="appointment-details-header">
+                    <mat-card-title>Appointment Details</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="p-2">
+                    <div class="d-flex justify-content-between info">
+                        <div class="d-flex fw-bold">
+                            <mat-icon>calendar_month</mat-icon>
+                            <p>Date</p>
+                        </div>
+
+                        <p>14/2/2022</p>
+                    </div>
+
+               
+
+                    <div class="d-flex justify-content-between info">
+                        <div class="d-flex fw-bold">
+                            <mat-icon>schedule</mat-icon>
+                            <p>Time</p>
+                        </div>
+
+                        <p>12:40pm</p>
+                    </div>
+
+        
+                    
+                    <div class="d-flex justify-content-between info">
+                        <div class="d-flex fw-bold">
+                            <mat-icon>attach_money</mat-icon>
+                            <p>Fees</p>
+                        </div>
+
+                        <p>400E£</p>
+                    </div>
+
+                    <mat-divider></mat-divider>
+
+
+                </mat-card-content>
+
+                <mat-card-actions>
+                    <button class="book-btn" mat-raised-button color="accent" (click)="book()">Book</button>
+
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+
+
+
+</div>
