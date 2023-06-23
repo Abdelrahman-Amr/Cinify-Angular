@@ -15,11 +15,21 @@ export class ClinicSearchComponent {
   selectedArea: any | null = null;
   selectedCity: any | null = null;
   doctorName: string| null = null;
+  sortType: string| null = null;
+  order: string| null = null;
+
   flag=false;
   specialties: any[] =[]
   cities: any[] = []
   areas: any[] = [];
   filteredAreas:any[]=[]
+
+  sortTypes: { label: string, value: any, order:string }[] = [
+    { label: 'Price High To Low', value: 'ticketPrice', order: 'DESC' },
+    { label: 'Price Low To High', value: 'ticketPrice', order:'ASC' },
+    { label: 'Rating', value: 'averageRating', order:'DESC' }
+  ];
+
   constructor(private _http:HttpClient,private router: Router,private searchResult: SearchResultService){
     console.log(this.specialties);
   }
@@ -71,6 +81,7 @@ export class ClinicSearchComponent {
     let specialityId=null;
     let cityId=null;
     let areaId=null;
+   
     if(this.selectedSpeciality!==null){
       specialityId=this.selectedSpeciality.id;
     }
@@ -80,7 +91,7 @@ export class ClinicSearchComponent {
     if(this.selectedArea!==null){
       areaId=this.selectedArea.id;
     }
-    this._http.get<any>(`${Constants.getDoctor}${specialityId}/${cityId}/${areaId}?page=1&limit=10&clinicName=${this.doctorName}`)
+    this._http.get<any>(`${Constants.getDoctor}${specialityId}/${cityId}/${areaId}?page=1&limit=10&clinicName=${this.doctorName}&sortType=${this.sortType}&order=${this.order}`)
     .subscribe(
       {
         next:response=>{
@@ -119,5 +130,12 @@ export class ClinicSearchComponent {
     this.filteredAreas = this.areas.filter(area => area.city.name === selectedCity.name);
   }
 
+  addSortParams(sortType: any) {
+    
+    this.sortType = sortType.value;
+    this.order = sortType.order
+    this.submitSearchbutton();
+
+  }
 
 }
