@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { DoctorService } from "../../../../shared/services/doctor.service";
-import { DoctorModel } from "../../../../shared/model/doctor-model";
-import { AppointmentWithoutRatingModel } from 'src/app/shared/model/appointment-without-rating-model';
 import { AppointmentWithoutRatingService } from 'src/app/shared/services/appointment-without-rating.service';
 import { forkJoin } from 'rxjs';
 import { formatDate } from '@angular/common';
+import {DoctorModel} from "../../../../shared/components/header/model/doctor-model";
+import {
+  AppointmentWithoutRatingModel
+} from "../../../../shared/components/header/model/appointment-without-rating-model";
 
 @Component({
   selector: 'app-card',
@@ -105,7 +107,6 @@ export class CardComponent implements OnInit {
     return [];
 
   }
-
   nextPage() {
 
     this.doctorService.getDoctorsPage(this.page, this.limit).subscribe(value => {

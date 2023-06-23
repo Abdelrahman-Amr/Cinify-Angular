@@ -22,6 +22,7 @@ export class AppComponent  implements OnInit{
                private sessionStorageService:SessionStorageService) {
   }
   ngOnInit(): void {
+
     this.doctorTitleService.getAllDoctorTitles().subscribe(value => {
         this.sessionStorageService.setTitles(value);
     });
