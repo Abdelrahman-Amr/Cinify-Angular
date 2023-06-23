@@ -73,7 +73,7 @@ export class EditDoctorComponent implements OnInit{
 
       this.doctorService.updateDoctor(doctor).subscribe(value => {
         this.swAlertService.success('Updated Successfully');
-        this.doctorService.upload(this.imgFile, this.imgTitle).subscribe(() => {
+        this.doctorService.upload(this.imgFile,value.message).subscribe(() => {
         });
       }, error=>{
         const formControl = this.form.get(error.error.field);

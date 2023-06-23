@@ -79,7 +79,7 @@ signup(){
 
     this.doctorService.addDoctor(doctor).subscribe(value => {
       this.swAlertService.success('Added Successfully');
-      this.doctorService.upload(this.imgFile, this.imgTitle).subscribe(() => {
+      this.doctorService.upload(this.imgFile,value.message ).subscribe(() => {
       });
     }, error=>{
       const formControl = this.form.get(error.error.field);
@@ -90,7 +90,6 @@ signup(){
         });
       }else{
         this.swAlertService.fail('Failed to Add Doctor');
-
       }
     });
   }
