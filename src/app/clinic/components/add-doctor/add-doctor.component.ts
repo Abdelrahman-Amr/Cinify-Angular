@@ -86,6 +86,9 @@ signup(){
         formControl.setErrors({
           serverError: true
         });
+      }else{
+        this.swAlertService.fail('Failed to Add Doctor');
+
       }
     });
   }

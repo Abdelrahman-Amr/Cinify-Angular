@@ -39,10 +39,11 @@
       return this.httpClient.put<MessageResponse>(Constants.updateDoctorURL, doctor);
     }
 
-    upload(selectedFile: File, name: string): Observable<string[]> {
+    upload(selectedFile: File, name: string): Observable<MessageResponse> {
       const uploadImageData = new FormData();
-      uploadImageData.append('files', selectedFile, name);
-      return this.httpClient.post<string[]>(Constants.uploadDoctorImgUrl, uploadImageData, {
+      console.log(selectedFile);
+      uploadImageData.append('file', selectedFile, name);
+      return this.httpClient.post<MessageResponse>(Constants.uploadDoctorImgUrl, uploadImageData, {
       });
     }
   }
