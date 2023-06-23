@@ -12,7 +12,7 @@
       <div class="card" *ngIf="!isLoading">
         <div class="infos">
 <!--          <img src="/assets/images/doctor-clinic-illustration_1270-69.avif"  class="image">-->
-          <img [src]="this.imgUrl"  class="image">
+          <img [src]="Constants.downloadDoctorImgUrl+doctor.imgUrl"  class="image" alt="doctor">
 
           <div class="info ">
             <div >

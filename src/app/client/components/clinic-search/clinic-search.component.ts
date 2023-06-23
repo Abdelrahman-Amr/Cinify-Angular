@@ -36,7 +36,7 @@ export class ClinicSearchComponent {
       {
         next:response=>{
           this.specialties = response;
-          console.log(response);
+          // console.log(response);
         },
         error:error=>{}
       }
@@ -49,7 +49,7 @@ export class ClinicSearchComponent {
         next:response=>{
           this.areas = response;
           // this.filteredAreas=this.areas;
-          console.log(response);
+          // console.log(response);
         },
         error:error=>{}
       }
@@ -61,7 +61,7 @@ export class ClinicSearchComponent {
       {
         next:response=>{
           this.cities = response;
-          console.log(response);
+          // console.log(response);
         },
         error:error=>{}
       }

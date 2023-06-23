@@ -16,5 +16,7 @@ export class DoctorModel extends BaseModel {
     ratingCount: number;
     status: string;
     isDeleted: boolean
+    imgUrl:string;
     appointments: AppointmentWithoutRatingModel[] = [];
+
 }

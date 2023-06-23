@@ -30,7 +30,7 @@ export class CardComponent implements OnInit , OnDestroy{
   limit = 10;
   totalCount = 0;
   isLoading = true;
-  imgUrl=Constants.downloadDoctorImgUrl+'doctor-clinic-illustration_1270-69.avif';
+  imgUrl=Constants.downloadDoctorImgUrl;
   doctorSubscription:Subscription;
 
   constructor(private doctorService: DoctorService, private appointmentService: AppointmentWithoutRatingService,
@@ -42,13 +42,15 @@ export class CardComponent implements OnInit , OnDestroy{
     // this.doctorService.getDoctorsPage(this.page, this.limit).subscribe(value => {
 
    this.doctorSubscription =  this.searchResultService.doctorsSubject.subscribe(value => {
-      // console.log(value);
       this.isLoading=false;
       this.doctors = value.data;
       this.totalCount = value.totalCount;
-      for(let index=0;index<  this.doctors.length;index++) {
+      console.log(this.doctors.length);
+
+
+     for(let index=0;index<  this.doctors.length;index++) {
         this.appointmentService.getDividedAppointmentUpcomingByDoctorId(this.doctors[index].id).subscribe(appointments => {
-          this.searchResultService.doctorsSearchResult[index].appointments = appointments;
+          // this.searchResultService.doctorsSearchResult[index].appointments = appointments;
         });
       }
     });

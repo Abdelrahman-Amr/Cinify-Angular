@@ -69,6 +69,7 @@ export class EditDoctorComponent implements OnInit{
       doctor.phoneNumber = this.form.controls['phoneNumber'].value;
       doctor.fullName = this.form.controls['name'].value;
       doctor.isDeleted = this.form.controls['isDeleted'].value;
+      doctor.imgUrl = this.imgTitle;
 
       this.doctorService.updateDoctor(doctor).subscribe(value => {
         this.swAlertService.success('Updated Successfully');

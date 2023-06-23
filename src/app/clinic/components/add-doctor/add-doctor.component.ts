@@ -75,6 +75,7 @@ signup(){
     doctor.phoneNumber = this.form.controls['phoneNumber'].value;
     doctor.fullName = this.form.controls['name'].value;
     doctor.clinic =  new ClinicModel(+this.form.controls['clinic'].value);
+    doctor.imgUrl = this.imgTitle;
 
     this.doctorService.addDoctor(doctor).subscribe(value => {
       this.swAlertService.success('Added Successfully');
@@ -96,6 +97,7 @@ signup(){
   }
 
   onImageChange(event:any){
+
      this.imgTitle = event.target.files[0].name;
      this.imgFile = event.target.files[0];
   }

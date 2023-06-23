@@ -27,7 +27,6 @@ export class ManageDoctorsComponent implements OnInit{
 
   flags:Map<number, boolean> = new Map<number, boolean>();
   forms:Map<number, FormGroup[]> = new Map<number, FormGroup[]>();
-  imgUrl=Constants.downloadDoctorImgUrl+'doctor-clinic-illustration_1270-69.avif';
 
   constructor(private editDialog: MatDialog, private  formBuilder:FormBuilder,
               private doctorService:DoctorService,
@@ -180,4 +179,6 @@ console.log(app);
     });
 
   }
+
+  protected readonly Constants = Constants;
 }
