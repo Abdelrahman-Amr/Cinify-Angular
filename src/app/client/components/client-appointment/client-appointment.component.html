@@ -1,9 +1,9 @@
 <div class="search">
     <app-clinic-search></app-clinic-search>   
 </div>
-  <div class="centrlize">
-    <table class="table">
-      <thead>
+<div class="table-container p-5 extra-padding ">
+  <table class="table">
+      <thead >
         <tr>
           <th class="header-cell text-center">Doctor name</th>
           <th class="header-cell text-center">Address</th>
@@ -15,13 +15,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of tableData">
-          <td class="text-center">{{ row.doctorName }}</td>
-          <td class="text-center">{{ row.address }}</td>
-          <td class="text-center">{{ row.reservationDate }}</td>
-          <td class="text-center">{{ row.statues }}</td>
-          <td class="text-center">{{ row.from }}</td>
-          <td class="text-center">{{ row.to }}</td>
+        <tr *ngFor="let appointment of patientAppointment">
+          <td class="text-center">{{ appointment.doctor.fullName }}</td>
+          <td class="text-center">{{ appointment.doctor.clinic.address }}</td>
+          <td class="text-center">{{ appointment.date}}</td>
+          <td class="text-center">{{ appointment.status}}</td>
+          <td class="text-center">{{ appointment.startTime }}</td>
+          <td class="text-center">{{ appointment.endTime }}</td>
           <td class="text-center cancel-icon-cell">
             <button class="btn btn-secondary">
               <i class="bi bi-x"></i> Cancel
