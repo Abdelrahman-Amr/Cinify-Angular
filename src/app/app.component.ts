@@ -4,7 +4,6 @@ import {FormBuilder} from "@angular/forms";
 import {DoctorService} from "./shared/services/doctor.service";
 import {AppointmentWithoutRatingService} from "./shared/services/appointment-without-rating.service";
 import {SwAlertService} from "./shared/services/sw-alert.service";
-import {DoctorModel} from "./shared/model/doctor-model";
 import {DoctorTitleService} from "./shared/services/doctorTitle.service";
 import {DoctorSpecializationService} from "./shared/services/doctor-specialization.service";
 import {ClinicService} from "./shared/services/clinic.service";

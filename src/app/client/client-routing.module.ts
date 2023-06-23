@@ -30,7 +30,11 @@ const routes: Routes = [
     path:'checkout',
     component:ClientCheckoutComponent
   }
-
+,
+{
+  path:'doctor/:spectialies/:area',
+  component:SearchResultComponent
+},
 ];
 @NgModule({
   declarations: [],

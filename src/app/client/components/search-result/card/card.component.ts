@@ -53,7 +53,7 @@ export class CardComponent implements OnInit{
     }
   ];
 
-  constructor(private doctorService:DoctorService) {
+  constructor(private doctorService:DoctorService,public searchResultService:SearchResultService) {
   }
 
   ngOnInit(): void {

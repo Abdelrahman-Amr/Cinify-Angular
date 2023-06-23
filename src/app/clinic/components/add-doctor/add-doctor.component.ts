@@ -3,15 +3,16 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Constants} from "../../../shared/constatnts";
 import Swal from "sweetalert2";
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
-import {DoctorModel} from "../../../shared/model/doctor-model";
 import {DoctorService} from "../../../shared/services/doctor.service";
-import {DoctorSpecializationModel} from "../../../shared/model/doctor-specialization-model";
-import {DoctorTitleModel} from "../../../shared/model/doctor-title-model";
+
 import {DoctorTitleService} from "../../../shared/services/doctorTitle.service";
 import {DoctorSpecializationService} from "../../../shared/services/doctor-specialization.service";
 import {ClinicService} from "../../../shared/services/clinic.service";
-import {ClinicModel} from "../../../shared/model/clinic-model";
 import {SessionStorageService} from "../../../shared/services/session-storage.service";
+import { DoctorTitleModel } from 'src/app/shared/components/header/model/doctor-title-model';
+import { DoctorSpecializationModel } from 'src/app/shared/components/header/model/doctor-specialization-model';
+import { ClinicModel } from 'src/app/shared/components/header/model/clinic-model';
+import { DoctorModel } from 'src/app/shared/components/header/model/doctor-model';
 
 @Component({
   selector: 'app-add-doctor',
