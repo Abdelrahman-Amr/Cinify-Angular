@@ -12,13 +12,23 @@ import { MessageResponse } from '../model/message-response';
 export class AppointmentWithoutRatingService {
 
   constructor(private httpClient: HttpClient) { }
-  getAppointmentByDoctorId(doctorId:number): Observable < AppointmentWithoutRatingModel[] > {
-    return this.httpClient.get<AppointmentWithoutRatingModel[]>(Constants.getAppointmentByDoctorIdURL+doctorId,{
+  // getAppointmentByDoctorId(doctorId:number): Observable < AppointmentWithoutRatingModel[] > {
+  //   return this.httpClient.get<AppointmentWithoutRatingModel[]>(Constants.getAppointmentByDoctorIdURL+doctorId,{
+  //   });
+  // }
+
+  // getAppointmentUpcomingByDoctorId(doctorId:number): Observable < AppointmentWithoutRatingModel[] > {
+  //   return this.httpClient.get<AppointmentWithoutRatingModel[]>(Constants.getAppointmentUpcomingByDoctorIdURL+doctorId,{
+  //   });
+  // }
+
+  getFullAppointmentUpcomingByDoctorId(doctorId:number): Observable < AppointmentWithoutRatingModel[] > {
+    return this.httpClient.get<AppointmentWithoutRatingModel[]>(Constants.getFullAppointmentUpcomingByDoctorIdURL+doctorId,{
     });
   }
 
-  getAppointmentUpcomingByDoctorId(doctorId:number): Observable < AppointmentWithoutRatingModel[] > {
-    return this.httpClient.get<AppointmentWithoutRatingModel[]>(Constants.getAppointmentUpcomingByDoctorIdURL+doctorId,{
+  getDividedAppointmentUpcomingByDoctorId(doctorId:number): Observable < AppointmentWithoutRatingModel[] > {
+    return this.httpClient.get<AppointmentWithoutRatingModel[]>(Constants.getDividedAppointmentUpcomingByDoctorIdURL+doctorId,{
     });
   }
 

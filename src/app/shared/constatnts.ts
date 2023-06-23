@@ -55,8 +55,15 @@ export class Constants {
   public static readonly updateAppointmentWithoutRatingURL = this.baseURL + '/appointmentsForClinics/update';
   public static readonly deleteAppointmentWithoutRatingUrl = this.baseURL + '/appointmentsForClinics/delete/';
   public static readonly addAppointmentWithoutRatingURL = this.baseURL + '/appointmentsForClinics/add';
-  public static readonly getAppointmentByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/';
-  public static readonly getAppointmentUpcomingByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/upcoming/';
+
+  // public static readonly getAppointmentByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/';
+  // public static readonly getAppointmentUpcomingByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/upcoming/';
+
+  public static readonly getFullAppointmentByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/full/';
+  public static readonly getFullAppointmentUpcomingByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/full/upcoming/';
+
+  public static readonly getDividedAppointmentByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/divided/';
+  public static readonly getDividedAppointmentUpcomingByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/divided/upcoming/';
 
 //Areas
 public static readonly getAllAreasUrl=this.baseURL+ '/areas/all';
