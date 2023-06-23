@@ -34,22 +34,11 @@ export class ClientLoginComponent implements OnInit{
         let loginModel = new LoginModel();
         loginModel.username=this.loginForm.controls['emailOrMobileNumber'].value;
         loginModel.password=this.loginForm.controls['password'].value;
+
         this.securityService.login(loginModel).subscribe(value => {
-
-
+          this.loginSuccess();
         },error => {
-          if(error.status == '200'){
-
-              const cookies = error.headers.get('Set-Cookie');
-              console.log(error.headers);
-              if (cookies) {
-                document.cookie = cookies; // Save the cookies in the browser
-              }
-
-            this.loginSuccess();
-          }else{
-            this.swAlertService.fail('Failed to Login');
-          }
+          this.swAlertService.fail('Failed to Login');
         });
       }else if(emailOrMobileNumber.match(Constants.DIGITS_ONLY_11)){
         //login by mobileNumber request
@@ -57,6 +46,18 @@ export class ClientLoginComponent implements OnInit{
     }
   }
 
+
+  loginSuccess(){
+    this.swAlertService.success("Logged in Successfully");
+    this.securityService.getJWT().subscribe( (response: any) => {
+        console.log('Authorization Code:', response);
+      },
+      (error) => {
+        // Handle the error response
+        console.error('Error:'+ error);
+      }
+    );
+  }
 
   validateEmailOrMobileNumber(control:AbstractControl):{[s:string]:boolean} | null{
     const emailOrMobileNumber = control.value;
@@ -69,10 +70,17 @@ export class ClientLoginComponent implements OnInit{
     }
   }
 
-  loginSuccess(){
-    this.swAlertService.success("Logged in Successfully");
-    this.securityService.getAuthCode().subscribe(value => {
-      console.log(value);
-    });
-  }
+  // loginSuccess(){
+  //   this.swAlertService.success("Logged in Successfully");
+  //   this.securityService.getAuthCode().subscribe( (response: any) => {
+  //       // Process the response to extract the authorization code
+  //       const authorizationCode = response.authorization_code;
+  //       console.log('Authorization Code:', authorizationCode);
+  //     },
+  //     (error) => {
+  //       // Handle the error response
+  //       console.error('Error:'+ error);
+  //     }
+  //   );
+  // }
 }
