@@ -100,7 +100,7 @@ export class CardComponent implements OnInit {
 
     if (doctor && doctor.appointments) {
       const dayAppointments = doctor.appointments.filter(appointment => this.isSameDate(appointment.date, date));
-      return dayAppointments.map(appointment => this.formatTime(appointment.endTime));
+      return dayAppointments.map(appointment => this.formatTime(appointment.startTime));
     }
     return [];
 
