@@ -6,7 +6,8 @@ import {ClientLoginComponent} from "./components/client-login/client-login.compo
 import {ClientSignupComponent} from "./components/client-signup/client-signup.component";
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ClientCheckoutComponent } from './components/client-checkout/client-checkout.component';
-
+import { AppointmentWithoutRatingService } from '../shared/services/appointment-without-rating.service';
+import { ClientAppointmentComponent } from './components/client-appointment/client-appointment.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,10 @@ const routes: Routes = [
 {
   path:'doctor/:spectialies/:area',
   component:SearchResultComponent
+},
+{
+  path:'appointment',
+  component:ClientAppointmentComponent
 },
 ];
 @NgModule({

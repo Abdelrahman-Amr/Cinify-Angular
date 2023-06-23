@@ -1,0 +1,23 @@
+
+.header-cell {
+    background-color: var( --tableHeaderColor );  
+}
+.centrlize {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+  .material-icons{
+    font-size:48px;
+    color:rgb(236, 41, 41);
+  }
+  .cancel-icon:hover {
+    color: red;
+    cursor: pointer;
+  }
+  .cancel-icon-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+
