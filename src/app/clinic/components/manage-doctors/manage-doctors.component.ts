@@ -94,7 +94,7 @@ export class ManageDoctorsComponent implements OnInit{
 
   editAppointments(docId:number){
     if(!this.flags.get(docId)){
-      this.appointmentService.getAppointmentUpcomingByDoctorId(docId).subscribe(value => {
+      this.appointmentService.getFullAppointmentUpcomingByDoctorId(docId).subscribe(value => {
         this.appointments = value;
         this.createForms(docId);
         this.flags.set(docId,true);
