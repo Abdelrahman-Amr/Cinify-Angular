@@ -3,14 +3,26 @@ import {environment} from "../../environments/environment";
 export class Constants {
 
   public static readonly baseURL = environment.baseURL;
+  public static readonly baseAuthURL = environment.baseAuthURL;
 
-  // Doctor Urls
+
+  // Security APIs
+  public static readonly loginURL = this.baseAuthURL+'/login';
+  public static readonly authURL = this.baseAuthURL+'/oauth2/authorize';
+  public static readonly jwtURL = this.baseAuthURL+'/oauth2/token';
+  public static readonly test = this.baseAuthURL+'/test';
+
+
+  //Doctor URLs
   public static readonly getAllDoctorsUrl = this.baseURL + '/doctors/all';
   public static readonly getDoctorsPageUrl = this.baseURL + '/doctors/getPage';
   public static readonly getDoctor = this.baseURL + '/doctors/';
   public static readonly updateDoctorURL = this.baseURL + '/doctors/updateDoctor';
   public static readonly deleteDoctorUrl = this.baseURL + '/doctors/delete/';
   public static readonly addDoctorURL = this.baseURL + '/doctors/addDoctor';
+  public static readonly uploadDoctorImgUrl = environment.baseURL + '/doctors/upload';
+  public static readonly downloadDoctorImgUrl = environment.baseURL + '/doctors/download/';
+
 
 
   // Doctor Titles Urls

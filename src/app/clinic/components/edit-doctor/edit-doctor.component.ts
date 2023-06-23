@@ -22,6 +22,11 @@ export class EditDoctorComponent implements OnInit{
   titles:DoctorTitleModel[]=[];
   specs:DoctorSpecializationModel[]=[];
   errorMsg='';
+
+  imgTitle='Click to upload image';
+
+  imgFile: any;
+  imgUrl: string;
   constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService,
               @Inject(MAT_DIALOG_DATA) public doctor: DoctorModel,
               private doctorService:DoctorService, private doctorTitleService:DoctorTitleService,
@@ -83,5 +88,9 @@ export class EditDoctorComponent implements OnInit{
   }
 
 
+  onImageChange(event:any){
+    this.imgTitle = event.target.files[0].name;
+    this.imgFile = event.target.files[0];
+  }
 
 }

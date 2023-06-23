@@ -1,13 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {DoctorModel} from "../../../shared/components/header/model/doctor-model";
+import {DoctorModel} from "../../../shared/model/doctor-model";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {EditDoctorComponent} from "../edit-doctor/edit-doctor.component";
-import {AppointmentModel} from "../../../shared/components/header/model/appointment-model";
-import {Form, FormBuilder, FormGroup} from "@angular/forms";
+import {AppointmentModel} from "../../../shared/model/appointment-model";
+import {Form, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {DoctorService} from "../../../shared/services/doctor.service";
 import {AppointmentWithoutRatingService} from "../../../shared/services/appointment-without-rating.service";
+import {AppointmentWithoutRatingModel} from "../../../shared/model/appointment-without-rating-model";
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
-import { AppointmentWithoutRatingModel } from 'src/app/shared/components/header/model/appointment-without-rating-model';
+import {Constants} from "../../../shared/constatnts";
 
 @Component({
   selector: 'app-manage-doctors',
@@ -27,6 +28,7 @@ export class ManageDoctorsComponent implements OnInit{
 
   flags:Map<number, boolean> = new Map<number, boolean>();
   forms:Map<number, FormGroup[]> = new Map<number, FormGroup[]>();
+  imgUrl=Constants.downloadDoctorImgUrl+'Screenshot (13).png';
 
   constructor(private editDialog: MatDialog, private  formBuilder:FormBuilder,
               private doctorService:DoctorService,
@@ -79,7 +81,7 @@ export class ManageDoctorsComponent implements OnInit{
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '90%';
-    dialogConfig.height = '540px';
+    dialogConfig.height = '580px';
     // const data = new  UpdatePreviewData();
     // data.st = row;
     // data.sel = selection;
