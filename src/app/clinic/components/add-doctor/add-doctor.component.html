@@ -23,7 +23,7 @@
             <mat-label>Mobile Number</mat-label>
             <input  matInput name="phoneNumber" required type="tel" [formControlName]="'phoneNumber'">
             <mat-error *ngIf="form.controls['phoneNumber'].errors?.['required']">Required</mat-error>
-            <mat-error *ngIf="form.controls['phoneNumber'].errors?.['pattern']">Invalid Number</mat-error>
+            <mat-error *ngIf="form.controls['phoneNumber'].errors?.['pattern']">Invalid</mat-error>
             <mat-error *ngIf="form.controls['phoneNumber'].errors?.['serverError']">{{errorMsg}}</mat-error>
 
           </mat-form-field>

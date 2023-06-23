@@ -28,7 +28,7 @@ export class ManageDoctorsComponent implements OnInit{
 
   flags:Map<number, boolean> = new Map<number, boolean>();
   forms:Map<number, FormGroup[]> = new Map<number, FormGroup[]>();
-  imgUrl=Constants.downloadDoctorImgUrl+'Bodi.jpg';
+  imgUrl=Constants.downloadDoctorImgUrl+'Screenshot (13).png';
 
   constructor(private editDialog: MatDialog, private  formBuilder:FormBuilder,
               private doctorService:DoctorService,
