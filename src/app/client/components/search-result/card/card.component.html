@@ -1,76 +1,70 @@
 <div class="container">
 
-  <a class="card-link" *ngFor="let doctor of searchResultService.doctorsSearchResult">
-      <div class="doctor-card border-light mb-5 " style="padding: 30px;">
+    <a class="card-link" *ngFor="let doctor of doctors">
+        <div class="doctor-card border-light mb-5 " style="padding: 30px;">
 
-          <div class="card-body">
-              <div class="row">
-                  <div class="col-12 col-md-2">
-                      <img class="rounded-circle border border-2"
-                          src="https://www.pngplay.com/wp-content/uploads/9/Kitten-PNG-HD-Quality.png" />
-                  </div>
-                  <div class="col-12 col-md-7">
-                      <div class="name-container">
-<!--                          <span>Doctor</span>-->
-                          <h5>{{doctor.fullName}}</h5>
-                      </div>
-                      <p class="color-gray">{{doctor.doctorTitle.name}}</p>
-                      <p *ngFor="let star of stars" class="fa fa-star "
-                          [class.checked]="rate>=star">
-                      </p>
-                      <p>
-                          <i class="fas fa-stethoscope me-1 main-color"></i>
-                          <span class="color-gray">{{doctor.doctorSpecialization.name}}</span>
-                      </p>
-                      <p>
-                          <i class="fas fa-location-dot me-1 main-color"></i>
-                          <span class="color-gray">{{doctor.clinic.city.name}} : {{doctor.clinic.area.name}}</span>
-                      </p>
-                      <p>
-                          <i class="fas fa-money-bill-wave me-1 main-color"></i>
-                          <span class="color-gray">Fees : {{doctor.ticketPrice}} EGP</span>
-                      </p>
-                      <p>
-                          <i class="fas fa-phone me-1 main-color"></i>
-                          <span class="color-gray">{{doctor.clinic.phoneNumber}}</span>
-                      </p>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-2">
+                        <img class="rounded-circle border border-2"
+                            src="https://www.pngplay.com/wp-content/uploads/9/Kitten-PNG-HD-Quality.png" />
+                    </div>
+                    <div class="col-12 col-md-7">
+                        <div class="name-container">
+                            <!--                          <span>Doctor</span>-->
+                            <h5>{{doctor.fullName}}</h5>
+                        </div>
+                        <p class="color-gray">{{doctor.doctorTitle.name}}</p>
+                        <p *ngFor="let star of stars" class="fa fa-star "
+                            [class.checked]="doctor.averageRating >= star">
+                        </p>
+                        <p>
+                            <i class="fas fa-stethoscope me-1 main-color"></i>
+                            <span class="color-gray">{{doctor.doctorSpecialization.name}}</span>
+                        </p>
+                        <p>
+                            <i class="fas fa-location-dot me-1 main-color"></i>
+                            <span class="color-gray">{{doctor.clinic.city.name}} : {{doctor.clinic.area.name}}</span>
+                        </p>
+                        <p>
+                            <i class="fas fa-money-bill-wave me-1 main-color"></i>
+                            <span class="color-gray">Fees : {{doctor.ticketPrice}} EGP</span>
+                        </p>
+                        <p>
+                            <i class="fas fa-phone me-1 main-color"></i>
+                            <span class="color-gray">{{doctor.clinic.phoneNumber}}</span>
+                        </p>
 
-                  </div>
-                  <div class="col-12 col-md-3">
-                      <div class="col-12 col-md-12">
-                          <ngb-carousel *ngIf="cards" [interval]=100000000000 [showNavigationIndicators]=false>
-                              <ng-template ngbSlide *ngFor="let card of cards">
-                                  <div class="card bg-light mb-3" style="width: 100%; padding: 0px;">
-                                      <div class="card-header text-center">
-                                          {{card.day}}
-                                      </div>
-                                      <div class="card-body text-center">
-                                          <p class="card-text">
-                                              From {{card.from}}
-                                          </p>
-                                          <p>
-                                              To {{card.to}}
-                                          </p>
-                                      </div>
-                                      <div class="card-footer text-center">
-                                          <a href="#" mdbBtn class="waves-light book-btn" mdbWavesEffect>BOOK</a>
-                                      </div>
-                                  </div>
-                              </ng-template>
-                          </ngb-carousel>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </a>
-  <ngb-pagination   class="d-flex justify-content-center"
-                    [(page)]="page"
-                    [pageSize]="limit"
-                    [collectionSize]="totalCount"
-                    [maxSize]="5"
-                    [boundaryLinks]="true"
-                    (pageChange)="nextPage()">
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <div class="col-12 col-md-12">
+                            <ngb-carousel *ngIf="doctor.appointments" [interval]=100000000000
+                                [showNavigationIndicators]=false>
+                                <ng-template ngbSlide *ngFor="let appointment of doctor.appointments">
+                                    <div class="card bg-light mb-3" style="width: 100%; padding: 0px;">
+                                        <div class="card-header text-center">
+                                            {{formatAppointmentDate(appointment.date)}}
+                                        </div>
+                                        <div class="card-body text-center">
+                                            <p class="card-text"
+                                                *ngFor="let time of getTimesForDay(appointment.date, +doctor.id)">
+                                                {{time}}
+                                            </p>
+                                        </div>
+                                        <div class="card-footer text-center">
+                                            <a href="#" mdbBtn class="waves-light book-btn" mdbWavesEffect>BOOK</a>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ngb-carousel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+    <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="limit"
+        [collectionSize]="totalCount" [maxSize]="5" [boundaryLinks]="true" (pageChange)="nextPage()">
 
-  </ngb-pagination>
+    </ngb-pagination>
 </div>
