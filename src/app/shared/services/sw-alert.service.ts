@@ -22,7 +22,7 @@ export class SwAlertService {
   }
 
   fail(message:string){
-    Swal.fire({
+    return Swal.fire({
       // position: 'top-end',
       icon: 'error',
       text:message,
