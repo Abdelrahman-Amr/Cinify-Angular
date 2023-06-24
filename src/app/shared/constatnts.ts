@@ -4,6 +4,7 @@ export class Constants {
 
   public static readonly baseURL = environment.baseURL;
   public static readonly baseAuthURL = environment.baseAuthURL;
+  public static readonly redirectURI = environment.redirectURI;
 
 
   // Security APIs
@@ -55,7 +56,7 @@ export class Constants {
   public static readonly updateAppointmentWithoutRatingURL = this.baseURL + '/appointmentsForClinics/update';
   public static readonly deleteAppointmentWithoutRatingUrl = this.baseURL + '/appointmentsForClinics/delete/';
   public static readonly addAppointmentWithoutRatingURL = this.baseURL + '/appointmentsForClinics/add';
- 
+
   // public static readonly getAppointmentByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/';
   // public static readonly getAppointmentUpcomingByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/upcoming/';
 
@@ -65,12 +66,15 @@ export class Constants {
   public static readonly getDividedAppointmentByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/divided/';
   public static readonly getDividedAppointmentUpcomingByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/divided/upcoming/';
 
+  //Appointments
+  public static readonly getAllPatientAppointments=this.baseURL+'/appointments/byPatientId/'
+  public static readonly CancelPatientAppointment=this.baseURL+'/appointments/cancelAppointment/'
+
 //Areas
-public static readonly getAllAreasUrl=this.baseURL+ '/areas/all';
+  public static readonly getAllAreasUrl=this.baseURL+ '/areas/all';
 
 //Cities
-public static readonly getAllCities=this.baseURL+'/cities/all'
-
+  public static readonly getAllCities=this.baseURL+'/cities/all'
 
 
   /* Validation Regex */

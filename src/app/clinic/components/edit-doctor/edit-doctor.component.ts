@@ -44,6 +44,8 @@ export class EditDoctorComponent implements OnInit{
     // this.doctorSpecializationService.getAllDoctorSpecs().subscribe(value => {
     //   this.specs = value;
     // });
+
+
     this.form = this.formBuilder.group({
       name:[this.doctor.fullName, [Validators.required, Validators.minLength(3),
         Validators.maxLength(30)]],
@@ -53,7 +55,6 @@ export class EditDoctorComponent implements OnInit{
       price:[this.doctor.ticketPrice, [Validators.required, Validators.min(1)]],
       isDeleted:[this.doctor.isDeleted],
       avgMinutesPerPatient:[this.doctor.avgMinutesPerPatient, [Validators.required, Validators.min(1)]],
-
     });
   }
   update(){

@@ -1,19 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import {SwAlertService} from "../../../shared/services/sw-alert.service";
-import {Constants} from "../../../shared/constatnts";
+import { SwAlertService } from "../../../shared/services/sw-alert.service";
+import { Constants } from "../../../shared/constatnts";
+import { SharedDataService } from 'src/app/shared/services/shared-data.service';
+import { TimeFormatServiceService } from 'src/app/shared/services/time-format-service.service';
 
 @Component({
   selector: 'app-client-checkout',
   templateUrl: './client-checkout.component.html',
   styleUrls: ['./client-checkout.component.css']
 })
-export class ClientCheckoutComponent {
+export class ClientCheckoutComponent implements OnInit {
 
-  imgUrl=Constants.downloadDoctorImgUrl+'Screenshot (13).png';
+  imgUrl = Constants.downloadDoctorImgUrl ;
 
-  constructor(private router: Router, private swAlertService:SwAlertService) {}
+  currentAppointment = this.sharedData.currentAppointment
+
+  constructor(private router: Router, private swAlertService: SwAlertService, private sharedData: SharedDataService, private timeFormatService: TimeFormatServiceService) { }
+  ngOnInit(): void {
+    console.log("CUR APP:", this.sharedData.currentAppointment?.doctor.imgUrl);
+
+  }
   book() {
     Swal.fire({
       title: 'Confirmation',
@@ -22,8 +30,8 @@ export class ClientCheckoutComponent {
       showCancelButton: true,
       confirmButtonText: 'Yes',
       cancelButtonText: 'No',
-      toast:true,
-      iconColor:'#11468f',
+      toast: true,
+      iconColor: '#11468f',
       confirmButtonColor: '#11468f',
     }).then((result) => {
       if (result.isConfirmed) {
@@ -35,5 +43,13 @@ export class ClientCheckoutComponent {
 
       }
     });
+  }
+
+  formatAppointmentDate(date: Date): string {
+    return this.timeFormatService.formatAppointmentDate(date);
+  }
+  
+  formatTime(time: string): string {
+    return this.timeFormatService.formatTime(time);
   }
 }

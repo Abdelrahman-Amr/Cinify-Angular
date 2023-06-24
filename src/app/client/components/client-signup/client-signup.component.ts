@@ -3,6 +3,7 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Valid
 import {Constants} from "../../../shared/constatnts";
 import Swal from "sweetalert2";
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-client-signup',
@@ -13,10 +14,14 @@ export class ClientSignupComponent  implements OnInit{
   cities=['Giza', 'Cairo']
   signupForm:FormGroup;
 
-  constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService) {
+  constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService,
+              private router:Router) {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('token')){
+      this.router.navigate(['/']);
+    }
     this.signupForm = this.formBuilder.group({
       name:['', [Validators.required, Validators.minLength(3),
       Validators.maxLength(30)]],
