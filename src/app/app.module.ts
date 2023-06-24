@@ -7,7 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from "./shared/shared.module";
 import { ServiceWorkerModule } from '@angular/service-worker';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {AuthInterceptorService} from "./shared/services/auth-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,10 @@ import {HttpClientModule} from "@angular/common/http";
     }),
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

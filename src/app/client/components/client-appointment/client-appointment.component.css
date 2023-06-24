@@ -1,6 +1,6 @@
 
 .header-cell {
-    background-color: var( --tableHeaderColor );  
+    background-color: var( --tableHeaderColor );
 }
 .centrlize {
     margin-left: 125px;
@@ -28,3 +28,7 @@
     overflow-x: auto;
   }
 
+.search{
+  background-image:url("/assets/images/search-bg.jpg");
+  background-size: contain;
+}
