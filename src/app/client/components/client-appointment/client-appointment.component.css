@@ -3,8 +3,10 @@
     background-color: var( --tableHeaderColor );  
 }
 .centrlize {
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 125px;
+    margin-right: 125px;
+    display: flex;
+    justify-content: center;
   }
   .material-icons{
     font-size:48px;
@@ -19,5 +21,10 @@
     justify-content: center;
     align-items: center;
   }
-  
+  .extra-padding {
+    padding: 200px;
+  }
+  .container{
+    overflow-x: auto;
+  }
 

@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Constants } from 'src/app/shared/constatnts';
+import { PatientAppointment } from 'src/app/shared/model/patient-appointment';
+import { AppointmentService } from 'src/app/shared/services/appointment.service';
 
 @Component({
   selector: 'app-client-appointment',
@@ -6,27 +10,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./client-appointment.component.css']
 })
 export class ClientAppointmentComponent {
-    tableData: any[] = [
-      {
-        doctorName: 'John Doe',
-        address: '123 Main St',
-        reservationDate: '2023-06-10',
-        statues: 'Yes',
-        from: '9:00 AM',
-        to: '11:00 AM'
-      },
-      {
-        doctorName: 'Jane Smith',
-        address: '456 Elm St',
-        reservationDate: '2023-06-11',
-        statues: 'No',
-        from: '2:00 PM',
-        to: '4:00 PM'
-      },
-      // Add more objects for additional rows
-    ];
   
-  handleButtonClick(i:number):void{
+    constructor(private _http:HttpClient,public appointmentService:AppointmentService){
 
-  }
+    }
+    ngOnInit(): void {
+      this.appointmentService.getAllPatientAppointmments(6);
+      
+    }
+   
+
+    handleButtonAction(appointmentId: number): void {
+     
+      const index = this.appointmentService.patientAppointment.findIndex(appointment => appointment.id === appointmentId);
+          if (index !== -1) {
+            this.appointmentService.patientAppointment.splice(index, 1);
+            this.appointmentService.cancelPatientAppointmments(appointmentId);
+      }
+    }
 }
