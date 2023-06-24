@@ -1,0 +1,24 @@
+.card-image {
+  width: 100%;
+}
+
+.top-title {
+  color: var(--main-color);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  color: var(--main-color);
+  padding: 0.2rem 0.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+::ng-deep .carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgb(6.67%, 27.45%, 56.08%)' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+
+::ng-deep .carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgb(6.67%, 27.45%, 56.08%)' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
