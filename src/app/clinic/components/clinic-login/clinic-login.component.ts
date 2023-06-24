@@ -58,7 +58,7 @@ export class ClinicLoginComponent implements OnInit{
     this.swAlertService.success("Logged in Successfully");
     this.securityService.getJWT().subscribe( (response: any) => {
         const accessToken = response.access_token;
-        localStorage.setItem('token',JSON.stringify(accessToken));
+        localStorage.setItem('token',accessToken);
         this.router.navigate(['/']);
       },
       (error) => {
