@@ -1,14 +1,19 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {Constants} from "../constatnts";
 import {LoginModel} from "../model/login-model";
 import {DoctorTitleModel} from "../model/doctor-title-model";
+import {PageResult} from "../model/page-result";
+import {DoctorModel} from "../model/doctor-model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SecurityService {
+
+  loginSubject:BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  logoutSubject:BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(private httpClient: HttpClient) { }
 
@@ -55,5 +60,17 @@ export class SecurityService {
     return this.httpClient.post<any>(Constants.loginURL,form,{
       withCredentials: true
     });
+  }
+
+
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  }
+
+  isLoggedIn():boolean{
+    console.log(JSON.stringify(localStorage.getItem('token')));
+    return localStorage.getItem('token') != null;
+
   }
 }
