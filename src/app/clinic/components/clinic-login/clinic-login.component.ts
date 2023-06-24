@@ -38,10 +38,8 @@ export class ClinicLoginComponent implements OnInit{
       loginModel.username=this.loginForm.controls['email'].value;
       loginModel.password=this.loginForm.controls['password'].value;
 
-      this.securityService.login(loginModel).subscribe(value => {
 
-        localStorage.setItem('user',JSON.stringify(value));
-        localStorage.setItem('isClinic','true');
+      this.securityService.login(loginModel).subscribe(value => {
 
         this.securityService.loginSubject.next(null);
         this.loginSuccess();
@@ -53,13 +51,13 @@ export class ClinicLoginComponent implements OnInit{
     }
   }
 
-
   loginSuccess(){
-    this.swAlertService.success("Logged in Successfully");
     this.securityService.getJWT().subscribe( (response: any) => {
         const accessToken = response.access_token;
+
         localStorage.setItem('token',accessToken);
-        this.router.navigate(['/']);
+
+        this.getClinictData(this.loginForm.controls['email'].value);
       },
       (error) => {
         // Handle the error response
@@ -68,7 +66,19 @@ export class ClinicLoginComponent implements OnInit{
     );
   }
 
+  getClinictData(userName:string){
+    this.securityService.getClinicData(userName).subscribe(value => {
+      localStorage.setItem('user',JSON.stringify(value));
+      localStorage.setItem('isClinic','true');
 
+      this.swAlertService.success("Logged in Successfully");
+
+      this.router.navigate(['/']);
+
+    },error => {
+      this.swAlertService.fail('Failed to Login');
+    });
+  }
 
 
 }

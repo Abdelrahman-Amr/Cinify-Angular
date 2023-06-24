@@ -13,6 +13,8 @@ export class Constants {
   public static readonly jwtURL = this.baseAuthURL+'/oauth2/token';
   public static readonly test = this.baseAuthURL+'/test';
 
+  //Patient
+  public static readonly getPatientDataURL = this.baseURL + '/patients/data';
 
   //Doctor URLs
   public static readonly getAllDoctorsUrl = this.baseURL + '/doctors/all';
@@ -48,6 +50,7 @@ export class Constants {
   public static readonly updateClinicURL = this.baseURL + '/clinics/update';
   public static readonly deleteClinicUrl = this.baseURL + '/clinics/delete/';
   public static readonly addClinicURL = this.baseURL + '/clinics/add';
+  public static readonly getClinicDataURL = this.baseURL + '/clinics/data';
 
 
   // AppointmentWithoutRating Urls
