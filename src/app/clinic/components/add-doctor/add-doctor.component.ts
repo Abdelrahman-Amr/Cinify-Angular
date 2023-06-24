@@ -76,13 +76,18 @@ signup(){
     doctor.fullName = this.form.controls['name'].value;
     doctor.clinic =  new ClinicModel(+this.form.controls['clinic'].value);
     doctor.avgMinutesPerPatient = +this.form.controls['avgMinutesPerPatient'].value;
+    if(this.imgTitle =='Click to upload image'){
+      this.imgTitle = 'doctor.avif';
+    }
     doctor.imgUrl = this.imgTitle;
 
 
     this.doctorService.addDoctor(doctor).subscribe(value => {
       this.swAlertService.success('Added Successfully');
-      this.doctorService.upload(this.imgFile,value.message ).subscribe(() => {
+      if (this.imgTitle != 'doctor.avif') {
+      this.doctorService.upload(this.imgFile, value.message).subscribe(() => {
       });
+    }
     }, error=>{
       const formControl = this.form.get(error.error.field);
       this.errorMsg = error.error.message;
@@ -98,7 +103,6 @@ signup(){
   }
 
   onImageChange(event:any){
-
      this.imgTitle = event.target.files[0].name;
      this.imgFile = event.target.files[0];
   }

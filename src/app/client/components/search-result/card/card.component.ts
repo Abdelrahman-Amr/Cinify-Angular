@@ -47,7 +47,7 @@ export class CardComponent implements OnInit , OnDestroy{
 
     this.doctorSubscription = this.searchResultService.doctorsSubject.subscribe(value => {
       // console.log(value);
-      this.isLoading = false;
+
       this.doctors = value.data;
       this.totalCount = value.totalCount;
       for (let index = 0; index < this.doctors.length; index++) {
@@ -58,6 +58,7 @@ export class CardComponent implements OnInit , OnDestroy{
           });
         }
       }
+      this.isLoading = false;
       });
 
 
