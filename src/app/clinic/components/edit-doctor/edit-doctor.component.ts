@@ -41,7 +41,6 @@ export class EditDoctorComponent implements OnInit{
     this.titles = this.sessionStorageService.getTitles();
     this.specs = this.sessionStorageService.getSpecs();
     this.imgTitle = this.doctor.imgUrl;
-
     // this.doctorSpecializationService.getAllDoctorSpecs().subscribe(value => {
     //   this.specs = value;
     // });
