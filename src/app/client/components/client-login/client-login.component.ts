@@ -41,8 +41,9 @@ export class ClientLoginComponent implements OnInit{
 
         this.securityService.login(loginModel).subscribe(value => {
 
-          this.securityService.loginSubject.next(null);
           this.loginSuccess();
+          this.securityService.loginSubject.next(null);
+
 
         },error => {
           this.swAlertService.fail('Failed to Login');
@@ -59,6 +60,7 @@ export class ClientLoginComponent implements OnInit{
 
         this.getPatientData(this.loginForm.controls['emailOrMobileNumber'].value);
 
+
       },
       (error) => {
         // Handle the error response
@@ -72,6 +74,7 @@ export class ClientLoginComponent implements OnInit{
       localStorage.setItem('user',JSON.stringify(value));
 
       this.swAlertService.success("Logged in Successfully");
+
 
       if(this.activatedRoute.snapshot.params['isCheckout']=='1'){
         this.router.navigate(['/checkout']);

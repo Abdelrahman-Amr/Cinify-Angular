@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SecurityService} from "../../services/security.service";
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
-import {SwAlertService} from "../../services/sw-alert.service";
 
 @Component({
   selector: 'app-header',
@@ -30,6 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
       // @ts-ignore
       this.user=JSON.parse(localStorage.getItem('user'));
       if(this.securityService.isClinic()){
+        console.log(this.securityService.isClinic());
         this.isClinic=true;
       }else{
         // this.fullName=this.user.fullName;

@@ -41,8 +41,8 @@ export class ClinicLoginComponent implements OnInit{
 
       this.securityService.login(loginModel).subscribe(value => {
 
-        this.securityService.loginSubject.next(null);
         this.loginSuccess();
+
 
       },error => {
         this.swAlertService.fail('Failed to Login');
@@ -70,6 +70,7 @@ export class ClinicLoginComponent implements OnInit{
     this.securityService.getClinicData(userName).subscribe(value => {
       localStorage.setItem('user',JSON.stringify(value));
       localStorage.setItem('isClinic','true');
+      this.securityService.loginSubject.next(null);
 
       this.swAlertService.success("Logged in Successfully");
 
