@@ -53,6 +53,8 @@ export class CardComponent implements OnInit , OnDestroy{
       }
     });
 
+    
+
     //
     //   const appointmentObservables = this.searchResultService.doctorsSearchResult.map(doctor => {
     //     return this.appointmentService.getAppointmentUpcomingByDoctorId(doctor.id);
@@ -69,6 +71,9 @@ export class CardComponent implements OnInit , OnDestroy{
 
   formatAppointmentDate(date: Date): string {
 
+    console.log("*****");
+    console.log(this.doctors[0].appointments);
+    
     const appointmentDate = new Date(date);
     const today = new Date();
     const tomorrow = new Date();
