@@ -50,7 +50,8 @@ export class ClientLoginComponent implements OnInit{
   loginSuccess(){
     this.swAlertService.success("Logged in Successfully");
     this.securityService.getJWT().subscribe( (response: any) => {
-        console.log('Authorization Code:', response);
+        const accessToken = response.access_token;
+        console.log('Access Token:', accessToken);
       },
       (error) => {
         // Handle the error response
