@@ -65,7 +65,6 @@ ngOnInit(): void {
     avgMinutesPerPatient:['', [Validators.required, Validators.min(1)]],
   });
 }
-
 signup(){
   if(this.form.valid){
     let doctor= new DoctorModel();
