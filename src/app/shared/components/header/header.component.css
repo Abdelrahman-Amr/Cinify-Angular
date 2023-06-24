@@ -75,7 +75,7 @@
   }
 
   .btn-custom:hover {
-    color: blue;
+    color: var(--main-color);
     background-color: white;
     border-color: white;
   }
