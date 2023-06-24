@@ -9,7 +9,8 @@ import { AppointmentService } from 'src/app/shared/services/appointment.service'
   templateUrl: './client-appointment.component.html',
   styleUrls: ['./client-appointment.component.css']
 })
-export class ClientAppointmentComponent implements OnInit{
+export class ClientAppointmentComponent {
+    imgUrl = Constants.downloadDoctorImgUrl ;
 
     constructor(private _http:HttpClient,public appointmentService:AppointmentService){
 
@@ -20,6 +21,8 @@ export class ClientAppointmentComponent implements OnInit{
       // @ts-ignore
       this.appointmentService.getAllPatientAppointmments(JSON.parse(localStorage.getItem('user')).id);
 
+      // this.appointmentService.getAllPatientAppointmments(5);
+      
     }
 
 
