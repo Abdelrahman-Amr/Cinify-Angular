@@ -34,7 +34,8 @@
                             <p>Date</p>
                         </div>
 
-                        <p>{{currentAppointment?.date}}</p>
+                        <p>{{currentAppointment && currentAppointment.date ? formatAppointmentDate(currentAppointment.date) : ''}}</p>
+
                     </div>
 
 
@@ -45,7 +46,8 @@
                             <p>Time</p>
                         </div>
 
-                        <p>{{currentAppointment?.startTime}}</p>
+                        <p>{{currentAppointment && currentAppointment.startTime ? formatTime(currentAppointment.startTime) : ''}}</p>
+
                     </div>
 
 

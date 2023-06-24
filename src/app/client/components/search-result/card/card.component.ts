@@ -11,6 +11,7 @@ import { SearchResultService } from "../../../../shared/services/search-result-s
 import { Subscription } from "rxjs";
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { Router } from '@angular/router';
+import { TimeFormatServiceService } from 'src/app/shared/services/time-format-service.service';
 
 @Component({
   selector: 'app-card',
@@ -36,7 +37,8 @@ export class CardComponent implements OnInit, OnDestroy {
   doctorSubscription: Subscription;
 
   constructor(private doctorService: DoctorService, private appointmentService: AppointmentWithoutRatingService,
-    public searchResultService: SearchResultService, private sharedData: SharedDataService,private router:Router) {
+    public searchResultService: SearchResultService, private sharedData: SharedDataService,private router:Router,
+    private timeFormatService: TimeFormatServiceService) {
   }
 
   ngOnInit(): void {
@@ -72,46 +74,15 @@ export class CardComponent implements OnInit, OnDestroy {
   }
 
   formatAppointmentDate(date: Date): string {
-
-    const appointmentDate = new Date(date);
-    const today = new Date();
-    const tomorrow = new Date();
-    tomorrow.setDate(today.getDate() + 1);
-
-    if (this.isSameDate(appointmentDate, today)) {
-      return 'Today';
-    } else if (this.isSameDate(appointmentDate, tomorrow)) {
-      return 'Tomorrow';
-    } else {
-      return formatDate(appointmentDate, 'EEEE dd/MM', 'en-US');
-    }
-
+    return this.timeFormatService.formatAppointmentDate(date);
   }
-
+  
+  formatTime(time: string): string {
+    return this.timeFormatService.formatTime(time);
+  }
 
   isSameDate(date1: Date, date2: Date): boolean {
-
-    const d1 = new Date(date1);
-    const d2 = new Date(date2);
-    d1.setHours(0, 0, 0, 0);
-    d2.setHours(0, 0, 0, 0);
-
-    return d1.getTime() === d2.getTime();
-
-  }
-
-  formatTime(time: string): string {
-
-    if (time != null) {
-      const date = new Date();
-      const [hours, minutes] = time.split(':');
-      date.setHours(Number(hours));
-      date.setMinutes(Number(minutes));
-
-      return formatDate(date, 'h:mm a', 'en-US');
-    }
-    return "";
-
+    return this.timeFormatService.isSameDate(date1,date2);
   }
 
   getTimesForDay(date: Date, id: number): string[] {
