@@ -14,6 +14,8 @@ export class ClientCheckoutComponent implements OnInit{
 
   imgUrl=Constants.downloadDoctorImgUrl+'Screenshot (13).png';
 
+  currentAppointment = this.sharedData.currentAppointment
+
   constructor(private router: Router, private swAlertService:SwAlertService,private sharedData:SharedDataService) {}
   ngOnInit(): void {
     console.log("CUR APP:" ,this.sharedData.currentAppointment);
