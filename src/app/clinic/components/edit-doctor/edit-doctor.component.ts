@@ -44,6 +44,8 @@ export class EditDoctorComponent implements OnInit{
     // this.doctorSpecializationService.getAllDoctorSpecs().subscribe(value => {
     //   this.specs = value;
     // });
+
+
     this.form = this.formBuilder.group({
       name:[this.doctor.fullName, [Validators.required, Validators.minLength(3),
         Validators.maxLength(30)]],
