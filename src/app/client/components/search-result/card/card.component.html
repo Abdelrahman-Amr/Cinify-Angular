@@ -1,18 +1,20 @@
 <div class="container">
-  <div class="loading mb-4 text-center" *ngIf="isLoading" style="margin: auto">
-    <svg width="64px" height="48px">
-      <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back"></polyline>
-      <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="front"></polyline>
-    </svg>
-  </div>
+
+
+
+    <div class="loading mb-4 text-center" *ngIf="isLoading" style="margin: auto">
+        <svg width="64px" height="48px">
+            <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back"></polyline>
+            <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="front"></polyline>
+        </svg>
+    </div>
     <a class="card-link" *ngFor="let doctor of this.searchResultService.doctorsSearchResult">
-        <div class="doctor-card border-light mb-5 " style="padding: 30px;" *ngIf="doctor.appointments.length>0">
+        <div class="doctor-card border-light mb-3 " style="padding: 30px;" *ngIf="doctor.appointments.length>0">
 
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 col-md-2">
-                        <img class="rounded-circle border border-2" alt="doctor"
-                            [src]="imgUrl+doctor.imgUrl"  />
+                        <img class="rounded-circle border border-2" [src]="imgUrl+doctor.imgUrl"  />
                     </div>
                     <div class="col-12 col-md-7">
                         <div class="name-container">
@@ -53,7 +55,7 @@
                                         <div class="card-body text-center">
                                             <p class="card-text"
                                                 *ngFor="let time of getTimesForDay(appointment.date, +doctor.id)">
-                                                {{time}}
+                                                <a (click)="checkOut(appointment)" class="appointment-link">{{time}}</a>
                                             </p>
                                         </div>
                                         <div class="card-footer text-center">

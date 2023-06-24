@@ -13,9 +13,9 @@
                     <div class="clinic-details">
                         <img [src]="imgUrl"
                             mat-card-avatar />
-                        <mat-card-title>Dr. Abdulrahman Zaki</mat-card-title>
+                        <mat-card-title>{{currentAppointment?.doctor?.fullName}}</mat-card-title>
                         <mat-card-subtitle>
-                            Software Engineer
+                            {{currentAppointment?.doctor?.doctorTitle?.name}}
                         </mat-card-subtitle>
                     </div>
                 </mat-card-content>
@@ -34,7 +34,8 @@
                             <p>Date</p>
                         </div>
 
-                        <p>14/2/2022</p>
+                        <p>{{currentAppointment && currentAppointment.date ? formatAppointmentDate(currentAppointment.date) : ''}}</p>
+
                     </div>
 
 
@@ -45,7 +46,8 @@
                             <p>Time</p>
                         </div>
 
-                        <p>12:40pm</p>
+                        <p>{{currentAppointment && currentAppointment.startTime ? formatTime(currentAppointment.startTime) : ''}}</p>
+
                     </div>
 
 
@@ -56,7 +58,7 @@
                             <p>Fees</p>
                         </div>
 
-                        <p>400E£</p>
+                        <p>{{currentAppointment?.doctor?.ticketPrice}} E£</p>
                     </div>
 
                     <mat-divider></mat-divider>
