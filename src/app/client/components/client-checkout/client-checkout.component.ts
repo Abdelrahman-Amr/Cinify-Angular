@@ -13,13 +13,13 @@ import { TimeFormatServiceService } from 'src/app/shared/services/time-format-se
 })
 export class ClientCheckoutComponent implements OnInit {
 
-  imgUrl = Constants.downloadDoctorImgUrl + 'Screenshot (13).png';
+  imgUrl = Constants.downloadDoctorImgUrl ;
 
   currentAppointment = this.sharedData.currentAppointment
 
   constructor(private router: Router, private swAlertService: SwAlertService, private sharedData: SharedDataService, private timeFormatService: TimeFormatServiceService) { }
   ngOnInit(): void {
-    console.log("CUR APP:", this.sharedData.currentAppointment);
+    console.log("CUR APP:", this.sharedData.currentAppointment?.doctor.imgUrl);
 
   }
   book() {
