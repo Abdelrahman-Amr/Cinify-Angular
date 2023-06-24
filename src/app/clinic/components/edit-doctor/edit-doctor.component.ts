@@ -56,7 +56,6 @@ export class EditDoctorComponent implements OnInit{
 
     });
   }
-
   update(){
     if(this.form.valid){
       let doctor= new DoctorModel();
