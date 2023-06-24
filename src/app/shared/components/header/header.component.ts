@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   isClinic=false;
   loginSub:Subscription;
   logoutSub:Subscription;
+  user:any;
 
 
   constructor(private securityService:SecurityService, private router:Router,
@@ -25,6 +26,8 @@ export class HeaderComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.loginSub = this.securityService.loginSubject.subscribe(value => {
       this.isLoggedIn=true;
+      // @ts-ignore
+      this.user=JSON.parse(localStorage.getItem('user'));
       if(this.securityService.isClinic()){
         this.isClinic=true;
       }

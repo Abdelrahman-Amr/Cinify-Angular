@@ -26,7 +26,7 @@ export class SecurityService {
     codeParams = codeParams.append('response_type','code');
     codeParams = codeParams.append('client_id','iti-client');
     codeParams = codeParams.append('scope','openid');
-    codeParams = codeParams.append('redirect_uri','http://localhost:4200/login');
+    codeParams = codeParams.append('redirect_uri',Constants.redirectURI);
     codeParams = codeParams.append('code_challenge','QYPAZ5NU8yvtlQ9erXrUYR-T5AGCjCF47vN-KsaI2A8');
     codeParams = codeParams.append('code_challenge_method','S256');
 

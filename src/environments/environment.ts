@@ -6,9 +6,11 @@ export const environment = {
   production: false,
   baseURL : 'http://localhost:9999/api',
   // baseURL : 'http://clinify-serverv2.eu-west-2.elasticbeanstalk.com/api',
-  //
-  baseAuthURL : 'http://localhost:9090',
 
+  baseAuthURL : 'http://localhost:9090',
+  // baseAuthURL:'http://clinify-auth.eu-west-2.elasticbeanstalk.com',
+
+  // redirectURI:'http://clinify-client.s3-website.eu-west-2.amazonaws.com/login'
 };
 
 /*

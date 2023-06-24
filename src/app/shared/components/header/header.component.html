@@ -19,6 +19,10 @@
         <li class="nav-item" *ngIf="!isLoggedIn">
           <a class="nav-link active" aria-current="page" routerLink="/login" ><span  (click)="collapse()" >Login</span></a>
         </li>
+
+        <li class="nav-item"  *ngIf="isLoggedIn">
+          <a class="nav-link active " routerLink="/clinic/add-doctor" (click)="collapse()">{{'Welcome,' +this.user.fullName}}</a>
+        </li>
 <!--        <li class="nav-item separator" *ngIf="!isLoggedIn"></li>-->
 <!--        <li class="nav-item" *ngIf="!isLoggedIn">-->
 <!--          <a class="nav-link active " routerLink="/clinic/login" (click)="collapse()">Clinic Login</a>-->
@@ -38,15 +42,16 @@
         <li class="nav-item" *ngIf="isClinic">
           <a class="nav-link active " routerLink="/clinic/manage-doctors" (click)="collapse()">Edit Doctors</a>
         </li>
+                <li class="nav-item separator" *ngIf=" isLoggedIn && !isClinic"></li>
 
-        <li class="nav-item separator" *ngIf="isClinic"></li>
+        <li class="nav-item separator" *ngIf=" isLoggedIn && !isClinic"></li>
         <li class="nav-item" *ngIf="isClinic">
           <a class="nav-link active " routerLink="/doctor" (click)="collapse()">Book Doctor</a>
         </li>
-        <li class="nav-item separator" *ngIf="isClinic"></li>
-        <li class="nav-item" *ngIf="isClinic">
-          <a class="nav-link active " routerLink="/checkout" (click)="collapse()">Checkout</a>
-        </li>
+<!--        <li class="nav-item separator" *ngIf="isClinic"></li>-->
+<!--        <li class="nav-item" *ngIf="isClinic">-->
+<!--          <a class="nav-link active " routerLink="/checkout" (click)="collapse()">Checkout</a>-->
+<!--        </li>-->
         <li class="nav-item"  *ngIf="isLoggedIn && !isClinic">
           <a class="nav-link active " routerLink="/appointment" (click)="collapse()">My Appointments</a>
         </li>

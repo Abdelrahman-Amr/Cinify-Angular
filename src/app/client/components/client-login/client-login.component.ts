@@ -54,6 +54,7 @@ export class ClientLoginComponent implements OnInit{
     this.securityService.getJWT().subscribe( (response: any) => {
         const accessToken = response.access_token;
         localStorage.setItem('token',JSON.stringify(accessToken));
+
         this.router.navigate(['/']);
       },
       (error) => {
