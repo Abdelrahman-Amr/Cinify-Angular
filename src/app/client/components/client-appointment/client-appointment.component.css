@@ -28,3 +28,11 @@
     overflow-x: auto;
   }
 
+  .doctor-name {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .small-text {
+    font-size: 12px;
+  }

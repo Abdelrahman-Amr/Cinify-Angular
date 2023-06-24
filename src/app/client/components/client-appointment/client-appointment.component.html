@@ -1,35 +1,34 @@
-<div class="search">
-    <app-clinic-search></app-clinic-search>   
-</div>
 <div class="container p-5">
-  <table class="table ">
-      <thead >
-        <tr>
-          <th class="header-cell text-center">Doctor name</th>
-          <th class="header-cell text-center">Address</th>
-          <th class="header-cell text-center">Reservation Date</th>
-          <th class="header-cell text-center">Statues</th>
-          <th class="header-cell text-center">From</th>
-          <th class="header-cell text-center">To</th>
-          <th class="header-cell text-center">Cancel Reservation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let appointment of appointmentService.patientAppointment">
-          <td class="text-center">{{ appointment.doctor.fullName }}</td>
-          <td class="text-center">{{ appointment.doctor.clinic.address }}</td>
-          <td class="text-center">{{ appointment.date}}</td>
-          <td class="text-center">{{ appointment.status}}</td>
-          <td class="text-center">{{ appointment.startTime }}</td>
-          <td class="text-center">{{ appointment.endTime  }}</td>
-          <td class="text-center cancel-icon-cell">
-            <button (click)="handleButtonAction(appointment.id)" class="btn btn-secondary">
-              <i class="bi bi-x"></i> Cancel
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="row">
+    <div class="col-12 col-md-4" *ngFor="let appointment of appointmentService.patientAppointment">
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div class="circle-img">
+              <img [src]="imgUrl" class="rounded-circle img-thumbnail mr-3" alt="" width="50" height="50">
+            </div>
+
+            <div class="ml-3">
+              <div class="doctor-name">
+                {{ appointment.doctor.fullName }}
+              </div>
+              <div class="doctor-specialization small-text">
+                {{ appointment.doctor.doctorSpecialization.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body"> <p class="card-text"><i class="bi bi-geo-alt-fill"></i> {{ appointment.doctor.clinic.address }}</p>
+          <p class="card-text"><i class="bi bi-calendar-event"></i> Appointment Date: {{ appointment.date }}</p>
+          <p class="card-text"><i class="bi bi-info-circle-fill"></i> {{ appointment.status }}</p>
+          <p class="card-text"><i class="bi bi-calendar-event"></i> From: {{ appointment.startTime }} - To: {{ appointment.endTime }}</p>
+        </div>
+        <div class="card-footer text-center">
+          <button (click)="handleButtonAction(appointment.id)" class="btn btn-danger">
+            <i class="bi bi-x"></i> Cancel Appointment
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-  
-  
+</div>

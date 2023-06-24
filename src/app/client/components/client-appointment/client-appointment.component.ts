@@ -10,12 +10,13 @@ import { AppointmentService } from 'src/app/shared/services/appointment.service'
   styleUrls: ['./client-appointment.component.css']
 })
 export class ClientAppointmentComponent {
-  
+    imgUrl = Constants.downloadDoctorImgUrl ;
+
     constructor(private _http:HttpClient,public appointmentService:AppointmentService){
 
     }
     ngOnInit(): void {
-      this.appointmentService.getAllPatientAppointmments(6);
+      this.appointmentService.getAllPatientAppointmments(5);
       
     }
    
