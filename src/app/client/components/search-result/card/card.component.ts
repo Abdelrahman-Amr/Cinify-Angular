@@ -9,6 +9,9 @@ import {
 import {Constants} from "../../../../shared/constatnts";
 import {SearchResultService} from "../../../../shared/services/search-result-service.service";
 import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
+import {TimeFormatServiceService} from "../../../../shared/services/time-format-service.service";
+import {SharedDataService} from "../../../../shared/services/shared-data.service";
 
 @Component({
   selector: 'app-card',
@@ -48,13 +51,14 @@ export class CardComponent implements OnInit , OnDestroy{
       this.doctors = value.data;
       this.totalCount = value.totalCount;
       for (let index = 0; index < this.doctors.length; index++) {
-        this.appointmentService.getAppointmentUpcomingByDoctorId(this.doctors[index].id).subscribe(appointments => {
-      for(let index=0;index<  this.doctors.length;index++) {
-        this.appointmentService.getFullAppointmentUpcomingByDoctorId(this.doctors[index].id).subscribe(appointments => {
-          this.searchResultService.doctorsSearchResult[index].appointments = appointments;
-        });
+        // this.appointmentService.getAppointmentUpcomingByDoctorId(this.doctors[index].id).subscribe(appointments => {
+        for (let index = 0; index < this.doctors.length; index++) {
+          this.appointmentService.getFullAppointmentUpcomingByDoctorId(this.doctors[index].id).subscribe(appointments => {
+            this.searchResultService.doctorsSearchResult[index].appointments = appointments;
+          });
+        }
       }
-    });
+      });
 
 
 
