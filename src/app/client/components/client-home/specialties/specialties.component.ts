@@ -1,29 +1,32 @@
 
-import { Component , HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { specialitiesSlides } from './specialities-data';
+import { Slide } from './slide';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-specialties',
   templateUrl: './specialties.component.html',
   styleUrls: ['./specialties.component.css']
 })
+
+
 export class SpecialtiesComponent {
-    imagePath = 'assets/images';
-  	showNavigationArrows = false;
-  	showNavigationIndicators = false;
-    isSmallScreen: boolean;
-  	images: string[] = ["assets/images/R.jpg","assets/images/x.jpg","assets/images/R.jpg","assets/images/x.jpg","assets/images/R.jpg","assets/images/x.jpg","assets/images/R.jpg","assets/images/x.jpg"]
-	// images = [700, 533, 807, 124].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  
+  slides: Slide[] = specialitiesSlides;
+  showNavigationArrows = false;
+  showNavigationIndicators = false;
+  isSmallScreen: boolean;
 
-  	
-
-//   ngAfterViewInit() {
-//       // Initialize the carousel
-//       $(document).ready(() => {
-//         $('#carouselExampleIndicators').carousel();
-//       });
-//     }
-constructor() {
+  //   ngAfterViewInit() {
+  //       // Initialize the carousel
+  //       $(document).ready(() => {
+  //         $('#carouselExampleIndicators').carousel();
+  //       });
+  //     }
+  constructor(private router: Router) {
     this.checkScreenSize();
+
   }
 
   @HostListener('window:resize', ['$event'])
@@ -36,12 +39,16 @@ constructor() {
   }
 
   getCarouselIndices(): number[] {
-    return Array(Math.ceil(this.images.length / 4)).fill(0).map((_, i) => i);
+    return Array(Math.ceil(this.slides.length / 4)).fill(0).map((_, i) => i);
   }
-  
-  getCarouselImages(index: number): string[] {
+
+  getCarouselImages(index: number): Slide[] {
     const start = index * 4;
-    return this.images.slice(start, start + 4);
+    return this.slides.slice(start, start + 4);
   }
-  
+
+  openUrl(speciality: string) {
+    this.router.navigate(["doctor",speciality,"Egypt"])
+  }
+
 }
