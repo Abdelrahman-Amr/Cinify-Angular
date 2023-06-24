@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SecurityService} from "../../services/security.service";
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
+import {SwAlertService} from "../../services/sw-alert.service";
 
 @Component({
   selector: 'app-header',
@@ -13,23 +14,31 @@ export class HeaderComponent implements OnInit, OnDestroy{
   isNavbarCollapsed = true;
   isDropdownOpen = false
   isLoggedIn=false;
+  isClinic=false;
   loginSub:Subscription;
   logoutSub:Subscription;
 
 
-  constructor(private securityService:SecurityService, private router:Router) {
+  constructor(private securityService:SecurityService, private router:Router,
+              ) {
   }
   ngOnInit(): void {
     this.loginSub = this.securityService.loginSubject.subscribe(value => {
       this.isLoggedIn=true;
+      if(this.securityService.isClinic()){
+        this.isClinic=true;
+      }
     });
     this.logoutSub = this.securityService.logoutSubject.subscribe(value => {
       this.isLoggedIn=false;
-    });
+      this.isClinic=false;
 
-    console.log(this.securityService.isLoggedIn())
+    });
     if(this.securityService.isLoggedIn()){
       this.isLoggedIn=true;
+    }
+    if(this.securityService.isClinic()){
+      this.isClinic=true;
     }
   }
 
@@ -54,6 +63,7 @@ logout(){
     this.securityService.logout();
     this.isNavbarCollapsed=true;
     this.isLoggedIn=false;
+
     this.router.navigate(['/']);
 
 

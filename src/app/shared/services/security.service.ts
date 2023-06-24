@@ -6,6 +6,7 @@ import {LoginModel} from "../model/login-model";
 import {DoctorTitleModel} from "../model/doctor-title-model";
 import {PageResult} from "../model/page-result";
 import {DoctorModel} from "../model/doctor-model";
+import {SwAlertService} from "./sw-alert.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class SecurityService {
   loginSubject:BehaviorSubject<any> = new BehaviorSubject<any>(null);
   logoutSubject:BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,private swAlertService:SwAlertService) { }
 
 
   getAuthCode(): Observable <any> {
@@ -64,13 +65,21 @@ export class SecurityService {
 
 
   logout(){
+    this.swAlertService.success('Logged Out successfully')
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('isClinic');
+    this.logoutSubject.next(null);
+
   }
 
   isLoggedIn():boolean{
     console.log(JSON.stringify(localStorage.getItem('token')));
     return localStorage.getItem('token') != null;
 
+  }
+
+  isClinic():boolean{
+    return localStorage.getItem('isClinic') != null;
   }
 }
