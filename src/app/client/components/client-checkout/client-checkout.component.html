@@ -11,11 +11,11 @@
                 </mat-card-header>
                 <mat-card-content>
                     <div class="clinic-details">
-                        <img [src]="imgUrl+currentAppointment?.doctor?.imgUrl"
+                        <img [src]="imgUrl+currentAppointment.doctor.imgUrl"
                             mat-card-avatar />
-                        <mat-card-title>{{currentAppointment?.doctor?.fullName}}</mat-card-title>
+                        <mat-card-title>{{currentAppointment.doctor.fullName}}</mat-card-title>
                         <mat-card-subtitle>
-                            {{currentAppointment?.doctor?.doctorTitle?.name}}
+                            {{currentAppointment.doctor.doctorTitle.name}}
                         </mat-card-subtitle>
                     </div>
                 </mat-card-content>
@@ -34,7 +34,7 @@
                             <p>Date</p>
                         </div>
 
-                        <p>{{currentAppointment && currentAppointment.date ? formatAppointmentDate(currentAppointment.date) : ''}}</p>
+                        <p>{{formatAppointmentDate(currentAppointment.date)}}</p>
 
                     </div>
 
@@ -46,7 +46,7 @@
                             <p>Time</p>
                         </div>
 
-                        <p>{{currentAppointment && currentAppointment.startTime ? formatTime(currentAppointment.startTime) : ''}}</p>
+                        <p>{{formatTime(currentAppointment.startTime)}}</p>
 
                     </div>
 
@@ -58,7 +58,7 @@
                             <p>Fees</p>
                         </div>
 
-                        <p>{{currentAppointment?.doctor?.ticketPrice}} E£</p>
+                        <p>{{currentAppointment.doctor.ticketPrice}} E£</p>
                     </div>
 
                     <mat-divider></mat-divider>

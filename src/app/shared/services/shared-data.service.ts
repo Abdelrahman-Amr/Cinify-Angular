@@ -5,6 +5,6 @@ import { AppointmentWithoutRatingModel } from '../model/appointment-without-rati
   providedIn: 'root'
 })
 export class SharedDataService {
-  public currentAppointment: AppointmentWithoutRatingModel | null = null;
+  public currentAppointment: AppointmentWithoutRatingModel  = new AppointmentWithoutRatingModel();
   constructor() { }
 }
