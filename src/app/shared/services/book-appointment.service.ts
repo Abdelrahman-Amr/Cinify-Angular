@@ -13,7 +13,8 @@ export class BookAppointmentService {
 
   bookAppointment(appointmentId: number, patientId: number): Observable<MessageResponse> {
 
-    return this.httpClient.put<MessageResponse>(Constants.bookAppointmentUrl+appointmentId+patientId,{});
+    const url = `${Constants.bookAppointmentUrl}${appointmentId}/${patientId}`;
+    return this.httpClient.put<MessageResponse>(url,{});
 
   }
 }
