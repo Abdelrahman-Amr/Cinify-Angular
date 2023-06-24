@@ -53,7 +53,7 @@ export class CardComponent implements OnInit , OnDestroy{
       for (let index = 0; index < this.doctors.length; index++) {
         // this.appointmentService.getAppointmentUpcomingByDoctorId(this.doctors[index].id).subscribe(appointments => {
         for (let index = 0; index < this.doctors.length; index++) {
-          this.appointmentService.getFullAppointmentUpcomingByDoctorId(this.doctors[index].id).subscribe(appointments => {
+          this.appointmentService.getDividedAppointmentUpcomingByDoctorId(this.doctors[index].id).subscribe(appointments => {
             this.searchResultService.doctorsSearchResult[index].appointments = appointments;
           });
         }
