@@ -1,21 +1,23 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { DoctorService } from "../../../../shared/services/doctor.service";
 import { AppointmentWithoutRatingService } from 'src/app/shared/services/appointment-without-rating.service';
 import { formatDate } from '@angular/common';
-import {DoctorModel} from "../../../../shared/model/doctor-model";
+import { DoctorModel } from "../../../../shared/model/doctor-model";
 import {
   AppointmentWithoutRatingModel
 } from "../../../../shared/model/appointment-without-rating-model";
-import {Constants} from "../../../../shared/constatnts";
-import {SearchResultService} from "../../../../shared/services/search-result-service.service";
-import {Subscription} from "rxjs";
+import { Constants } from "../../../../shared/constatnts";
+import { SearchResultService } from "../../../../shared/services/search-result-service.service";
+import { Subscription } from "rxjs";
+import { SharedDataService } from 'src/app/shared/services/shared-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
-export class CardComponent implements OnInit , OnDestroy{
+export class CardComponent implements OnInit, OnDestroy {
 
   stars = [1, 2, 3, 4, 5];
   @Input() rate = 0;
@@ -30,30 +32,30 @@ export class CardComponent implements OnInit , OnDestroy{
   limit = 10;
   totalCount = 0;
   isLoading = true;
-  imgUrl=Constants.downloadDoctorImgUrl+'doctor-clinic-illustration_1270-69.avif';
-  doctorSubscription:Subscription;
+  imgUrl = Constants.downloadDoctorImgUrl + 'doctor-clinic-illustration_1270-69.avif';
+  doctorSubscription: Subscription;
 
   constructor(private doctorService: DoctorService, private appointmentService: AppointmentWithoutRatingService,
-              public searchResultService:SearchResultService) {
+    public searchResultService: SearchResultService, private sharedData: SharedDataService,private router:Router) {
   }
 
   ngOnInit(): void {
 
     // this.doctorService.getDoctorsPage(this.page, this.limit).subscribe(value => {
 
-   this.doctorSubscription =  this.searchResultService.doctorsSubject.subscribe(value => {
+    this.doctorSubscription = this.searchResultService.doctorsSubject.subscribe(value => {
       // console.log(value);
-      this.isLoading=false;
+      this.isLoading = false;
       this.doctors = value.data;
       this.totalCount = value.totalCount;
-      for(let index=0;index<  this.doctors.length;index++) {
+      for (let index = 0; index < this.doctors.length; index++) {
         this.appointmentService.getAppointmentUpcomingByDoctorId(this.doctors[index].id).subscribe(appointments => {
           this.searchResultService.doctorsSearchResult[index].appointments = appointments;
         });
       }
     });
 
-    
+
 
     //
     //   const appointmentObservables = this.searchResultService.doctorsSearchResult.map(doctor => {
@@ -73,7 +75,7 @@ export class CardComponent implements OnInit , OnDestroy{
 
     console.log("*****");
     console.log(this.doctors[0].appointments);
-    
+
     const appointmentDate = new Date(date);
     const today = new Date();
     const tomorrow = new Date();
@@ -138,4 +140,9 @@ export class CardComponent implements OnInit , OnDestroy{
     this.doctorSubscription.unsubscribe();
   }
 
+
+  checkOut(appointment: AppointmentWithoutRatingModel) {
+    this.sharedData.currentAppointment = appointment;
+    this.router.navigate(["checkout"])
+  }
 }

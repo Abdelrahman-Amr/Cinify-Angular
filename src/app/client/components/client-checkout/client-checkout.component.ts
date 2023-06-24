@@ -1,19 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
 import {Constants} from "../../../shared/constatnts";
+import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 
 @Component({
   selector: 'app-client-checkout',
   templateUrl: './client-checkout.component.html',
   styleUrls: ['./client-checkout.component.css']
 })
-export class ClientCheckoutComponent {
+export class ClientCheckoutComponent implements OnInit{
 
   imgUrl=Constants.downloadDoctorImgUrl+'Screenshot (13).png';
 
-  constructor(private router: Router, private swAlertService:SwAlertService) {}
+  constructor(private router: Router, private swAlertService:SwAlertService,private sharedData:SharedDataService) {}
+  ngOnInit(): void {
+    console.log("CUR APP:" ,this.sharedData.currentAppointment);
+    
+  }
   book() {
     Swal.fire({
       title: 'Confirmation',
