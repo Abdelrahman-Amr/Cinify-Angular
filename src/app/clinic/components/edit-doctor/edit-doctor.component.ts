@@ -53,10 +53,8 @@ export class EditDoctorComponent implements OnInit{
       price:[this.doctor.ticketPrice, [Validators.required, Validators.min(1)]],
       isDeleted:[this.doctor.isDeleted],
       avgMinutesPerPatient:[this.doctor.avgMinutesPerPatient, [Validators.required, Validators.min(1)]],
-
     });
   }
-
   update(){
     if(this.form.valid){
       let doctor= new DoctorModel();
