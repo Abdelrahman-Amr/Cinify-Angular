@@ -15,15 +15,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let appointment of patientAppointment">
+        <tr *ngFor="let appointment of appointmentService.patientAppointment">
           <td class="text-center">{{ appointment.doctor.fullName }}</td>
           <td class="text-center">{{ appointment.doctor.clinic.address }}</td>
           <td class="text-center">{{ appointment.date}}</td>
           <td class="text-center">{{ appointment.status}}</td>
           <td class="text-center">{{ appointment.startTime }}</td>
-          <td class="text-center">{{ appointment.endTime }}</td>
+          <td class="text-center">{{ appointment.endTime  }}</td>
           <td class="text-center cancel-icon-cell">
-            <button class="btn btn-secondary">
+            <button (click)="handleButtonAction(appointment.id)" class="btn btn-secondary">
               <i class="bi bi-x"></i> Cancel
             </button>
           </td>

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Constants } from 'src/app/shared/constatnts';
 import { PatientAppointment } from 'src/app/shared/model/patient-appointment';
+import { AppointmentService } from 'src/app/shared/services/appointment.service';
 
 @Component({
   selector: 'app-client-appointment',
@@ -9,27 +10,22 @@ import { PatientAppointment } from 'src/app/shared/model/patient-appointment';
   styleUrls: ['./client-appointment.component.css']
 })
 export class ClientAppointmentComponent {
-    patientAppointment: PatientAppointment[] = [];
-    constructor(private _http:HttpClient){
+  
+    constructor(private _http:HttpClient,public appointmentService:AppointmentService){
 
     }
     ngOnInit(): void {
-
-      this.getAllPatientAppointmments();
+      this.appointmentService.getAllPatientAppointmments(6);
+      
     }
-    getAllPatientAppointmments():void{
-      this._http.get<any>(`${Constants.getAllPatientAppointments}6`)
-      .subscribe(
-        {
-          next:response=>{
-           this.patientAppointment=response;
-          },
-          error:error=>{}
-        }
-      );
+   
+
+    handleButtonAction(appointmentId: number): void {
+     
+      const index = this.appointmentService.patientAppointment.findIndex(appointment => appointment.id === appointmentId);
+          if (index !== -1) {
+            this.appointmentService.patientAppointment.splice(index, 1);
+            this.appointmentService.cancelPatientAppointmments(appointmentId);
+      }
     }
-
-  handleButtonClick(i:number):void{
-
-  }
 }
