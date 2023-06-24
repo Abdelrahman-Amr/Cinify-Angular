@@ -20,6 +20,10 @@ const routes: Routes = [
     component:ClientLoginComponent
   },
   {
+    path:'login/:isCheckout',
+    component:ClientLoginComponent
+  },
+  {
     path:'signup',
     component:ClientSignupComponent
   },
@@ -32,7 +36,8 @@ const routes: Routes = [
     component:ClientCheckoutComponent,
     canActivate: [AuthGuard],
     data:{
-      name:'client'
+      name:'client',
+      isCheckout:'true'
     }
   }
 ,

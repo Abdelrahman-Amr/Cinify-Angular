@@ -4,7 +4,7 @@ import {Constants} from "../../../shared/constatnts";
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
 import {SecurityService} from "../../../shared/services/security.service";
 import {LoginModel} from "../../../shared/model/login-model";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -17,10 +17,15 @@ export class ClientLoginComponent implements OnInit{
   loginForm:FormGroup;
 
   constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService,
-              private securityService:SecurityService, private router:Router) {
+              private securityService:SecurityService, private router:Router,
+              private activatedRoute:ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('token')){
+      this.router.navigate(['/']);
+
+    }
     this.loginForm = this.formBuilder.group({
       emailOrMobileNumber:['', [Validators.required, this.validateEmailOrMobileNumber]],
       password:['',[Validators.required,Validators.minLength(5),
@@ -55,7 +60,12 @@ export class ClientLoginComponent implements OnInit{
         const accessToken = response.access_token;
         localStorage.setItem('token',JSON.stringify(accessToken));
 
-        this.router.navigate(['/']);
+        if(this.activatedRoute.snapshot.params['isCheckout']=='1'){
+          this.router.navigate(['/checkout']);
+
+        }else {
+          this.router.navigate(['/']);
+        }
       },
       (error) => {
         // Handle the error response

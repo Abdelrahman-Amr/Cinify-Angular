@@ -21,6 +21,10 @@ export class ClinicLoginComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('token')){
+      this.router.navigate(['/']);
+
+    }
     this.loginForm = this.formBuilder.group({
       email:['', [Validators.required,Validators.pattern(Constants.EMAIL)]],
       password:['',[Validators.required,Validators.minLength(5),
