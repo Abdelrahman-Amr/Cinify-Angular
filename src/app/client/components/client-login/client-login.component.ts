@@ -84,6 +84,7 @@ export class ClientLoginComponent implements OnInit{
       }
 
     },error => {
+      localStorage.removeItem('token');
       this.swAlertService.fail('Failed to Login');
     });
   }

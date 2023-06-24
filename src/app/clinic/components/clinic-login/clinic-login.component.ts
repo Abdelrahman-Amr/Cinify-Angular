@@ -77,6 +77,8 @@ export class ClinicLoginComponent implements OnInit{
       this.router.navigate(['/']);
 
     },error => {
+      localStorage.removeItem('token');
+
       this.swAlertService.fail('Failed to Login');
     });
   }
