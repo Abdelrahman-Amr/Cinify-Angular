@@ -78,6 +78,12 @@ export class Constants {
   public static readonly getAllCities=this.baseURL+'/cities/all'
 
 
+  //Patient URLs
+  public static readonly addPatientUrl = this.baseURL + '/patients/addPatient';
+
+
+
+
   /* Validation Regex */
   public static readonly ENGLISH_CHARACTERS = '^[a-zA-Z ]+$';
   public static readonly ARABIC_CHARACTERS = '^[\\u0621-\\u064A ]+$';

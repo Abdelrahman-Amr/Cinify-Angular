@@ -32,7 +32,6 @@ export class ClientLoginComponent implements OnInit{
         Validators.maxLength(30)]]
     });
   }
-
   login(){
     if(this.loginForm.valid){
       const emailOrMobileNumber = this.loginForm.controls['emailOrMobileNumber'].value;
