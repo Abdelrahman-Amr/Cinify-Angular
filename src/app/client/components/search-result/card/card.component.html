@@ -1,13 +1,18 @@
 <div class="container">
-
-    <a class="card-link" *ngFor="let doctor of doctors">
-        <div class="doctor-card border-light mb-5 " style="padding: 30px;">
+  <div class="loading mb-4 text-center" *ngIf="isLoading" style="margin: auto">
+    <svg width="64px" height="48px">
+      <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back"></polyline>
+      <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="front"></polyline>
+    </svg>
+  </div>
+    <a class="card-link" *ngFor="let doctor of this.searchResultService.doctorsSearchResult">
+        <div class="doctor-card border-light mb-5 " style="padding: 30px;" *ngIf="doctor.appointments.length>0">
 
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 col-md-2">
-                        <img class="rounded-circle border border-2"
-                            src="https://www.pngplay.com/wp-content/uploads/9/Kitten-PNG-HD-Quality.png" />
+                        <img class="rounded-circle border border-2" alt="doctor"
+                            [src]="imgUrl+doctor.imgUrl"  />
                     </div>
                     <div class="col-12 col-md-7">
                         <div class="name-container">

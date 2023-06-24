@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
+import {Constants} from "../../../shared/constatnts";
 
 @Component({
   selector: 'app-client-checkout',
@@ -9,6 +10,9 @@ import {SwAlertService} from "../../../shared/services/sw-alert.service";
   styleUrls: ['./client-checkout.component.css']
 })
 export class ClientCheckoutComponent {
+
+  imgUrl=Constants.downloadDoctorImgUrl+'Screenshot (13).png';
+
   constructor(private router: Router, private swAlertService:SwAlertService) {}
   book() {
     Swal.fire({

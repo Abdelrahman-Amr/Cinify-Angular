@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  baseURL : 'http://localhost:9999/api'
+  baseURL : 'http://localhost:9999/api',
+  // baseURL : 'http://clinify-serverv2.eu-west-2.elasticbeanstalk.com/api',
+  //
+  baseAuthURL : 'http://localhost:9090',
+
 };
 
 /*

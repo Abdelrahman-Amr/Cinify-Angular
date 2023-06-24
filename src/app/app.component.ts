@@ -1,9 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
-import {FormBuilder} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+
 import {DoctorService} from "./shared/services/doctor.service";
-import {AppointmentWithoutRatingService} from "./shared/services/appointment-without-rating.service";
-import {SwAlertService} from "./shared/services/sw-alert.service";
+
 import {DoctorTitleService} from "./shared/services/doctorTitle.service";
 import {DoctorSpecializationService} from "./shared/services/doctor-specialization.service";
 import {ClinicService} from "./shared/services/clinic.service";
@@ -22,7 +20,6 @@ export class AppComponent  implements OnInit{
                private sessionStorageService:SessionStorageService) {
   }
   ngOnInit(): void {
-
     this.doctorTitleService.getAllDoctorTitles().subscribe(value => {
         this.sessionStorageService.setTitles(value);
     });

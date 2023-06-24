@@ -2,12 +2,12 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
 import {Constants} from "../../../shared/constatnts";
-import {DoctorModel} from "../../../shared/components/header/model/doctor-model";
+import {DoctorModel} from "../../../shared/model/doctor-model";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {DoctorService} from "../../../shared/services/doctor.service";
 import {DoctorTitleService} from "../../../shared/services/doctorTitle.service";
-import {DoctorTitleModel} from "../../../shared/components/header/model/doctor-title-model";
-import {DoctorSpecializationModel} from "../../../shared/components/header/model/doctor-specialization-model";
+import {DoctorTitleModel} from "../../../shared/model/doctor-title-model";
+import {DoctorSpecializationModel} from "../../../shared/model/doctor-specialization-model";
 import {DoctorSpecializationService} from "../../../shared/services/doctor-specialization.service";
 import {SessionStorageService} from "../../../shared/services/session-storage.service";
 
@@ -22,6 +22,11 @@ export class EditDoctorComponent implements OnInit{
   titles:DoctorTitleModel[]=[];
   specs:DoctorSpecializationModel[]=[];
   errorMsg='';
+
+  imgTitle='Click to upload image';
+
+  imgFile: any;
+  imgUrl: string;
   constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService,
               @Inject(MAT_DIALOG_DATA) public doctor: DoctorModel,
               private doctorService:DoctorService, private doctorTitleService:DoctorTitleService,
@@ -35,7 +40,7 @@ export class EditDoctorComponent implements OnInit{
     // });
     this.titles = this.sessionStorageService.getTitles();
     this.specs = this.sessionStorageService.getSpecs();
-
+    this.imgTitle = this.doctor.imgUrl;
     // this.doctorSpecializationService.getAllDoctorSpecs().subscribe(value => {
     //   this.specs = value;
     // });
@@ -46,7 +51,9 @@ export class EditDoctorComponent implements OnInit{
       specialization:[this.doctor.doctorSpecialization.id, Validators.required],
       title:[this.doctor.doctorTitle.id, [Validators.required]],
       price:[this.doctor.ticketPrice, [Validators.required, Validators.min(1)]],
-      isDeleted:[this.doctor.isDeleted]
+      isDeleted:[this.doctor.isDeleted],
+      avgMinutesPerPatient:[this.doctor.avgMinutesPerPatient, [Validators.required, Validators.min(1)]],
+
     });
   }
 
@@ -64,9 +71,13 @@ export class EditDoctorComponent implements OnInit{
       doctor.phoneNumber = this.form.controls['phoneNumber'].value;
       doctor.fullName = this.form.controls['name'].value;
       doctor.isDeleted = this.form.controls['isDeleted'].value;
+      doctor.avgMinutesPerPatient = +this.form.controls['avgMinutesPerPatient'].value;
+      doctor.imgUrl = this.imgTitle;
 
       this.doctorService.updateDoctor(doctor).subscribe(value => {
         this.swAlertService.success('Updated Successfully');
+        this.doctorService.upload(this.imgFile,value.message).subscribe(() => {
+        });
       }, error=>{
         const formControl = this.form.get(error.error.field);
         this.errorMsg = error.error.message;
@@ -83,5 +94,9 @@ export class EditDoctorComponent implements OnInit{
   }
 
 
+  onImageChange(event:any){
+    this.imgTitle = event.target.files[0].name;
+    this.imgFile = event.target.files[0];
+  }
 
 }

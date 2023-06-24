@@ -9,10 +9,10 @@ import {DoctorTitleService} from "../../../shared/services/doctorTitle.service";
 import {DoctorSpecializationService} from "../../../shared/services/doctor-specialization.service";
 import {ClinicService} from "../../../shared/services/clinic.service";
 import {SessionStorageService} from "../../../shared/services/session-storage.service";
-import { DoctorTitleModel } from 'src/app/shared/components/header/model/doctor-title-model';
-import { DoctorSpecializationModel } from 'src/app/shared/components/header/model/doctor-specialization-model';
-import { ClinicModel } from 'src/app/shared/components/header/model/clinic-model';
-import { DoctorModel } from 'src/app/shared/components/header/model/doctor-model';
+import { DoctorTitleModel } from 'src/app/shared/model/doctor-title-model';
+import { DoctorSpecializationModel } from 'src/app/shared/model/doctor-specialization-model';
+import { ClinicModel } from 'src/app/shared/model/clinic-model';
+import { DoctorModel } from 'src/app/shared/model/doctor-model';
 
 @Component({
   selector: 'app-add-doctor',
@@ -26,6 +26,10 @@ export class AddDoctorComponent implements OnInit{
   clinics:ClinicModel[]=[];
   errorMsg='';
   form:FormGroup;
+  imgTitle='Click to upload image';
+
+  imgFile: any;
+  imgUrl: string;
 
 constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService,
             private doctorService:DoctorService, private doctorTitleService:DoctorTitleService,
@@ -58,6 +62,7 @@ ngOnInit(): void {
     specialization:['', Validators.required],
     title:['', [Validators.required]],
     price:['', [Validators.required, Validators.min(1)]],
+    avgMinutesPerPatient:['', [Validators.required, Validators.min(1)]],
   });
 }
 
@@ -71,9 +76,14 @@ signup(){
     doctor.phoneNumber = this.form.controls['phoneNumber'].value;
     doctor.fullName = this.form.controls['name'].value;
     doctor.clinic =  new ClinicModel(+this.form.controls['clinic'].value);
+    doctor.avgMinutesPerPatient = +this.form.controls['avgMinutesPerPatient'].value;
+    doctor.imgUrl = this.imgTitle;
+
 
     this.doctorService.addDoctor(doctor).subscribe(value => {
       this.swAlertService.success('Added Successfully');
+      this.doctorService.upload(this.imgFile,value.message ).subscribe(() => {
+      });
     }, error=>{
       const formControl = this.form.get(error.error.field);
       this.errorMsg = error.error.message;
@@ -81,9 +91,17 @@ signup(){
         formControl.setErrors({
           serverError: true
         });
+      }else{
+        this.swAlertService.fail('Failed to Add Doctor');
       }
     });
   }
+  }
+
+  onImageChange(event:any){
+
+     this.imgTitle = event.target.files[0].name;
+     this.imgFile = event.target.files[0];
   }
 
 

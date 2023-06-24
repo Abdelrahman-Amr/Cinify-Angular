@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Constants} from "../../../shared/constatnts";
-import Swal from "sweetalert2";
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
+import {SecurityService} from "../../../shared/services/security.service";
+import {LoginModel} from "../../../shared/model/login-model";
 
 
 @Component({
@@ -14,7 +15,8 @@ export class ClientLoginComponent implements OnInit{
 
   loginForm:FormGroup;
 
-  constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService) {
+  constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService,
+              private securityService:SecurityService) {
   }
 
   ngOnInit(): void {
@@ -27,10 +29,28 @@ export class ClientLoginComponent implements OnInit{
 
   login(){
     if(this.loginForm.valid){
-      this.swAlertService.success("Logged in Successfully");
       const emailOrMobileNumber = this.loginForm.controls['emailOrMobileNumber'].value;
       if (emailOrMobileNumber.match(Constants.EMAIL)){
-        //login by email request
+        let loginModel = new LoginModel();
+        loginModel.username=this.loginForm.controls['emailOrMobileNumber'].value;
+        loginModel.password=this.loginForm.controls['password'].value;
+        this.securityService.login(loginModel).subscribe(value => {
+
+
+        },error => {
+          if(error.status == '200'){
+
+              const cookies = error.headers.get('Set-Cookie');
+              console.log(error.headers);
+              if (cookies) {
+                document.cookie = cookies; // Save the cookies in the browser
+              }
+
+            this.loginSuccess();
+          }else{
+            this.swAlertService.fail('Failed to Login');
+          }
+        });
       }else if(emailOrMobileNumber.match(Constants.DIGITS_ONLY_11)){
         //login by mobileNumber request
       }
@@ -49,4 +69,10 @@ export class ClientLoginComponent implements OnInit{
     }
   }
 
+  loginSuccess(){
+    this.swAlertService.success("Logged in Successfully");
+    this.securityService.getAuthCode().subscribe(value => {
+      console.log(value);
+    });
+  }
 }

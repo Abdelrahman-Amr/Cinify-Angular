@@ -3,14 +3,26 @@ import {environment} from "../../environments/environment";
 export class Constants {
 
   public static readonly baseURL = environment.baseURL;
+  public static readonly baseAuthURL = environment.baseAuthURL;
 
-  // Doctor Urls
+
+  // Security APIs
+  public static readonly loginURL = this.baseAuthURL+'/login';
+  public static readonly authURL = this.baseAuthURL+'/oauth2/authorize';
+  public static readonly jwtURL = this.baseAuthURL+'/oauth2/token';
+  public static readonly test = this.baseAuthURL+'/test';
+
+
+  //Doctor URLs
   public static readonly getAllDoctorsUrl = this.baseURL + '/doctors/all';
   public static readonly getDoctorsPageUrl = this.baseURL + '/doctors/getPage';
   public static readonly getDoctor = this.baseURL + '/doctors/';
   public static readonly updateDoctorURL = this.baseURL + '/doctors/updateDoctor';
   public static readonly deleteDoctorUrl = this.baseURL + '/doctors/delete/';
   public static readonly addDoctorURL = this.baseURL + '/doctors/addDoctor';
+  public static readonly uploadDoctorImgUrl = environment.baseURL + '/doctors/upload';
+  public static readonly downloadDoctorImgUrl = environment.baseURL + '/doctors/download/';
+
 
 
   // Doctor Titles Urls
@@ -43,8 +55,15 @@ export class Constants {
   public static readonly updateAppointmentWithoutRatingURL = this.baseURL + '/appointmentsForClinics/update';
   public static readonly deleteAppointmentWithoutRatingUrl = this.baseURL + '/appointmentsForClinics/delete/';
   public static readonly addAppointmentWithoutRatingURL = this.baseURL + '/appointmentsForClinics/add';
-  public static readonly getAppointmentByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/';
-  public static readonly getAppointmentUpcomingByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/upcoming/';
+ 
+  // public static readonly getAppointmentByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/';
+  // public static readonly getAppointmentUpcomingByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/upcoming/';
+
+  public static readonly getFullAppointmentByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/full/';
+  public static readonly getFullAppointmentUpcomingByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/full/upcoming/';
+
+  public static readonly getDividedAppointmentByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/divided/';
+  public static readonly getDividedAppointmentUpcomingByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/divided/upcoming/';
 
 //Areas
 public static readonly getAllAreasUrl=this.baseURL+ '/areas/all';

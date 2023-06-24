@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Constants} from "../constatnts";
-import { AppointmentWithoutRatingModel } from '../components/header/model/appointment-without-rating-model';
-import { MessageResponse } from '../components/header/model/message-response';
+import { AppointmentWithoutRatingModel } from '../model/appointment-without-rating-model';
+import { MessageResponse } from '../model/message-response';
 
 
 @Injectable({
@@ -12,13 +12,23 @@ import { MessageResponse } from '../components/header/model/message-response';
 export class AppointmentWithoutRatingService {
 
   constructor(private httpClient: HttpClient) { }
-  getAppointmentByDoctorId(doctorId:number): Observable < AppointmentWithoutRatingModel[] > {
-    return this.httpClient.get<AppointmentWithoutRatingModel[]>(Constants.getAppointmentByDoctorIdURL+doctorId,{
+  // getAppointmentByDoctorId(doctorId:number): Observable < AppointmentWithoutRatingModel[] > {
+  //   return this.httpClient.get<AppointmentWithoutRatingModel[]>(Constants.getAppointmentByDoctorIdURL+doctorId,{
+  //   });
+  // }
+
+  // getAppointmentUpcomingByDoctorId(doctorId:number): Observable < AppointmentWithoutRatingModel[] > {
+  //   return this.httpClient.get<AppointmentWithoutRatingModel[]>(Constants.getAppointmentUpcomingByDoctorIdURL+doctorId,{
+  //   });
+  // }
+
+  getFullAppointmentUpcomingByDoctorId(doctorId:number): Observable < AppointmentWithoutRatingModel[] > {
+    return this.httpClient.get<AppointmentWithoutRatingModel[]>(Constants.getFullAppointmentUpcomingByDoctorIdURL+doctorId,{
     });
   }
 
-  getAppointmentUpcomingByDoctorId(doctorId:number): Observable < AppointmentWithoutRatingModel[] > {
-    return this.httpClient.get<AppointmentWithoutRatingModel[]>(Constants.getAppointmentUpcomingByDoctorIdURL+doctorId,{
+  getDividedAppointmentUpcomingByDoctorId(doctorId:number): Observable < AppointmentWithoutRatingModel[] > {
+    return this.httpClient.get<AppointmentWithoutRatingModel[]>(Constants.getDividedAppointmentUpcomingByDoctorIdURL+doctorId,{
     });
   }
 

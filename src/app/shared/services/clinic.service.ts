@@ -1,7 +1,7 @@
   import { Injectable } from '@angular/core';
   import {Observable} from "rxjs";
   import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import { ClinicModel } from '../components/header/model/clinic-model';
+import { ClinicModel } from '../model/clinic-model';
 import { Constants } from '../constatnts';
 
 
