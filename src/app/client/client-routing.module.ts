@@ -6,8 +6,8 @@ import {ClientLoginComponent} from "./components/client-login/client-login.compo
 import {ClientSignupComponent} from "./components/client-signup/client-signup.component";
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ClientCheckoutComponent } from './components/client-checkout/client-checkout.component';
-import { AppointmentWithoutRatingService } from '../shared/services/appointment-without-rating.service';
 import { ClientAppointmentComponent } from './components/client-appointment/client-appointment.component';
+import {AuthGuard} from "../shared/services/auth.guard";
 
 
 const routes: Routes = [
@@ -29,7 +29,11 @@ const routes: Routes = [
   },
   {
     path:'checkout',
-    component:ClientCheckoutComponent
+    component:ClientCheckoutComponent,
+    canActivate: [AuthGuard],
+    data:{
+      name:'client'
+    }
   }
 ,
 {
@@ -38,7 +42,11 @@ const routes: Routes = [
 },
 {
   path:'appointment',
-  component:ClientAppointmentComponent
+  component:ClientAppointmentComponent,
+  canActivate: [AuthGuard],
+  data:{
+    name:'client'
+  }
 },
 ];
 @NgModule({

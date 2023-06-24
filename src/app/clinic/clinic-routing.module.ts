@@ -6,6 +6,7 @@ import {ClinicSignupComponent} from "./components/clinic-signup/clinic-signup.co
 import {ClinicLoginComponent} from "./components/clinic-login/clinic-login.component";
 import {AddDoctorComponent} from "./components/add-doctor/add-doctor.component";
 import {ManageDoctorsComponent} from "./components/manage-doctors/manage-doctors.component";
+import {AuthGuard} from "../shared/services/auth.guard";
 
 
 const routes: Routes = [
@@ -23,11 +24,19 @@ const routes: Routes = [
   },
   {
     path:'add-doctor',
-    component:AddDoctorComponent
+    component:AddDoctorComponent,
+    canActivate: [AuthGuard],
+    data:{
+      name:'clinic'
+    }
   },
   {
     path:'manage-doctors',
-    component:ManageDoctorsComponent
+    component:ManageDoctorsComponent,
+    canActivate: [AuthGuard],
+    data:{
+      name:'clinic'
+    }
   }
 
 

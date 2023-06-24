@@ -14,10 +14,17 @@ export class AuthInterceptorService implements HttpInterceptor{
       //   if(!value || req.headers.get('skip')){
       //     return next.handle(req);
       //   }
-      const modifiedReq = req.clone({
-
-        headers:new HttpHeaders({'Authorization':'Bearer '+localStorage.getItem('token')})
+    let modifiedReq:HttpRequest<any>;
+    if(localStorage.getItem('token')){
+      modifiedReq = req.clone({
+        // headers:new HttpHeaders({'Authorization':'Bearer '+localStorage.getItem('token')})
       });
+    }else{
+      modifiedReq = req.clone({
+        // headers:new HttpHeaders({'Authorization':'Bearer '+localStorage.getItem('token')})
+      });
+    }
+
        return next.handle(modifiedReq);
 
     // })));
