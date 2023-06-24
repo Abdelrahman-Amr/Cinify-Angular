@@ -43,7 +43,8 @@ export class ClientCheckoutComponent implements OnInit {
       if (result.isConfirmed) {
 
         // Book logic here
-        this.bookAppointmentService.bookAppointment(this.sharedData.currentAppointment.id, 5).subscribe(
+        // @ts-ignore
+        this.bookAppointmentService.bookAppointment(this.sharedData.currentAppointment.id, JSON.parse(localStorage.getItem('user')).id ).subscribe(
           (data) => {
             console.log('Data received:', data);
             this.swAlertService.success('Your booking has been confirmed.').then(() => {
