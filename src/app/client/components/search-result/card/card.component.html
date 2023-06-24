@@ -54,7 +54,7 @@
                                         <div class="card-body text-center">
                                             <p class="card-text"
                                                 *ngFor="let time of getTimesForDay(appointment.date, +doctor.id)">
-                                                <a href="/checkout" (click)="checkOut(appointment)" class="appointment-link">{{time}}</a>
+                                                <a (click)="checkOut(appointment)" class="appointment-link">{{time}}</a>
                                             </p>
                                         </div>
                                         <div class="card-footer text-center">
