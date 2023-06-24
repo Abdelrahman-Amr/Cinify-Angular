@@ -40,6 +40,7 @@ export class EditDoctorComponent implements OnInit{
     // });
     this.titles = this.sessionStorageService.getTitles();
     this.specs = this.sessionStorageService.getSpecs();
+    this.imgTitle = this.doctor.imgUrl;
 
     // this.doctorSpecializationService.getAllDoctorSpecs().subscribe(value => {
     //   this.specs = value;
@@ -51,7 +52,9 @@ export class EditDoctorComponent implements OnInit{
       specialization:[this.doctor.doctorSpecialization.id, Validators.required],
       title:[this.doctor.doctorTitle.id, [Validators.required]],
       price:[this.doctor.ticketPrice, [Validators.required, Validators.min(1)]],
-      isDeleted:[this.doctor.isDeleted]
+      isDeleted:[this.doctor.isDeleted],
+      avgMinutesPerPatient:[this.doctor.avgMinutesPerPatient, [Validators.required, Validators.min(1)]],
+
     });
   }
 
@@ -69,6 +72,7 @@ export class EditDoctorComponent implements OnInit{
       doctor.phoneNumber = this.form.controls['phoneNumber'].value;
       doctor.fullName = this.form.controls['name'].value;
       doctor.isDeleted = this.form.controls['isDeleted'].value;
+      doctor.avgMinutesPerPatient = +this.form.controls['avgMinutesPerPatient'].value;
       doctor.imgUrl = this.imgTitle;
 
       this.doctorService.updateDoctor(doctor).subscribe(value => {

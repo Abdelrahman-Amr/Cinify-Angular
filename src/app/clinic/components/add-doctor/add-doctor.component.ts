@@ -62,6 +62,7 @@ ngOnInit(): void {
     specialization:['', Validators.required],
     title:['', [Validators.required]],
     price:['', [Validators.required, Validators.min(1)]],
+    avgMinutesPerPatient:['', [Validators.required, Validators.min(1)]],
   });
 }
 
@@ -75,7 +76,9 @@ signup(){
     doctor.phoneNumber = this.form.controls['phoneNumber'].value;
     doctor.fullName = this.form.controls['name'].value;
     doctor.clinic =  new ClinicModel(+this.form.controls['clinic'].value);
+    doctor.avgMinutesPerPatient = +this.form.controls['avgMinutesPerPatient'].value;
     doctor.imgUrl = this.imgTitle;
+
 
     this.doctorService.addDoctor(doctor).subscribe(value => {
       this.swAlertService.success('Added Successfully');
