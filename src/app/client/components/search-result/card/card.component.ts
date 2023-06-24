@@ -110,8 +110,6 @@ export class CardComponent implements OnInit , OnDestroy{
   ngOnDestroy(): void {
     this.doctorSubscription.unsubscribe();
   }
-
-
   checkOut(appointment: AppointmentWithoutRatingModel) {
     this.sharedData.currentAppointment = appointment;
     this.router.navigate(["checkout"])
