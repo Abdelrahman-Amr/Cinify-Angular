@@ -79,7 +79,7 @@
               <div class="text">
                 <span>{{imgTitle}}</span>
               </div>
-              <input type="file" id="file" (change)="onImageChange($event)">
+              <input type="file" id="file"  accept="image/*" (change)="onImageChange($event)">
             </label>
 
           </div>
@@ -92,7 +92,7 @@
               <div class="text">
                 <span>{{docImgTitle+"*"}}</span>
               </div>
-              <input type="file" id="file2" (change)="onDocChange($event)">
+              <input type="file" id="file2"  accept="image/*"(change)="onDocChange($event)">
             </label>
 
           </div>
