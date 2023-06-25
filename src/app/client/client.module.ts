@@ -27,6 +27,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {NgbCarouselModule, NgbPagination} from '@ng-bootstrap/ng-bootstrap';
 import { NgIf } from '@angular/common';
 import { ClientAppointmentComponent } from './components/client-appointment/client-appointment.component';
+import { UpdatePasswordComponent } from './components/update-profile/update-password/update-password.component';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
+import { UpdateUserDataComponent } from './components/update-profile/update-user-data/update-user-data.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import { ClientAppointmentComponent } from './components/client-appointment/clie
     CardComponent,
     FilterComponent,
     ClientCheckoutComponent,
+    UpdateProfileComponent,
+    UpdateUserDataComponent,
+    UpdatePasswordComponent,
   ],
     imports: [
         CommonModule,

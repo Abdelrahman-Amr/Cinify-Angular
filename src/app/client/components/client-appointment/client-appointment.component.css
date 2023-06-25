@@ -8,23 +8,23 @@
     display: flex;
     justify-content: center;
   }
-  .material-icons{
+.material-icons{
     font-size:48px;
     color:rgb(236, 41, 41);
   }
-  .cancel-icon:hover {
+.cancel-icon:hover {
     color: red;
     cursor: pointer;
   }
-  .cancel-icon-cell {
+.cancel-icon-cell {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .extra-padding {
+.extra-padding {
     padding: 200px;
   }
-  .container{
+.container{
     overflow-x: auto;
   }
 
@@ -32,11 +32,15 @@
   background-image:url("/assets/images/search-bg.jpg");
   background-size: contain;
 }
-  .doctor-name {
+.doctor-name {
     font-weight: bold;
     font-size: 18px;
   }
   
-  .small-text {
+.small-text {
     font-size: 12px;
   }
+.cardElement
+{
+  min-height: 560px;
+}

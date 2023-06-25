@@ -13,6 +13,7 @@ import {AuthInterceptorService} from "./shared/services/auth-interceptor.service
 @NgModule({
   declarations: [
     AppComponent,
+    
   ],
   imports: [
     BrowserModule,

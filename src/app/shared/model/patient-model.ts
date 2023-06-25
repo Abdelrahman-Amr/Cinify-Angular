@@ -4,7 +4,7 @@ import {CityModel} from "./city-model";
 
 export class PatientModel extends BaseModel{
 
-  area:AreaModel;
+   area:AreaModel;
    city:CityModel;
    phoneNumber:string;
    password:string;
