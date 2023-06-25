@@ -28,7 +28,6 @@ export class ClinicHomeComponent implements AfterViewInit, OnInit {
       switch (property) {
         case 'doctor.fullName': return item.doctor.fullName;
         case 'patient.fullName': return item.patient.fullName;
-        case 'date': return item.date;
         default: return (item as any)[property];
       }
     };
