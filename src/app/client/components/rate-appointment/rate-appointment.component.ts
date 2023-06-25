@@ -26,7 +26,6 @@ export class RateAppointmentComponent {
 
   rate(){
       this.appointmenService.rateAppointment(this.appointmentId, this.getRating()).subscribe(value => {
-        console.log(value);
         this.swAlertService.success("Success");
         this.dialogRef.close();
       },error => {
