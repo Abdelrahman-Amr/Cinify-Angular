@@ -19,6 +19,8 @@ export class Constants {
   //Doctor URLs
   public static readonly getAllDoctorsUrl = this.baseURL + '/doctors/all';
   public static readonly getDoctorsPageUrl = this.baseURL + '/doctors/getPage';
+  public static readonly getDoctorsPageByClinicUrl = this.baseURL + '/doctors/getPageByClinic/';
+
   public static readonly getDoctor = this.baseURL + '/doctors/';
   public static readonly updateDoctorURL = this.baseURL + '/doctors/updateDoctor';
   public static readonly deleteDoctorUrl = this.baseURL + '/doctors/delete/';
