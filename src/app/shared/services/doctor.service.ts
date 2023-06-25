@@ -25,6 +25,15 @@
         params:pageParams
       });
     }
+
+    getDoctorsPageByClinic(page:number = 1, limit:number = 5, clinicId:number): Observable < PageResult<DoctorModel>> {
+      let pageParams = new HttpParams();
+      pageParams = pageParams.append('page',page);
+      pageParams = pageParams.append('limit',limit);
+      return this.httpClient.get<PageResult<DoctorModel>>(Constants.getDoctorsPageByClinicUrl+clinicId,{
+        params:pageParams
+      });
+    }
     getDoctor(doctorId:number): Observable < DoctorModel > {
       return this.httpClient.get<DoctorModel>(Constants.getDoctor+doctorId,{
       });

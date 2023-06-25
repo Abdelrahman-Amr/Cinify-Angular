@@ -29,7 +29,10 @@ const routes: Routes = [
   },
   {
     path:'doctor',
-    component:SearchResultComponent
+    component:SearchResultComponent,
+    data:{
+      name:'home'
+    }
   },
   {
     path:'checkout',

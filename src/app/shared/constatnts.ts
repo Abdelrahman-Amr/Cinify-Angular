@@ -13,10 +13,14 @@ export class Constants {
   public static readonly jwtURL = this.baseAuthURL+'/oauth2/token';
   public static readonly test = this.baseAuthURL+'/test';
 
+  //Patient
+  public static readonly getPatientDataURL = this.baseURL + '/patients/data';
 
   //Doctor URLs
   public static readonly getAllDoctorsUrl = this.baseURL + '/doctors/all';
   public static readonly getDoctorsPageUrl = this.baseURL + '/doctors/getPage';
+  public static readonly getDoctorsPageByClinicUrl = this.baseURL + '/doctors/getPageByClinic/';
+
   public static readonly getDoctor = this.baseURL + '/doctors/';
   public static readonly updateDoctorURL = this.baseURL + '/doctors/updateDoctor';
   public static readonly deleteDoctorUrl = this.baseURL + '/doctors/delete/';
@@ -47,7 +51,8 @@ export class Constants {
   public static readonly getClinicURL = this.baseURL + '/clinics/';
   public static readonly updateClinicURL = this.baseURL + '/clinics/update';
   public static readonly deleteClinicUrl = this.baseURL + '/clinics/delete/';
-  public static readonly addClinicURL = this.baseURL + '/clinics/add';
+  public static readonly addClinictUrl = this.baseURL + '/clinics/addClinic';
+  public static readonly getClinicDataURL = this.baseURL + '/clinics/data';
 
 
   // AppointmentWithoutRating Urls
@@ -56,6 +61,7 @@ export class Constants {
   public static readonly updateAppointmentWithoutRatingURL = this.baseURL + '/appointmentsForClinics/update';
   public static readonly deleteAppointmentWithoutRatingUrl = this.baseURL + '/appointmentsForClinics/delete/';
   public static readonly addAppointmentWithoutRatingURL = this.baseURL + '/appointmentsForClinics/add';
+  public static readonly bookAppointmentUrl = this.baseURL + '/appointmentsForClinics/book/';
 
   // public static readonly getAppointmentByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/';
   // public static readonly getAppointmentUpcomingByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/upcoming/';
@@ -72,9 +78,17 @@ export class Constants {
 
 //Areas
   public static readonly getAllAreasUrl=this.baseURL+ '/areas/all';
+  public static readonly getAreaByCityUrl=this.baseURL+ '/areas/areasByCityId/';
+
 
 //Cities
   public static readonly getAllCities=this.baseURL+'/cities/all'
+
+
+  //Patient URLs
+  public static readonly addPatientUrl = this.baseURL + '/patients/addPatient';
+
+
 
 
   /* Validation Regex */

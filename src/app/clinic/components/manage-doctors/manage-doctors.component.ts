@@ -34,7 +34,8 @@ export class ManageDoctorsComponent implements OnInit{
               private swAlertService:SwAlertService) {
   }
   ngOnInit(): void {
-    this.doctorService.getDoctorsPage(this.page, this.limit).subscribe(value => {
+    // @ts-ignore
+    this.doctorService.getDoctorsPageByClinic(this.page, this.limit, JSON.parse(localStorage.getItem('user')).id).subscribe(value => {
       this.doctors = value.data;
       this.totalCount=value.totalCount;
       this.isLoading = false;

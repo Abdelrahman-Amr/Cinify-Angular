@@ -20,4 +20,5 @@ export class DoctorModel extends BaseModel {
     imgUrl:string;
 
   appointments: AppointmentWithoutRatingModel[] = [];
+  appointmentsByDay:{ date: Date, times: AppointmentWithoutRatingModel[] }[]=[];
 }
