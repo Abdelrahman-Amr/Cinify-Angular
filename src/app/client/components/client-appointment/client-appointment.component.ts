@@ -14,9 +14,6 @@ import {RateAppointmentComponent} from "../rate-appointment/rate-appointment.com
 })
 export class ClientAppointmentComponent {
     imgUrl = Constants.downloadDoctorImgUrl ;
-  currentDate = new Date();
-
-
     constructor(private _http:HttpClient,public appointmentService:AppointmentService,
                 private editDialog: MatDialog){
 
