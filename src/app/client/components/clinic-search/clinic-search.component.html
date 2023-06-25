@@ -11,7 +11,7 @@
                 <mat-form-field class="col-12 col-sm-6 col-lg">
                     <mat-label><mat-icon>emergency</mat-icon>
                         Speciality</mat-label>
-                    <mat-select [(ngModel)]="selectedSpeciality" name="speciality">
+                    <mat-select [(ngModel)]="filter.selectedSpeciality" name="speciality">
                         <mat-option *ngFor="let speciality of specialties" [value]="speciality">
                             {{speciality.name}}
                         </mat-option>
@@ -20,7 +20,7 @@
 
                 <mat-form-field class="col-12 col-sm-6 col-lg">
                     <mat-label><mat-icon>location_city</mat-icon> City</mat-label>
-                    <mat-select [(ngModel)]="selectedCity" name="city"
+                    <mat-select [(ngModel)]="filter.selectedCity" name="city"
                         (selectionChange)="onCitySelectionChange($event.value)">
                         <mat-option *ngFor="let city of cities" [value]="city">
                             {{ city.name }}
@@ -31,7 +31,7 @@
                 <mat-form-field class="col-12 col-sm-6 col-lg">
                     <mat-label><mat-icon>my_location</mat-icon>
                         Area</mat-label>
-                    <mat-select [(ngModel)]="selectedArea" name="selectedArea">
+                    <mat-select [(ngModel)]="filter.selectedArea" name="selectedArea">
                         <mat-option *ngFor="let Area of filteredAreas" [value]="Area">
                             {{Area.name}}
                         </mat-option>
@@ -40,26 +40,14 @@
 
                 <mat-form-field class="col-12 col-sm-6 col-lg ">
                     <mat-label>Clinic Name</mat-label>
-                    <input type="text" matInput [(ngModel)]="doctorName" name="doctorName">
+                    <input type="text" matInput [(ngModel)]="filter.doctorName" name="doctorName">
                 </mat-form-field>
 
                 <button mat-raised-button color="accent" class="search-button col-12 col-lg-2"
-                    (click)="submitSearchbutton()">
+                    (click)="filter.submitSearchbutton()">
                     <mat-icon class="btn-search-icon">search</mat-icon>Search</button>
-
             </div>
         </form>
-    </div>
-
-    <div class="mt-4" style="text-align: right; font-size: 17px;" >
-        <mat-form-field>
-            <mat-label>Sort Type</mat-label>
-            <mat-select name="sort">
-                <mat-option *ngFor="let sortType of sortTypes" (click)="addSortParams(sortType)">
-                    {{sortType.label}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
     </div>
 
 </div>

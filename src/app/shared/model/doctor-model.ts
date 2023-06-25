@@ -18,6 +18,7 @@ export class DoctorModel extends BaseModel {
     isDeleted: boolean
     avgMinutesPerPatient:number;
     imgUrl:string;
+    docImg:string;
 
   appointments: AppointmentWithoutRatingModel[] = [];
   appointmentsByDay:{ date: Date, times: AppointmentWithoutRatingModel[] }[]=[];

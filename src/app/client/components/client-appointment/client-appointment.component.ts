@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import { Constants } from 'src/app/shared/constatnts';
-import { PatientAppointment } from 'src/app/shared/model/patient-appointment';
 import { AppointmentService } from 'src/app/shared/services/appointment.service';
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {EditDoctorComponent} from "../../../clinic/components/edit-doctor/edit-doctor.component";
+import {RateAppointmentComponent} from "../rate-appointment/rate-appointment.component";
+import { TimeFormatServiceService } from 'src/app/shared/services/time-format-service.service';
 
 @Component({
   selector: 'app-client-appointment',
@@ -12,8 +15,7 @@ import { AppointmentService } from 'src/app/shared/services/appointment.service'
 export class ClientAppointmentComponent {
     imgUrl = Constants.downloadDoctorImgUrl ;
 
-
-    constructor(private _http:HttpClient,public appointmentService:AppointmentService){
+    constructor(private _http:HttpClient,public appointmentService:AppointmentService,private timeFormatService: TimeFormatServiceService,private editDialog: MatDialog){
 
     }
     ngOnInit(): void {
@@ -21,9 +23,8 @@ export class ClientAppointmentComponent {
 
       // @ts-ignore
       this.appointmentService.getAllPatientAppointmments(JSON.parse(localStorage.getItem('user')).id);
-
       // this.appointmentService.getAllPatientAppointmments(5);
-      
+
     }
 
 
@@ -34,5 +35,36 @@ export class ClientAppointmentComponent {
             this.appointmentService.patientAppointment.splice(index, 1);
             this.appointmentService.cancelPatientAppointmments(appointmentId);
       }
+    }
+
+    rate(appointmentId: number){
+      const dialogConfig = new MatDialogConfig();
+      // dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.width = '400px';
+      dialogConfig.height = '400px';
+
+      // const data = new  UpdatePreviewData();
+      // data.st = row;
+      // data.sel = selection;
+      dialogConfig.data = appointmentId;
+      this.editDialog.open(RateAppointmentComponent, dialogConfig).afterClosed().subscribe(()=>{
+        // this.doctorService.getDoctor(doctor.id).subscribe(value => {
+        //   this.doctors[index]  = value;
+        // });
+      });
+    }
+
+    isBefore(date1:Date){
+      return new Date(date1) < new Date();
+    }
+
+    formatAppointmentDate(date: Date): string {
+      return this.timeFormatService.formatAppointmentDate(date);
+    }
+    
+    formatTime(time: number): string {
+
+      return this.timeFormatService.formatTime(""+time);
     }
 }

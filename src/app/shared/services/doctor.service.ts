@@ -49,6 +49,7 @@
     }
 
     upload(selectedFile: File, name: string): Observable<MessageResponse> {
+      console.log("upload",name);
       const uploadImageData = new FormData();
       console.log(selectedFile);
       uploadImageData.append('file', selectedFile, name);

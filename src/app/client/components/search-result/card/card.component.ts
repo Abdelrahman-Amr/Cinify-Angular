@@ -76,8 +76,10 @@ export class CardComponent implements OnInit, OnDestroy {
   nextPage() {
 
     this.doctorService.getDoctorsPage(this.page, this.limit).subscribe(value => {
-      this.doctors = value.data;
+      this.searchResultService.doctorsSearchResult = value.data;
+      this.searchResultService.doctorsSubject.next(value);
     });
+
 
   }
 

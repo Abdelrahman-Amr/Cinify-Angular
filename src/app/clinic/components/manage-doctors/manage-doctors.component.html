@@ -9,10 +9,11 @@
   </div>
 
   <div class="" *ngFor="let doctor of doctors ; let i = index" >
-      <div class="card" *ngIf="!isLoading">
+
+    <div class="card" *ngIf="!isLoading">
         <div class="infos">
 <!--          <img src="/assets/images/doctor-clinic-illustration_1270-69.avif"  class="image">-->
-          <img [src]="Constants.downloadDoctorImgUrl+doctor.imgUrl"  class="image" alt="doctor">
+          <img [src]="url+doctor.imgUrl"  class="image" alt="doctor">
 
           <div class="info ">
             <div >

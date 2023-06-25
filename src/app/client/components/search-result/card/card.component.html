@@ -1,7 +1,4 @@
 <div class="container">
-
-
-
     <div class="loading mb-4 text-center" *ngIf="isLoading" style="margin: auto">
         <svg width="64px" height="48px">
             <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back"></polyline>
@@ -9,7 +6,7 @@
         </svg>
     </div>
     <a class="card-link" *ngFor="let doctor of this.searchResultService.doctorsSearchResult">
-        <div class="doctor-card border-light mb-3 " style="padding: 30px;" >
+        <div class="doctor-card border-light mb-3 " style="padding: 30px;" *ngIf="doctor.status!='Pending'">
 
             <div class="card-body">
                 <div class="row">
@@ -49,10 +46,10 @@
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="col-12 col-md-12">
-                            <div class="text-center" *ngIf="doctor.appointments.length<=0">
+                            <div class="text-center" *ngIf="doctor.appointments && doctor.appointments.length <= 0">
                                 <p class="no-appontments">There are no appointments available</p>
                             </div>
-                            <ngb-carousel [interval]=100000000000 *ngIf="doctor.appointments.length>0"
+                            <ngb-carousel [interval]=100000000000 *ngIf="doctor.appointments && doctor.appointments.length > 0"
                                 [showNavigationIndicators]=false>
                                 <ng-template ngbSlide *ngFor="let day of doctor.appointmentsByDay">
                                     <div class="card bg-light mb-3" style="width: 100%; padding: 0px;">

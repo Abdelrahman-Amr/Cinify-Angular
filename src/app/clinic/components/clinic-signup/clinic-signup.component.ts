@@ -105,7 +105,7 @@ export class ClinicSignupComponent implements OnInit, AfterViewInit{
   }
   loginSuccess(){
     // this.swAlertService.success("SignedUp Successfully");
-    this.securityService.getJWT().subscribe( (response: any) => {
+    this.securityService.getJWTClinic().subscribe( (response: any) => {
         const accessToken = response.access_token;
         localStorage.setItem('token',accessToken);
 
@@ -120,8 +120,7 @@ export class ClinicSignupComponent implements OnInit, AfterViewInit{
         // }
       },
       (error) => {
-        // Handle the error response
-        console.error('Error:'+ error);
+        this.swAlertService.fail('Failed to Login');
       }
     );
   }

@@ -8,6 +8,9 @@ import { SearchResultComponent } from './components/search-result/search-result.
 import { ClientCheckoutComponent } from './components/client-checkout/client-checkout.component';
 import { ClientAppointmentComponent } from './components/client-appointment/client-appointment.component';
 import {AuthGuard} from "../shared/services/auth.guard";
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
+import { UpdateUserDataComponent } from './components/update-profile/update-user-data/update-user-data.component';
+import { UpdatePasswordComponent } from './components/update-profile/update-password/update-password.component';
 
 
 const routes: Routes = [
@@ -56,7 +59,16 @@ const routes: Routes = [
     name:'client'
   }
 },
+{
+  path:'profile',
+  component:UpdateUserDataComponent,
+},
+{
+  path:'changePassword',
+  component:UpdatePasswordComponent,
+}
 ];
+
 @NgModule({
   declarations: [],
   imports: [

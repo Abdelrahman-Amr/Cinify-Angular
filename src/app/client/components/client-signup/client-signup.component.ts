@@ -12,6 +12,8 @@ import {PatientModel} from "../../../shared/model/patient-model";
 import {PatientService} from "../../../shared/services/patient.service";
 import {LoginModel} from "../../../shared/model/login-model";
 import {SecurityService} from "../../../shared/services/security.service";
+import {CityService} from "../../../shared/services/city.service";
+import {CityModel} from "../../../shared/model/city-model";
 
 @Component({
   selector: 'app-client-signup',
@@ -19,33 +21,41 @@ import {SecurityService} from "../../../shared/services/security.service";
   styleUrls: ['./client-signup.component.css']
 })
 export class ClientSignupComponent  implements OnInit{
-  cities=['Giza', 'Cairo']
   signupForm:FormGroup;
   errorMsg='';
+  cities:CityModel[]=[];
 
 
   constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService,
               private router:Router, private patientService:PatientService, private securityService:SecurityService,
-              private activatedRoute:ActivatedRoute) {
+              private activatedRoute:ActivatedRoute,
+              private cityService:CityService) {
   }
 
   ngOnInit(): void {
-    // if(localStorage.getItem('token')){
-    //   this.router.navigate(['/']);
-    // }
+
+
+    if(localStorage.getItem('token')){
+      this.router.navigate(['/']);
+    }
+    this.cityService.getAllCities().subscribe(value => {
+      this.cities=value;
+    })
     this.signupForm = this.formBuilder.group({
       name:['', [Validators.required, Validators.minLength(3),
       Validators.maxLength(30)]],
 
       phone:['', [Validators.required, Validators.pattern(Constants.DIGITS_ONLY_11)]],
 
-      dob:['', [Validators.required]],
+      dob:['', [Validators.required,this.patientService.minAge(15, 'You must be at least 15 years old')]],
       email:['', [Validators.required, Validators.pattern(Constants.EMAIL)]],
 
       password:['',[Validators.required,Validators.minLength(5),
         Validators.maxLength(30)]],
 
       gender:['Male',[Validators.required]],
+
+
 
     });
   }
@@ -86,7 +96,7 @@ export class ClientSignupComponent  implements OnInit{
   }
     loginSuccess(){
       this.swAlertService.success("SignedUp Successfully");
-      this.securityService.getJWT().subscribe( (response: any) => {
+      this.securityService.getJWTPatient().subscribe( (response: any) => {
           const accessToken = response.access_token;
           localStorage.setItem('token',accessToken);
 
@@ -101,8 +111,7 @@ export class ClientSignupComponent  implements OnInit{
           // }
         },
         (error) => {
-          // Handle the error response
-          console.error('Error:'+ error);
+          this.swAlertService.fail('Failed to Login');
         }
       );
     }

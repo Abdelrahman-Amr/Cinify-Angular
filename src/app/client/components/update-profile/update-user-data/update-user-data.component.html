@@ -1,0 +1,60 @@
+<app-update-profile></app-update-profile>
+<hr class="mt-0 mb-4">
+    <div class="row justify-content-center">
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                    <form *ngIf="profileForm" [formGroup]="profileForm">
+                        <!-- Form Row -->
+                            <!-- Form Group (organization name)-->
+                            <div class="md-3">
+                                <label class="small mb-1" for="fullName">Full Name</label>
+                                <input [class.is-valid]="!profileForm.controls['name'].errors" formControlName="name"
+                                type="text" class="form-control" id="name" 
+                                placeholder="Enter full name">
+                            </div>
+                            <div *ngIf="profileForm.controls['name'].errors && (profileForm.controls['name'].touched || profileForm.controls['name'].dirty)">
+                                <small *ngIf="profileForm.controls['name'].errors?.['minlength']"
+                                    class="form-text text-danger">min length</small>
+                                <small *ngIf="profileForm.controls['name'].errors?.['maxlength']"
+                                    class="form-text text-danger">max length</small>
+                            </div>
+                        <!-- Form Group (email address)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputEmailAddress">Email address</label><input [class.is-valid]="!profileForm.controls['email'].errors" formControlName="email"
+                                type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="name@example.com">
+                        <div *ngIf="profileForm.controls['email'].errors && (profileForm.controls['email'].touched || profileForm.controls['email'].dirty)">
+                            <small *ngIf="profileForm.controls['email'].errors?.['pattern']"
+                                class="form-text text-danger">Invalid email format</small>
+                        </div> 
+                        </div>
+                        <!-- Form Row-->
+                            <div class="md-3">
+                                <label class="small mb-1" for="phone">Phone number</label>
+                                <input [class.is-valid]="!profileForm.controls['phone'].errors" formControlName="phone"
+                                type="tel" class="form-control" id="phone" placeholder="555-123-4567">
+                            </div>
+                            <div *ngIf="profileForm.controls['phone'].errors && (profileForm.controls['phone'].touched || profileForm.controls['phone'].dirty)">
+                                <small *ngIf="profileForm.controls['phone'].errors?.['pattern']"
+                                    class="form-text text-danger">Invalid phone number format</small>
+                            </div> 
+                            <!-- Form  (birthday)-->
+                            <div class="md-3">
+                                <label class="small mb-1" for="birthday">Birthday</label>
+                                <input [class.is-valid]="!profileForm.controls['birthday'].errors" formControlName="birthday"
+                                type="date" class="form-control" id="birthday" 
+                                placeholder="06/10/1988">
+                            </div>
+                            <div *ngIf="profileForm.controls['birthday'].errors && (profileForm.controls['birthday'].touched || profileForm.controls['birthday'].dirty)">
+                                <small *ngIf="profileForm.controls['birthday'].errors?.['minAge']"
+                                    class="form-text text-danger">You must be at least 15 years old</small>
+                            </div> 
+                        <button class="btn btn-primary" type="button" (click)="submitForm()">Save changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

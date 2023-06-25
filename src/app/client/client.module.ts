@@ -21,12 +21,17 @@ import {MatRadioModule} from "@angular/material/radio";
 import {SharedModule} from "../shared/shared.module";
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { CardComponent } from './components/search-result/card/card.component';
-import { FilterComponent } from './components/search-result/filter/filter.component';
+import { FilterComponent } from './components/filter/filter.component';
 import { ClientCheckoutComponent } from './components/client-checkout/client-checkout.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {NgbCarouselModule, NgbPagination} from '@ng-bootstrap/ng-bootstrap';
 import { NgIf } from '@angular/common';
 import { ClientAppointmentComponent } from './components/client-appointment/client-appointment.component';
+import { RateAppointmentComponent } from './components/rate-appointment/rate-appointment.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { UpdatePasswordComponent } from './components/update-profile/update-password/update-password.component';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
+import { UpdateUserDataComponent } from './components/update-profile/update-user-data/update-user-data.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +46,10 @@ import { ClientAppointmentComponent } from './components/client-appointment/clie
     CardComponent,
     FilterComponent,
     ClientCheckoutComponent,
+    RateAppointmentComponent,
+    UpdateProfileComponent,
+    UpdateUserDataComponent,
+    UpdatePasswordComponent,
   ],
     imports: [
         CommonModule,
@@ -60,7 +69,8 @@ import { ClientAppointmentComponent } from './components/client-appointment/clie
         MatSelectModule,
         SharedModule,
         MDBBootstrapModule.forRoot(),
-        NgbCarouselModule, NgIf, NgbPagination
+        NgbCarouselModule, NgIf, NgbPagination,
+        MatDialogModule
 
     ],
   providers:[MatDatepickerModule]
