@@ -36,10 +36,28 @@ export class SecurityService {
   }
 
 
-  private clientId = 'iti-client';
-  private clientSecret = 'iti-secret';
-  getJWT(): Observable <any> {
-    const credentials = `${this.clientId}:${this.clientSecret}`;
+  private clinicClientId = 'iti-clinic';
+  private clinicClientSecret = 'iti-clinic-martina';
+  getJWTClinic(): Observable <any> {
+    const credentials = `${this.clinicClientId}:${this.clinicClientSecret}`;
+    const encodedCredentials = btoa(credentials);
+
+    // Set the request headers
+    const headers = new HttpHeaders()
+      .set('Authorization', `Basic ${encodedCredentials}`)
+      .set('Content-Type', 'application/x-www-form-urlencoded');
+    let codeParams = new HttpParams();
+    codeParams = codeParams.append('grant_type','client_credentials');
+
+    return this.httpClient.post<any>(Constants.jwtURL,codeParams,{
+      withCredentials:true, headers:headers
+    });
+  }
+
+  private patientClientId = 'iti-patient';
+  private patientClientSecret = 'iti-patient-martina';
+  getJWTPatient(): Observable <any> {
+    const credentials = `${this.patientClientId}:${this.patientClientSecret}`;
     const encodedCredentials = btoa(credentials);
 
     // Set the request headers

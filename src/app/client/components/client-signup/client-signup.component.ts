@@ -47,7 +47,7 @@ export class ClientSignupComponent  implements OnInit{
 
       gender:['Male',[Validators.required]],
 
-   
+
 
     });
   }
@@ -88,7 +88,7 @@ export class ClientSignupComponent  implements OnInit{
   }
     loginSuccess(){
       this.swAlertService.success("SignedUp Successfully");
-      this.securityService.getJWT().subscribe( (response: any) => {
+      this.securityService.getJWTPatient().subscribe( (response: any) => {
           const accessToken = response.access_token;
           localStorage.setItem('token',accessToken);
 
@@ -103,8 +103,7 @@ export class ClientSignupComponent  implements OnInit{
           // }
         },
         (error) => {
-          // Handle the error response
-          console.error('Error:'+ error);
+          this.swAlertService.fail('Failed to Login');
         }
       );
     }
