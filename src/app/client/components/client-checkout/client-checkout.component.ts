@@ -5,6 +5,8 @@ import { SwAlertService } from "../../../shared/services/sw-alert.service";
 import { Constants } from "../../../shared/constatnts";
 import { SharedDataService } from 'src/app/shared/services/shared-data.service';
 import { TimeFormatServiceService } from 'src/app/shared/services/time-format-service.service';
+import { BookAppointmentService } from 'src/app/shared/services/book-appointment.service';
+import { AppointmentWithoutRatingModel } from 'src/app/shared/model/appointment-without-rating-model';
 
 @Component({
   selector: 'app-client-checkout',
@@ -13,14 +15,18 @@ import { TimeFormatServiceService } from 'src/app/shared/services/time-format-se
 })
 export class ClientCheckoutComponent implements OnInit {
 
-  imgUrl = Constants.downloadDoctorImgUrl ;
+  imgUrl = Constants.downloadDoctorImgUrl;
 
   currentAppointment = this.sharedData.currentAppointment
 
-  constructor(private router: Router, private swAlertService: SwAlertService, private sharedData: SharedDataService, private timeFormatService: TimeFormatServiceService) { }
+  constructor(private router: Router, private swAlertService: SwAlertService,
+    private sharedData: SharedDataService, private timeFormatService: TimeFormatServiceService,
+    private bookAppointmentService: BookAppointmentService) { }
   ngOnInit(): void {
-    console.log("CUR APP:", this.sharedData.currentAppointment?.doctor.imgUrl);
-
+    console.log("CUR APP:", this.sharedData.currentAppointment);
+    if (this.sharedData.currentAppointment.id == undefined) {
+      this.router.navigate(['/']);
+    }
   }
   book() {
     Swal.fire({
@@ -37,10 +43,23 @@ export class ClientCheckoutComponent implements OnInit {
       if (result.isConfirmed) {
 
         // Book logic here
-        this.swAlertService.success('Your booking has been confirmed.').then(() => {
-          this.router.navigate(['/']);
-        });
-
+        // @ts-ignore
+        this.bookAppointmentService.bookAppointment(this.sharedData.currentAppointment.id, JSON.parse(localStorage.getItem('user')).id ).subscribe(
+          (data) => {
+            console.log('Data received:', data);
+            this.swAlertService.success('Your booking has been confirmed.').then(() => {
+              this.sharedData.currentAppointment = new AppointmentWithoutRatingModel();
+              this.router.navigate(['/']);
+            });
+          },
+          (error) => {
+            console.error('Error occurred:', error);
+            this.swAlertService.fail('Your booking has failed.').then(() => {
+              this.sharedData.currentAppointment = new AppointmentWithoutRatingModel();
+              // this.router.navigate(['/']);
+            });
+          }
+        );
       }
     });
   }
@@ -48,7 +67,7 @@ export class ClientCheckoutComponent implements OnInit {
   formatAppointmentDate(date: Date): string {
     return this.timeFormatService.formatAppointmentDate(date);
   }
-  
+
   formatTime(time: string): string {
     return this.timeFormatService.formatTime(time);
   }

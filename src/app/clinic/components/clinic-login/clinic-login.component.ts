@@ -40,11 +40,8 @@ export class ClinicLoginComponent implements OnInit{
 
       this.securityService.login(loginModel).subscribe(value => {
 
-        localStorage.setItem('user',JSON.stringify(value));
-        localStorage.setItem('isClinic','true');
-
-        this.securityService.loginSubject.next(null);
         this.loginSuccess();
+
 
       },error => {
         this.swAlertService.fail('Failed to Login');
@@ -53,13 +50,13 @@ export class ClinicLoginComponent implements OnInit{
     }
   }
 
-
   loginSuccess(){
-    this.swAlertService.success("Logged in Successfully");
     this.securityService.getJWT().subscribe( (response: any) => {
         const accessToken = response.access_token;
-        localStorage.setItem('token',JSON.stringify(accessToken));
-        this.router.navigate(['/']);
+
+        localStorage.setItem('token',accessToken);
+
+        this.getClinictData(this.loginForm.controls['email'].value);
       },
       (error) => {
         // Handle the error response
@@ -68,7 +65,21 @@ export class ClinicLoginComponent implements OnInit{
     );
   }
 
+  getClinictData(userName:string){
+    this.securityService.getClinicData(userName).subscribe(value => {
+      localStorage.setItem('user',JSON.stringify(value));
+      localStorage.setItem('isClinic','true');
+      this.securityService.loginSubject.next(null);
+      this.swAlertService.success("Logged in Successfully");
 
+      this.router.navigate(['/']);
+
+    },error => {
+      localStorage.removeItem('token');
+
+      this.swAlertService.fail('Failed to Login');
+    });
+  }
 
 
 }

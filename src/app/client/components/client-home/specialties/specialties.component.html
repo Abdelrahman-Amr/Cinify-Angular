@@ -1,19 +1,35 @@
-<ngb-carousel *ngIf="images && isSmallScreen" [showNavigationIndicators]=false>
-  <ng-template ngbSlide *ngFor="let image of images; let i = index">
-    <ng-container >
-      <div class="row p-1">
-        <img class="col-12" [src]="image" alt="Random slide" />
-      </div>
-    </ng-container>
-  </ng-template>
-  </ngb-carousel>
-  <ngb-carousel *ngIf="images && !isSmallScreen" [showNavigationIndicators]=false>
-    <ng-template ngbSlide *ngFor="let i of getCarouselIndices()" >
+<div class="container">
+  <h1 class="top-title">Top Specialities</h1>
+  <ngb-carousel *ngIf="slides && isSmallScreen" [showNavigationIndicators]=false>
+    <ng-template ngbSlide *ngFor="let slide of slides; let i = index">
       <ng-container>
-        <div class="row p-4">
-          <img class="col-3" [src]="image" alt="Random slide" *ngFor="let image of getCarouselImages(i)"/>
+        <div class="row p-1">
+          <div class="card col-12">
+            <div class="card-body" (click)="openUrl(slide.title)" style="cursor: pointer;">
+              <img class="card-image" [src]="slide.image" [alt]="slide.title" />.
+              <p class="card-title">{{slide.title}}</p>
+            </div>
+          </div>
+
         </div>
       </ng-container>
     </ng-template>
-    </ngb-carousel>
+  </ngb-carousel>
+  <ngb-carousel *ngIf="slides && !isSmallScreen" [showNavigationIndicators]=false>
+    <ng-template ngbSlide *ngFor="let i of getCarouselIndices()">
+      <ng-container>
+        <div class="row">
+          <div class="col-3" *ngFor="let slide of getCarouselImages(i)">
+            <div class="card">
+              <div class="card-body" style="padding: 0;cursor: pointer;" (click)="openUrl(slide.title)">
+                <img class="card-image" [src]="slide.image" alt="Random slide" />
+                <p class="card-title">{{slide.title}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
+      </ng-container>
+    </ng-template>
+  </ngb-carousel>
+</div>

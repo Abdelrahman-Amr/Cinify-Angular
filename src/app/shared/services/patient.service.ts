@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import { PatientModel } from '../model/patient-model';
-import { HttpClient } from '@angular/common/http';
-import { Constants } from '../constatnts';
+import {HttpClient, HttpParams} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {DoctorModel} from "../model/doctor-model";
+import {Constants} from "../constatnts";
+import {PageResult} from "../model/page-result";
+import {MessageResponse} from "../model/message-response";
+import {PatientModel} from "../model/patient-model";
 import { ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Injectable({
@@ -41,4 +45,11 @@ export class PatientService {
       return null;
     };
   }
+
+ 
+
+  addPatient(patient: PatientModel): Observable < PatientModel > {
+    return this._http.post<PatientModel>(Constants.addPatientUrl, patient);
+  }
+
 }

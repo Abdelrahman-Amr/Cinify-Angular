@@ -64,6 +64,28 @@ export class SecurityService {
   }
 
 
+  getPatientData(userName:string): Observable <any> {
+
+    let codeParams = new HttpParams();
+    codeParams = codeParams.append('userName',userName);
+
+
+    return this.httpClient.get<any>(Constants.getPatientDataURL,{
+      params:codeParams, withCredentials:true
+    });
+  }
+  getClinicData(userName:string): Observable <any> {
+
+    let codeParams = new HttpParams();
+    codeParams = codeParams.append('userName',userName);
+
+
+    return this.httpClient.get<any>(Constants.getClinicDataURL,{
+      params:codeParams, withCredentials:true
+    });
+  }
+
+
   logout(){
     this.swAlertService.success('Logged Out successfully')
     localStorage.removeItem('token');

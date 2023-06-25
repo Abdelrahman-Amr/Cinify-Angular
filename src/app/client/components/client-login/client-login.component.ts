@@ -32,7 +32,6 @@ export class ClientLoginComponent implements OnInit{
         Validators.maxLength(30)]]
     });
   }
-
   login(){
     if(this.loginForm.valid){
       const emailOrMobileNumber = this.loginForm.controls['emailOrMobileNumber'].value;
@@ -41,10 +40,9 @@ export class ClientLoginComponent implements OnInit{
         loginModel.password=this.loginForm.controls['password'].value;
 
         this.securityService.login(loginModel).subscribe(value => {
-          console.log(value);
-          localStorage.setItem('user',JSON.stringify(value));
-          this.securityService.loginSubject.next(null);
+
           this.loginSuccess();
+
 
         },error => {
           this.swAlertService.fail('Failed to Login');
@@ -55,23 +53,37 @@ export class ClientLoginComponent implements OnInit{
 
 
   loginSuccess(){
-    this.swAlertService.success("Logged in Successfully");
     this.securityService.getJWT().subscribe( (response: any) => {
         const accessToken = response.access_token;
-        localStorage.setItem('token',JSON.stringify(accessToken));
+        localStorage.setItem('token',accessToken);
 
-        if(this.activatedRoute.snapshot.params['isCheckout']=='1'){
-          this.router.navigate(['/checkout']);
+        this.getPatientData(this.loginForm.controls['emailOrMobileNumber'].value);
 
-        }else {
-          this.router.navigate(['/']);
-        }
+
       },
       (error) => {
         // Handle the error response
         console.error('Error:'+ error);
       }
     );
+  }
+
+  getPatientData(userName:string){
+    this.securityService.getPatientData(userName).subscribe(value => {
+      localStorage.setItem('user',JSON.stringify(value));
+      this.securityService.loginSubject.next(null);
+
+      this.swAlertService.success("Logged in Successfully");
+      if(this.activatedRoute.snapshot.params['isCheckout']=='1'){
+        this.router.navigate(['/checkout']);
+      }else {
+        this.router.navigate(['/']);
+      }
+
+    },error => {
+      localStorage.removeItem('token');
+      this.swAlertService.fail('Failed to Login');
+    });
   }
 
   validateEmailOrMobileNumber(control:AbstractControl):{[s:string]:boolean} | null{
