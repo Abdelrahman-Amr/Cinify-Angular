@@ -71,7 +71,6 @@ export class EditDoctorComponent implements OnInit{
       doctor.phoneNumber = this.form.controls['phoneNumber'].value;
       doctor.fullName = this.form.controls['name'].value;
       doctor.isDeleted = this.form.controls['isDeleted'].value;
-      console.log(this.form.controls['isDeleted'].value);
       doctor.avgMinutesPerPatient = +this.form.controls['avgMinutesPerPatient'].value;
       doctor.imgUrl = this.imgTitle;
 

@@ -27,6 +27,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {NgbCarouselModule, NgbPagination} from '@ng-bootstrap/ng-bootstrap';
 import { NgIf } from '@angular/common';
 import { ClientAppointmentComponent } from './components/client-appointment/client-appointment.component';
+import { RateAppointmentComponent } from './components/rate-appointment/rate-appointment.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { ClientAppointmentComponent } from './components/client-appointment/clie
     CardComponent,
     FilterComponent,
     ClientCheckoutComponent,
+    RateAppointmentComponent,
+
   ],
     imports: [
         CommonModule,
@@ -60,7 +64,8 @@ import { ClientAppointmentComponent } from './components/client-appointment/clie
         MatSelectModule,
         SharedModule,
         MDBBootstrapModule.forRoot(),
-        NgbCarouselModule, NgIf, NgbPagination
+        NgbCarouselModule, NgIf, NgbPagination,
+        MatDialogModule
 
     ],
   providers:[MatDatepickerModule]

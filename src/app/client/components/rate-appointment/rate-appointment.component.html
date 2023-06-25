@@ -1,0 +1,8 @@
+<div class="container">
+  <h1 class="m-4"><i class="fa fa-star checked"></i> <span> Rate Appointment</span></h1>
+  <p *ngFor="let star of stars; let i=index" class="fa fa-star "
+     [ngClass]="{'checked':flags[i]}" (click)="check(i)">
+  </p>
+  <hr>
+  <button (click)="rate()" class="btn rate" >Rate
+  </button></div>

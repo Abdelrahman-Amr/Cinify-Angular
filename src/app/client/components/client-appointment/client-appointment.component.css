@@ -36,7 +36,23 @@
     font-weight: bold;
     font-size: 18px;
   }
-  
+
   .small-text {
     font-size: 12px;
   }
+
+  .rate{
+    background-color: var(--main-color);
+    color:white;
+
+  }
+.rate:hover{
+  background-color:white;
+  color: var(--main-color);
+  border-color: var(--main-color);
+
+}
+
+.checked {
+  color: gold;
+}
