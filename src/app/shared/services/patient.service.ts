@@ -36,6 +36,7 @@ export class PatientService {
     };
   }
 
+  
   addPatient(patient: PatientModel): Observable < PatientModel > {
     return this._http.post<PatientModel>(Constants.addPatientUrl, patient);
   }

@@ -60,7 +60,7 @@ export class UpdateUserDataComponent implements OnInit {
 
     this.patientService.updatePatientProfile(this.patient);
     localStorage.setItem('user', JSON.stringify(this.patient));
-    this.swaAlert.success("Patient Profile Updated Successesfuly");
+    this.swaAlert.success("Patient Profile Updated Successe");
     this.router.navigate(['']);
   }
 }

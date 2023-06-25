@@ -2,6 +2,10 @@ import { Component, OnInit  } from '@angular/core';
 import { UpdateProfileService } from 'src/app/shared/services/update-profile.service';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Constants } from 'src/app/shared/constatnts';
+import { PatientModel } from 'src/app/shared/model/patient-model';
+import { PatientService } from 'src/app/shared/services/patient.service';
+import { Router } from '@angular/router';
+import { SwAlertService } from 'src/app/shared/services/sw-alert.service';
 
 @Component({
   selector: 'app-update-password',
@@ -10,9 +14,11 @@ import { Constants } from 'src/app/shared/constatnts';
 })
 export class UpdatePasswordComponent implements OnInit {
   profileForm: FormGroup;
- 
-  constructor(private updateProfileService:UpdateProfileService,private formBuilder: FormBuilder){
-      
+  //@ts-ignore
+ patient:PatientModel=JSON.parse(localStorage.getItem('user'));
+  constructor(private updateProfileService:UpdateProfileService,private formBuilder: FormBuilder,private patientService:PatientService,
+    private router :Router ,private swAlert:SwAlertService){
+      this.updateProfileService.isActive="changePassword";
   }
 
   ngOnInit(): void {
@@ -27,39 +33,57 @@ export class UpdatePasswordComponent implements OnInit {
     //   inputBirthday: [JSON.parse(localStorage.getItem('user')).birthDate,[Validators.email]],
     // });
     this.profileForm = this.formBuilder.group({
-      name:['', [Validators.required, Validators.minLength(3),
-      Validators.maxLength(30)]],
+   
 
-      phone:['', [Validators.required, Validators.pattern(Constants.DIGITS_ONLY_11)]],
+      confirmPassword:['',[Validators.minLength(5),Validators.maxLength(30)]],
 
-      dob:['', [Validators.required]],
-      email:['', [Validators.required, Validators.pattern(Constants.EMAIL)]],
-
-      password:['',[Validators.required,Validators.minLength(5),
-        Validators.maxLength(30)]],
-
-      gender:['male',[Validators.required]],
+        newPassword:['',[,Validators.minLength(5),Validators.maxLength(30)]],
+  
+    
 
     });
   }
-
-    minAge(minAge: number, errorMessage: string): ValidatorFn {
+  passwordMatchValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      const birthDate = new Date(control.value);
-      const currentDate = new Date();
+      const password = control.get('newPassword');
+      const confirmPassword = control.get('confirmPassword');
   
-      const diffYears = currentDate.getFullYear() - birthDate.getFullYear();
-      const diffMonths = currentDate.getMonth() - birthDate.getMonth();
-      const diffDays = currentDate.getDate() - birthDate.getDate();
+      // Check if password field has a value
+      if (password && password.value.trim()!='') {
+        // Make confirmPassword field required
+        confirmPassword?.setValidators([Validators.required]);        
   
-      if (diffYears < minAge || (diffYears === minAge && diffMonths < 0) || (diffYears === minAge && diffMonths === 0 && diffDays < 0)) {
-        return { 'minAge': { message: errorMessage } };
+        // Validate if confirmation password matches the password
+        if (confirmPassword && password.value !== confirmPassword.value) {
+          return { passwordMismatch: true };
+        }
+      } else {
+        // Reset confirmPassword field validators if password field is empty
+        confirmPassword?.clearValidators();
       }
+  
+      // Update confirmPassword field validation state
+      confirmPassword?.updateValueAndValidity();
   
       return null;
     };
   }
-
-  submitForm(){}
-
+  
+  updatePassword():void{
+    if(this.profileForm.get('newPassword')?.value!=null||this.profileForm.get('newPassword')?.value.trim!=''){
+      this.patient.password=this.profileForm.get('newPassword')?.value;
+      this.patientService.updatePatientProfile(this.patient);
+      console.log(this.profileForm.get('newPassword')?.value);
+      
+    localStorage.setItem('user', JSON.stringify(this.patient));
+    }
+  this.swAlert.success("Patient Password Updated Successe");
+  this.router.navigate(['']);
 }
+
+  }
+   
+
+
+
+
