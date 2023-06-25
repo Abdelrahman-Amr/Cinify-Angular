@@ -6,6 +6,7 @@ import {DoctorTitleService} from "./shared/services/doctorTitle.service";
 import {DoctorSpecializationService} from "./shared/services/doctor-specialization.service";
 import {ClinicService} from "./shared/services/clinic.service";
 import {SessionStorageService} from "./shared/services/session-storage.service";
+import {CityService} from "./shared/services/city.service";
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ export class AppComponent  implements OnInit{
 
   constructor( private doctorService:DoctorService, private doctorTitleService:DoctorTitleService,
               private doctorSpecializationService:DoctorSpecializationService, private clinicService:ClinicService,
-               private sessionStorageService:SessionStorageService) {
+               private sessionStorageService:SessionStorageService,
+               private cityService:CityService) {
   }
   ngOnInit(): void {
     this.doctorTitleService.getAllDoctorTitles().subscribe(value => {
@@ -30,6 +32,10 @@ export class AppComponent  implements OnInit{
 
     this.clinicService.getAllClinics().subscribe(value => {
        this.sessionStorageService.setClinics(value);
+    });
+
+    this.cityService.getAllCities().subscribe(value => {
+      this.sessionStorageService.setCities(value);
     });
   }
 

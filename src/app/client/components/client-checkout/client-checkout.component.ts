@@ -56,7 +56,7 @@ export class ClientCheckoutComponent implements OnInit {
             console.error('Error occurred:', error);
             this.swAlertService.fail('Your booking has failed.').then(() => {
               this.sharedData.currentAppointment = new AppointmentWithoutRatingModel();
-              this.router.navigate(['/']);
+              // this.router.navigate(['/']);
             });
           }
         );

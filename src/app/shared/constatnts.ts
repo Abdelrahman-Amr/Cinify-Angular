@@ -51,7 +51,7 @@ export class Constants {
   public static readonly getClinicURL = this.baseURL + '/clinics/';
   public static readonly updateClinicURL = this.baseURL + '/clinics/update';
   public static readonly deleteClinicUrl = this.baseURL + '/clinics/delete/';
-  public static readonly addClinicURL = this.baseURL + '/clinics/add';
+  public static readonly addClinictUrl = this.baseURL + '/clinics/addClinic';
   public static readonly getClinicDataURL = this.baseURL + '/clinics/data';
 
 
@@ -78,6 +78,8 @@ export class Constants {
 
 //Areas
   public static readonly getAllAreasUrl=this.baseURL+ '/areas/all';
+  public static readonly getAreaByCityUrl=this.baseURL+ '/areas/areasByCityId/';
+
 
 //Cities
   public static readonly getAllCities=this.baseURL+'/cities/all'

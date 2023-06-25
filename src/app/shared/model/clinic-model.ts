@@ -18,4 +18,5 @@ export class ClinicModel extends BaseModel{
     super();
     this.id  = id;
   }
+
 }

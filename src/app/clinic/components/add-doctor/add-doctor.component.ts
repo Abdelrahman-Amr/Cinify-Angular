@@ -76,6 +76,7 @@ signup(){
     doctor.fullName = this.form.controls['name'].value;
     doctor.clinic =  new ClinicModel(+this.form.controls['clinic'].value);
     doctor.avgMinutesPerPatient = +this.form.controls['avgMinutesPerPatient'].value;
+    doctor.isDeleted=false;
     if(this.imgTitle =='Click to upload image'){
       this.imgTitle = 'doctor.avif';
     }
