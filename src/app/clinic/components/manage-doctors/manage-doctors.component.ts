@@ -24,7 +24,7 @@ export class ManageDoctorsComponent implements OnInit{
   limit=5;
   totalCount=0;
   isLoading=true;
-
+url = Constants.downloadDoctorImgUrl;
   flags:Map<number, boolean> = new Map<number, boolean>();
   forms:Map<number, FormGroup[]> = new Map<number, FormGroup[]>();
 
@@ -173,13 +173,14 @@ export class ManageDoctorsComponent implements OnInit{
     }
     app.date = appointment.controls['date'].value;
     this.appointmentService.updateAppointment(app).subscribe(value => {
-        this.swAlertService.success("Saved Successfully");
+      // @ts-ignore
+      appointment.get('id').setValue(value.id);
+
+      this.swAlertService.success("Saved Successfully");
       }, error => {
 
       this.swAlertService.fail(error.error.message);
     });
 
   }
-
-  protected readonly Constants = Constants;
 }

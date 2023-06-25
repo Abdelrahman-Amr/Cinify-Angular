@@ -96,7 +96,6 @@ export class SecurityService {
   }
 
   isLoggedIn():boolean{
-    console.log(JSON.stringify(localStorage.getItem('token')));
     return localStorage.getItem('token') != null;
 
   }

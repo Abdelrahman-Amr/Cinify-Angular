@@ -26,7 +26,9 @@ export class EditDoctorComponent implements OnInit{
   imgTitle='Click to upload image';
 
   imgFile: any;
-  imgUrl: string;
+  docFile:any;
+  docImgTitle='Upload Document';
+
   constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService,
               @Inject(MAT_DIALOG_DATA) public doctor: DoctorModel,
               private doctorService:DoctorService, private doctorTitleService:DoctorTitleService,
@@ -41,6 +43,8 @@ export class EditDoctorComponent implements OnInit{
     this.titles = this.sessionStorageService.getTitles();
     this.specs = this.sessionStorageService.getSpecs();
     this.imgTitle = this.doctor.imgUrl;
+    this.docImgTitle = this.doctor.docImg;
+
     // this.doctorSpecializationService.getAllDoctorSpecs().subscribe(value => {
     //   this.specs = value;
     // });
@@ -73,10 +77,16 @@ export class EditDoctorComponent implements OnInit{
       doctor.isDeleted = this.form.controls['isDeleted'].value;
       doctor.avgMinutesPerPatient = +this.form.controls['avgMinutesPerPatient'].value;
       doctor.imgUrl = this.imgTitle;
+      doctor.docImg = this.docImgTitle;
 
       this.doctorService.updateDoctor(doctor).subscribe(value => {
         this.swAlertService.success('Updated Successfully');
-        this.doctorService.upload(this.imgFile,value.message).subscribe(() => {
+        if(this.imgFile) {
+          this.doctorService.upload(this.imgFile, value.message).subscribe(() => {
+          });
+        }
+        doctor.docImg = 'doc'+value.message;
+        this.doctorService.upload(this.docFile,this.docImgTitle).subscribe(() => {
         });
       }, error=>{
         const formControl = this.form.get(error.error.field);
@@ -99,4 +109,8 @@ export class EditDoctorComponent implements OnInit{
     this.imgFile = event.target.files[0];
   }
 
+  onDocChange(event:any){
+    this.docImgTitle = event.target.files[0].name;
+    this.docFile = event.target.files[0];
+  }
 }
