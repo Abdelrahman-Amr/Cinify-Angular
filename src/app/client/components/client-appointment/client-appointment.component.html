@@ -22,13 +22,18 @@
           </div>
         </div>
         <div class="card-body"> <p class="card-text"><i class="bi bi-geo-alt-fill"></i> {{ appointment.doctor.clinic.address }}</p>
-          <p class="card-text"><i class="bi bi-calendar-event"></i> Appointment Date: {{ appointment.date | date: 'EEEE, MMMM d'}}</p>
-          <p class="card-text"><i class="bi bi-info-circle-fill"></i> {{ appointment.status }}</p>
+          <p class="card-text"><i class="bi bi-calendar-event"></i> Appointment Date: {{ appointment.date |date:'EEEE, MMMM d'}}</p>
+          <p class="card-text"><i class="bi bi-info-circle-fill"></i> {{ (!isBefore(appointment.date))?appointment.status:'Finished' }}</p>
+
           <p class="card-text"><i class="bi bi-calendar-event"></i> From: {{ appointment.startTime }} - To: {{ appointment.endTime }}</p>
         </div>
-        <div class="card-footer text-center">
-          <button (click)="handleButtonAction(appointment.id)" class="btn btn-danger">
+        <div class="card-footer text-center" >
+          <button (click)="handleButtonAction(appointment.id)" class="btn btn-danger" *ngIf="!isBefore(appointment.date)">
             <i class="bi bi-x"></i> Cancel Appointment
+          </button>
+
+          <button (click)="rate(appointment.id)" class="btn rate" *ngIf=" isBefore(appointment.date)">
+            <i class="fa fa-star checked"></i> Rate Appointment
           </button>
         </div>
       </div>

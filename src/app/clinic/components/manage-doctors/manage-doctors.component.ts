@@ -172,11 +172,11 @@ export class ManageDoctorsComponent implements OnInit{
       app.startTime = appointment.controls['from'].value+":00";
     }
     app.date = appointment.controls['date'].value;
-console.log(app);
     this.appointmentService.updateAppointment(app).subscribe(value => {
         this.swAlertService.success("Saved Successfully");
       }, error => {
-      this.swAlertService.fail("Failed to Save Appointment");
+
+      this.swAlertService.fail(error.error.message);
     });
 
   }

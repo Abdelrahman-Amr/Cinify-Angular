@@ -17,7 +17,7 @@ export class AppComponent  implements OnInit{
   title = 'clinify-front';
 
   constructor( private doctorService:DoctorService, private doctorTitleService:DoctorTitleService,
-              private doctorSpecializationService:DoctorSpecializationService, private clinicService:ClinicService,
+              private doctorSpecializationService:DoctorSpecializationService,
                private sessionStorageService:SessionStorageService,
                private cityService:CityService) {
   }
@@ -29,10 +29,10 @@ export class AppComponent  implements OnInit{
     this.doctorSpecializationService.getAllDoctorSpecs().subscribe(value => {
       this.sessionStorageService.setSpecs(value);
     });
-
-    this.clinicService.getAllClinics().subscribe(value => {
-       this.sessionStorageService.setClinics(value);
-    });
+    //
+    // this.clinicService.getAllClinics().subscribe(value => {
+    //    this.sessionStorageService.setClinics(value);
+    // });
 
     this.cityService.getAllCities().subscribe(value => {
       this.sessionStorageService.setCities(value);
