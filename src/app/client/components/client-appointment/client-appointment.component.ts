@@ -45,8 +45,8 @@ export class ClientAppointmentComponent {
       const dialogConfig = new MatDialogConfig();
       // dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
-      dialogConfig.width = '90%';
-      dialogConfig.height = '480px';
+      dialogConfig.width = '400px';
+      dialogConfig.height = '400px';
 
       // const data = new  UpdatePreviewData();
       // data.st = row;

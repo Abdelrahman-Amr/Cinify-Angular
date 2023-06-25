@@ -14,7 +14,7 @@ import {SwAlertService} from "../../../shared/services/sw-alert.service";
 export class RateAppointmentComponent {
 
   stars = [1, 2, 3, 4, 5];
-  flags = [false, false, false, false, false];
+  flags = [true, true, true, true, true];
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public appointmentId: number,
