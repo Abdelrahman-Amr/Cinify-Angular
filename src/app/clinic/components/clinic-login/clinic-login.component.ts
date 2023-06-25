@@ -70,7 +70,6 @@ export class ClinicLoginComponent implements OnInit{
       localStorage.setItem('user',JSON.stringify(value));
       localStorage.setItem('isClinic','true');
       this.securityService.loginSubject.next(null);
-
       this.swAlertService.success("Logged in Successfully");
 
       this.router.navigate(['/']);

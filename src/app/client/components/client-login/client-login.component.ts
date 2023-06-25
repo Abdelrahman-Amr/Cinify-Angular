@@ -76,7 +76,6 @@ export class ClientLoginComponent implements OnInit{
       this.swAlertService.success("Logged in Successfully");
       if(this.activatedRoute.snapshot.params['isCheckout']=='1'){
         this.router.navigate(['/checkout']);
-
       }else {
         this.router.navigate(['/']);
       }
