@@ -21,7 +21,7 @@
         </li>
 
         <li class="nav-item"  *ngIf="isLoggedIn && !isClinic">
-          <a class="nav-link active " routerLink="/clinic/add-doctor" (click)="collapse()">{{'Welcome,' +this.user.fullName}}</a>
+          <a class="nav-link active " routerLink="profile" (click)="collapse()">{{'Welcome,' +this.user.fullName}}</a>
         </li>
 <!--        <li class="nav-item separator" *ngIf="!isLoggedIn"></li>-->
 <!--        <li class="nav-item" *ngIf="!isLoggedIn">-->

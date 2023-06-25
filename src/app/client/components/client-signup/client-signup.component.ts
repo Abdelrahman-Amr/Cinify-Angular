@@ -39,13 +39,15 @@ export class ClientSignupComponent  implements OnInit{
 
       phone:['', [Validators.required, Validators.pattern(Constants.DIGITS_ONLY_11)]],
 
-      dob:['', [Validators.required]],
+      dob:['', [Validators.required,this.patientService.minAge(15, 'You must be at least 15 years old')]],
       email:['', [Validators.required, Validators.pattern(Constants.EMAIL)]],
 
       password:['',[Validators.required,Validators.minLength(5),
         Validators.maxLength(30)]],
 
       gender:['Male',[Validators.required]],
+
+   
 
     });
   }

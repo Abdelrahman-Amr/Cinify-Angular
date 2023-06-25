@@ -16,17 +16,7 @@ export class PatientService {
   constructor(private _http:HttpClient) { }
 
   updatePatientProfile(patient:PatientModel){
-    this._http.put<any>(Constants.updatePatientProfile,patient)
-  
-  .subscribe(
-    {
-      next:response=>{
-        // console.log(this.student.Age);
-        alert(response.Message);
-      },
-      error:error=>{}
-    }
-  );
+    this._http.put<any>(Constants.updatePatientProfile,patient).subscribe();
 
   }
   minAge(minAge: number, errorMessage: string): ValidatorFn {
@@ -45,8 +35,6 @@ export class PatientService {
       return null;
     };
   }
-
- 
 
   addPatient(patient: PatientModel): Observable < PatientModel > {
     return this._http.post<PatientModel>(Constants.addPatientUrl, patient);

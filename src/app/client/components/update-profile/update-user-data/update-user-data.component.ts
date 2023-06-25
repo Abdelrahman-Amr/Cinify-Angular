@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Constants } from 'src/app/shared/constatnts';
 import { PatientModel } from 'src/app/shared/model/patient-model';
 import { PatientService } from 'src/app/shared/services/patient.service';
+import { SwAlertService } from 'src/app/shared/services/sw-alert.service';
 import { UpdateProfileService } from 'src/app/shared/services/update-profile.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class UpdateUserDataComponent implements OnInit {
   patient:PatientModel=JSON.parse(localStorage.getItem('user'));
 
   constructor(private updateProfileService:UpdateProfileService
-    ,private formBuilder: FormBuilder,private patientService:PatientService,private router: Router){
+    ,private formBuilder: FormBuilder,private patientService:PatientService,private router: Router,public swaAlert:SwAlertService){
     this.updateProfileService.isActive='profile';
     
    
@@ -31,7 +32,7 @@ export class UpdateUserDataComponent implements OnInit {
       name: [this.patient.fullName,[ Validators.minLength(3),
         Validators.maxLength(30)]],
       //@ts-ignore
-      Email: [this.patient.email, [Validators.pattern(Constants.EMAIL)]],
+      email: [this.patient.email, [Validators.pattern(Constants.EMAIL)]],
       //@ts-ignore
       phone: [this.patient.phoneNumber,[Validators.pattern(Constants.DIGITS_ONLY_11)]],
       //@ts-ignore
@@ -45,7 +46,7 @@ export class UpdateUserDataComponent implements OnInit {
       this.patient.fullName=this.profileForm.get('name')?.value;
     }
     if(this.profileForm.get('email')?.value!=null||this.profileForm.get('email')?.value!=''){
-      this.patient.email=this.profileForm.get('email')?.value;   
+      this.patient.email=this.profileForm.get('email')?.value; 
      }
 
      if(this.profileForm.get('phone')?.value!=null||this.profileForm.get('phone')?.value!=''){
@@ -59,6 +60,7 @@ export class UpdateUserDataComponent implements OnInit {
 
     this.patientService.updatePatientProfile(this.patient);
     localStorage.setItem('user', JSON.stringify(this.patient));
+    this.swaAlert.success("Patient Profile Updated Successesfuly");
     this.router.navigate(['']);
   }
 }

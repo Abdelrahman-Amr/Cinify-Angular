@@ -9,11 +9,11 @@ export class PatientModel extends BaseModel{
    phoneNumber:string;
    password:string;
    fullName:string;
-   email:string;
    birthDate:Date;
    gender:string;
    address:string;
    preperationTime:number;
    isDeleted:boolean;
+   email:string;
 
 }

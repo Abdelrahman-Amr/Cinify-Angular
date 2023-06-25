@@ -23,11 +23,11 @@
                             </div>
                         <!-- Form Group (email address)-->
                         <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Email address</label><input [class.is-valid]="!profileForm.controls['Email'].errors" formControlName="Email"
+                            <label class="small mb-1" for="inputEmailAddress">Email address</label><input [class.is-valid]="!profileForm.controls['email'].errors" formControlName="email"
                                 type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                 placeholder="name@example.com">
-                        <div *ngIf="profileForm.controls['Email'].errors && (profileForm.controls['Email'].touched || profileForm.controls['Email'].dirty)">
-                            <small *ngIf="profileForm.controls['Email'].errors?.['pattern']"
+                        <div *ngIf="profileForm.controls['email'].errors && (profileForm.controls['email'].touched || profileForm.controls['email'].dirty)">
+                            <small *ngIf="profileForm.controls['email'].errors?.['pattern']"
                                 class="form-text text-danger">Invalid email format</small>
                         </div> 
                         </div>
