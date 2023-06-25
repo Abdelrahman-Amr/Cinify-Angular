@@ -85,9 +85,10 @@ export class Constants {
 //Cities
   public static readonly getAllCities=this.baseURL+'/cities/all'
 
-
+  
   //Patient URLs
   public static readonly addPatientUrl = this.baseURL + '/patients/addPatient';
+  public static readonly updatePatientProfile=this.baseURL+'/patients/update'
 
 
 

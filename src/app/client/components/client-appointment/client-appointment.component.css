@@ -1,58 +1,57 @@
-
 .header-cell {
-    background-color: var( --tableHeaderColor );
+  background-color: var( --tableHeaderColor );
 }
 .centrlize {
-    margin-left: 125px;
-    margin-right: 125px;
-    display: flex;
-    justify-content: center;
-  }
-  .material-icons{
-    font-size:48px;
-    color:rgb(236, 41, 41);
-  }
-  .cancel-icon:hover {
-    color: red;
-    cursor: pointer;
-  }
-  .cancel-icon-cell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .extra-padding {
-    padding: 200px;
-  }
-  .container{
-    overflow-x: auto;
-  }
+  margin-left: 125px;
+  margin-right: 125px;
+  display: flex;
+  justify-content: center;
+}
+.material-icons{
+  font-size:48px;
+  color:rgb(236, 41, 41);
+}
+.cancel-icon:hover {
+  color: red;
+  cursor: pointer;
+}
+.cancel-icon-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.extra-padding {
+  padding: 200px;
+}
+.container{
+  overflow-x: auto;
+}
 
 .search{
-  background-image:url("/assets/images/search-bg.jpg");
-  background-size: contain;
+background-image:url("/assets/images/search-bg.jpg");
+background-size: contain;
 }
-  .doctor-name {
-    font-weight: bold;
-    font-size: 18px;
-  }
+.doctor-name {
+  font-weight: bold;
+  font-size: 18px;
+}
 
-  .small-text {
-    font-size: 12px;
-  }
+.small-text {
+  font-size: 12px;
+}
 
-  .rate{
-    background-color: var(--main-color);
-    color:white;
+.rate{
+  background-color: var(--main-color);
+  color:white;
 
-  }
+}
 .rate:hover{
-  background-color:white;
-  color: var(--main-color);
-  border-color: var(--main-color);
+background-color:white;
+color: var(--main-color);
+border-color: var(--main-color);
 
 }
 
 .checked {
-  color: gold;
+color: gold;
 }

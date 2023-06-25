@@ -29,6 +29,9 @@ import { NgIf } from '@angular/common';
 import { ClientAppointmentComponent } from './components/client-appointment/client-appointment.component';
 import { RateAppointmentComponent } from './components/rate-appointment/rate-appointment.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { UpdatePasswordComponent } from './components/update-profile/update-password/update-password.component';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
+import { UpdateUserDataComponent } from './components/update-profile/update-user-data/update-user-data.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,9 @@ import {MatDialogModule} from "@angular/material/dialog";
     ClientCheckoutComponent,
     RateAppointmentComponent,
 
+    UpdateProfileComponent,
+    UpdateUserDataComponent,
+    UpdatePasswordComponent,
   ],
     imports: [
         CommonModule,
