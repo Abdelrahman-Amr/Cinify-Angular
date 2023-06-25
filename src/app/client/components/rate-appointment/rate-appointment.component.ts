@@ -35,7 +35,13 @@ export class RateAppointmentComponent {
   }
 
   check(index:number){
-    this.flags[index]= !this.flags[index];
+    for(let i=0;i<5;i++) {
+      if(i<=index) {
+        this.flags[i] = true;
+      }else{
+        this.flags[i]=false;
+      }
+    }
   }
   getRating():number{
     let c=0;
