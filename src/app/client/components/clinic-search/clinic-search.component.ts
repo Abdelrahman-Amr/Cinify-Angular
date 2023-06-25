@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Constants } from 'src/app/shared/constatnts';
 import { SearchResultService } from 'src/app/shared/services/search-result-service.service';
 
@@ -17,7 +17,7 @@ export class ClinicSearchComponent {
   doctorName: string| null = null;
   sortType: string| null = null;
   order: string| null = null;
-
+  home = null;
   flag=false;
   specialties: any[] =[]
   cities: any[] = []
@@ -30,7 +30,8 @@ export class ClinicSearchComponent {
     { label: 'Rating', value: 'averageRating', order:'DESC' }
   ];
 
-  constructor(private _http:HttpClient,private router: Router,private searchResult: SearchResultService){
+  constructor(private _http:HttpClient,private router: Router,private searchResult: SearchResultService,
+    private activatedRoute:ActivatedRoute){
     console.log(this.specialties);
   }
   ngOnInit(): void {
@@ -38,6 +39,9 @@ export class ClinicSearchComponent {
     this.getAllSpecialties();
     this.getAllAreas();
     this.getAllCities();
+    this.activatedRoute.data.subscribe(value=>{
+      this.home = value["name"];
+    })
   }
 
   getAllSpecialties():void{
