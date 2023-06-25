@@ -30,7 +30,8 @@ export class AddDoctorComponent implements OnInit{
   imgTitle='Click to upload image';
 
   imgFile: any;
-  imgUrl: string;
+  docFile:any;
+  docImgTitle='Upload Document';
 
 constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService,
             private doctorService:DoctorService, private doctorTitleService:DoctorTitleService,
@@ -69,7 +70,7 @@ ngOnInit(): void {
   });
 }
 signup(){
-  if(this.form.valid){
+  if(this.form.valid && this.docFile){
     let doctor= new DoctorModel();
     doctor.status = 'Pending';
     doctor.doctorSpecialization = new DoctorSpecializationModel(+this.form.controls['specialization'].value);
@@ -80,18 +81,21 @@ signup(){
     doctor.clinic =  new ClinicModel(+this.form.controls['clinic'].value);
     doctor.avgMinutesPerPatient = +this.form.controls['avgMinutesPerPatient'].value;
     doctor.isDeleted=false;
+    doctor.docImg = this.docImgTitle;
     if(this.imgTitle =='Click to upload image'){
       this.imgTitle = 'doctor.avif';
     }
     doctor.imgUrl = this.imgTitle;
 
-
     this.doctorService.addDoctor(doctor).subscribe(value => {
       this.swAlertService.success('Added Successfully');
       if (this.imgTitle != 'doctor.avif') {
-      this.doctorService.upload(this.imgFile, value.message).subscribe(() => {
-      });
-    }
+        this.doctorService.upload(this.imgFile, value.message).subscribe(() => {
+        });
+      }
+          this.doctorService.upload(this.docFile, this.docImgTitle).subscribe(() => {
+          });
+
     }, error=>{
       const formControl = this.form.get(error.error.field);
       this.errorMsg = error.error.message;
@@ -109,6 +113,11 @@ signup(){
   onImageChange(event:any){
      this.imgTitle = event.target.files[0].name;
      this.imgFile = event.target.files[0];
+  }
+
+  onDocChange(event:any){
+    this.docImgTitle = event.target.files[0].name;
+    this.docFile = event.target.files[0];
   }
 
 

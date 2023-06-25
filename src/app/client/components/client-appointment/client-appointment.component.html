@@ -26,7 +26,7 @@
           <p class="card-text"><i class="bi bi-calendar-event"></i> From: {{ appointment.startTime }} - To: {{ appointment.endTime }}</p>
         </div>
         <div class="card-footer text-center" >
-          <button (click)="handleButtonAction(appointment.id)" class="btn btn-danger" *ngIf="!isBefore(appointment.date)">
+            <button (click)="handleButtonAction(appointment.id)" class="btn btn-danger" *ngIf="!isBefore(appointment.date)">
             <i class="bi bi-x"></i> Cancel Appointment
           </button>
           <button (click)="rate(appointment.id)" class="btn rate" *ngIf=" isBefore(appointment.date)">

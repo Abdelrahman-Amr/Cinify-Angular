@@ -51,7 +51,7 @@ export class ClinicLoginComponent implements OnInit{
   }
 
   loginSuccess(){
-    this.securityService.getJWT().subscribe( (response: any) => {
+    this.securityService.getJWTClinic().subscribe( (response: any) => {
         const accessToken = response.access_token;
 
         localStorage.setItem('token',accessToken);
@@ -59,8 +59,7 @@ export class ClinicLoginComponent implements OnInit{
         this.getClinictData(this.loginForm.controls['email'].value);
       },
       (error) => {
-        // Handle the error response
-        console.error('Error:'+ error);
+        this.swAlertService.fail('Failed to Login');
       }
     );
   }
