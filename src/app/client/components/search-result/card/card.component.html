@@ -49,10 +49,10 @@
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="col-12 col-md-12">
-                            <div class="text-center" *ngIf="doctor.appointments.length<=0">
+                            <div class="text-center" *ngIf="doctor.appointments && doctor.appointments.length <= 0">
                                 <p class="no-appontments">There are no appointments available</p>
                             </div>
-                            <ngb-carousel [interval]=100000000000 *ngIf="doctor.appointments.length>0"
+                            <ngb-carousel [interval]=100000000000 *ngIf="doctor.appointments && doctor.appointments.length > 0"
                                 [showNavigationIndicators]=false>
                                 <ng-template ngbSlide *ngFor="let day of doctor.appointmentsByDay">
                                     <div class="card bg-light mb-3" style="width: 100%; padding: 0px;">
