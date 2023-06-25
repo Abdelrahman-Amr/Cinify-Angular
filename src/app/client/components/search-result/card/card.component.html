@@ -6,7 +6,7 @@
         </svg>
     </div>
     <a class="card-link" *ngFor="let doctor of this.searchResultService.doctorsSearchResult">
-        <div class="doctor-card border-light mb-3 " style="padding: 30px;" >
+        <div class="doctor-card border-light mb-3 " style="padding: 30px;" *ngIf="doctor.status!='Pending'">
 
             <div class="card-body">
                 <div class="row">
