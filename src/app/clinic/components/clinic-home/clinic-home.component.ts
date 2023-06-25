@@ -14,7 +14,7 @@ import { MatSortModule } from '@angular/material/sort';
 })
 export class ClinicHomeComponent implements AfterViewInit, OnInit {
   appointments: AppointmentWithoutRatingModel[] = [];
-  displayedColumns: string[] = ['doctor', 'patient', 'date', 'time'];
+  displayedColumns: string[] = ['doctor.fullName', 'patient.fullName', 'date', 'time'];
   dataSource = new MatTableDataSource<AppointmentWithoutRatingModel>([]);
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -25,10 +25,11 @@ export class ClinicHomeComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.sortingDataAccessor = (item, property) => {
-      switch(property) {
+      switch (property) {
         case 'doctor.fullName': return item.doctor.fullName;
         case 'patient.fullName': return item.patient.fullName;
-        default: return item.id; //idk what is this 
+        case 'date': return item.date;
+        default: return (item as any)[property];
       }
     };
     this.dataSource.paginator = this.paginator;
