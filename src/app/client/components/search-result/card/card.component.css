@@ -94,3 +94,15 @@ a.card-link {
   border-radius: 5px;
   padding: 7px;
 }
+
+.not-available{
+  text-decoration: line-through;
+  color: #808184;
+}
+
+.no-appontments{
+  color: #a51010;
+  font-size:20px;
+  font-weight: bold;
+  margin-top: 45%;
+}

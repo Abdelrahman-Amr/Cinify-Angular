@@ -2,19 +2,19 @@
 
 
 
-  <div class="loading mb-4 text-center" *ngIf="isLoading" style="margin: auto">
-    <svg width="64px" height="48px">
-      <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back"></polyline>
-      <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="front"></polyline>
-    </svg>
-  </div>
+    <div class="loading mb-4 text-center" *ngIf="isLoading" style="margin: auto">
+        <svg width="64px" height="48px">
+            <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back"></polyline>
+            <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="front"></polyline>
+        </svg>
+    </div>
     <a class="card-link" *ngFor="let doctor of this.searchResultService.doctorsSearchResult">
-        <div class="doctor-card border-light mb-3 " style="padding: 30px;" *ngIf="doctor.appointments.length>0">
+        <div class="doctor-card border-light mb-3 " style="padding: 30px;" >
 
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 col-md-2">
-                        <img class="rounded-circle border border-2" [src]="imgUrl+doctor.imgUrl"  />
+                        <img class="rounded-circle border border-2" [src]="imgUrl+doctor.imgUrl" />
                     </div>
                     <div class="col-12 col-md-7">
                         <div class="name-container">
@@ -49,17 +49,21 @@
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="col-12 col-md-12">
-                            <ngb-carousel *ngIf="doctor.appointments" [interval]=100000000000
+                            <div class="text-center" *ngIf="doctor.appointments.length<=0">
+                                <p class="no-appontments">There are no appointments available</p>
+                            </div>
+                            <ngb-carousel [interval]=100000000000 *ngIf="doctor.appointments.length>0"
                                 [showNavigationIndicators]=false>
-                                <ng-template ngbSlide *ngFor="let appointment of doctor.appointments">
+                                <ng-template ngbSlide *ngFor="let day of doctor.appointmentsByDay">
                                     <div class="card bg-light mb-3" style="width: 100%; padding: 0px;">
                                         <div class="card-header text-center">
-                                            {{formatAppointmentDate(appointment.date)}}
+                                            {{formatAppointmentDate(day.date)}}
                                         </div>
                                         <div class="card-body text-center">
                                             <p class="card-text"
-                                                *ngFor="let time of getTimesForDay(appointment.date, +doctor.id)">
-                                                <a (click)="checkOut(appointment)" class="appointment-link">{{time}}</a>
+                                                *ngFor="let appointment of day.times">
+                                                <a  *ngIf="!appointment.patient" (click)="checkOut(appointment)" class="appointment-link">{{formatTime(appointment.startTime)}}</a>
+                                                <span class="not-available" *ngIf="appointment.patient">{{formatTime(appointment.startTime)}}</span>
                                             </p>
                                         </div>
                                     </div>
