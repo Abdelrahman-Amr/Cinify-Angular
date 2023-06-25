@@ -42,7 +42,6 @@ export class ClientLoginComponent implements OnInit{
         this.securityService.login(loginModel).subscribe(value => {
 
           this.loginSuccess();
-          this.securityService.loginSubject.next(null);
 
 
         },error => {
@@ -72,10 +71,9 @@ export class ClientLoginComponent implements OnInit{
   getPatientData(userName:string){
     this.securityService.getPatientData(userName).subscribe(value => {
       localStorage.setItem('user',JSON.stringify(value));
+      this.securityService.loginSubject.next(null);
 
       this.swAlertService.success("Logged in Successfully");
-
-
       if(this.activatedRoute.snapshot.params['isCheckout']=='1'){
         this.router.navigate(['/checkout']);
 

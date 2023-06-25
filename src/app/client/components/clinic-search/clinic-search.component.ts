@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Constants } from 'src/app/shared/constatnts';
 import { SearchResultService } from 'src/app/shared/services/search-result-service.service';
+import {SessionStorageService} from "../../../shared/services/session-storage.service";
 
 @Component({
   selector: 'app-clinic-search',
@@ -31,7 +32,7 @@ export class ClinicSearchComponent {
   ];
 
   constructor(private _http:HttpClient,private router: Router,private searchResult: SearchResultService,
-    private activatedRoute:ActivatedRoute){
+    private activatedRoute:ActivatedRoute, private sessionStorageService:SessionStorageService){
     console.log(this.specialties);
   }
   ngOnInit(): void {
@@ -42,6 +43,8 @@ export class ClinicSearchComponent {
     this.activatedRoute.data.subscribe(value=>{
       this.home = value["name"];
     })
+    // this.getAllCities();
+    this.cities = this.sessionStorageService.getCities();
   }
 
   getAllSpecialties():void{
@@ -85,7 +88,7 @@ export class ClinicSearchComponent {
     let specialityId=null;
     let cityId=null;
     let areaId=null;
-   
+
     if(this.selectedSpeciality!==null){
       specialityId=this.selectedSpeciality.id;
     }
@@ -135,7 +138,7 @@ export class ClinicSearchComponent {
   }
 
   addSortParams(sortType: any) {
-    
+
     this.sortType = sortType.value;
     this.order = sortType.order
     this.submitSearchbutton();

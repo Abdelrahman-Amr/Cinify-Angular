@@ -3,7 +3,7 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Valid
 import {Constants} from "../../../shared/constatnts";
 import Swal from "sweetalert2";
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {DoctorModel} from "../../../shared/model/doctor-model";
 import {DoctorSpecializationModel} from "../../../shared/model/doctor-specialization-model";
 import {DoctorTitleModel} from "../../../shared/model/doctor-title-model";
@@ -25,7 +25,8 @@ export class ClientSignupComponent  implements OnInit{
 
 
   constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService,
-              private router:Router, private patientService:PatientService, private securityService:SecurityService) {
+              private router:Router, private patientService:PatientService, private securityService:SecurityService,
+              private activatedRoute:ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -60,17 +61,16 @@ export class ClientSignupComponent  implements OnInit{
       patient.birthDate =  this.signupForm.controls['dob'].value;
       patient.isDeleted=false;
       this.patientService.addPatient(patient).subscribe(value => {
-        console.log(value);
+        // console.log(value);
 
         let loginModel = new LoginModel();
         loginModel.username=patient.email;
         loginModel.password=patient.password;
 
         this.securityService.login(loginModel).subscribe(value => {
-          console.log(value);
+          // console.log(value);
           localStorage.setItem('user',JSON.stringify(value));
           this.loginSuccess();
-          this.securityService.loginSubject.next(null);
 
       });
     },error => {
@@ -90,6 +90,9 @@ export class ClientSignupComponent  implements OnInit{
           const accessToken = response.access_token;
           localStorage.setItem('token',accessToken);
 
+          this.getPatientData(this.signupForm.controls['email'].value);
+
+
           // if(this.activatedRoute.snapshot.params['isCheckout']=='1'){
           //   this.router.navigate(['/checkout']);
           //
@@ -103,5 +106,27 @@ export class ClientSignupComponent  implements OnInit{
         }
       );
     }
+
+
+  getPatientData(userName:string){
+    this.securityService.getPatientData(userName).subscribe(value => {
+      localStorage.setItem('user',JSON.stringify(value));
+      this.securityService.loginSubject.next(null);
+
+      this.swAlertService.success("Logged in Successfully");
+
+
+      if(this.activatedRoute.snapshot.params['isCheckout']=='1'){
+        this.router.navigate(['/checkout']);
+
+      }else {
+        this.router.navigate(['/']);
+      }
+
+    },error => {
+      localStorage.removeItem('token');
+      this.swAlertService.fail('Failed to Login');
+    });
+  }
 
 }

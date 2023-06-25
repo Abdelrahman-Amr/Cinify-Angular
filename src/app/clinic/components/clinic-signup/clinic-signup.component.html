@@ -25,6 +25,8 @@
             <input  matInput name="phone" required type="tel" [formControlName]="'phone'">
             <mat-error *ngIf="signupForm.controls['phone'].errors?.['required']">Required</mat-error>
             <mat-error *ngIf="signupForm.controls['phone'].errors?.['pattern']">Invalid Number</mat-error>
+            <mat-error *ngIf="signupForm.controls['phone'].errors?.['serverError']">{{errorMsg}}</mat-error>
+
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="col-md-6">
@@ -32,6 +34,8 @@
             <input type="email"  matInput name="address" required [formControlName]="'email'"/>
             <mat-error *ngIf="signupForm.controls['email'].errors?.['required']">Required</mat-error>
             <mat-error *ngIf="signupForm.controls['email'].errors?.['pattern']">Invalid Email</mat-error>
+            <mat-error *ngIf="signupForm.controls['email'].errors?.['serverError']">{{errorMsg}}</mat-error>
+
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="col-md-6">
@@ -46,7 +50,7 @@
                       <mat-label>City</mat-label>
                       <mat-select [formControlName]="'city'" >
                         <mat-option *ngFor="let city of cities" [value]="city">
-                          {{city}}
+                          {{city.name}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -57,7 +61,7 @@
             <mat-label>Area</mat-label>
             <mat-select [formControlName]="'area'">
               <mat-option *ngFor="let area of areas" [value]="area">
-                {{area}}
+                {{area.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>

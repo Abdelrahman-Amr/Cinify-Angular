@@ -38,7 +38,6 @@ export class ClinicLoginComponent implements OnInit{
       loginModel.username=this.loginForm.controls['email'].value;
       loginModel.password=this.loginForm.controls['password'].value;
 
-
       this.securityService.login(loginModel).subscribe(value => {
 
         this.loginSuccess();
