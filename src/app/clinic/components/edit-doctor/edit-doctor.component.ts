@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
 import {Constants} from "../../../shared/constatnts";
 import {DoctorModel} from "../../../shared/model/doctor-model";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {DoctorService} from "../../../shared/services/doctor.service";
 import {DoctorTitleService} from "../../../shared/services/doctorTitle.service";
 import {DoctorTitleModel} from "../../../shared/model/doctor-title-model";
@@ -33,7 +33,8 @@ export class EditDoctorComponent implements OnInit{
               @Inject(MAT_DIALOG_DATA) public doctor: DoctorModel,
               private doctorService:DoctorService, private doctorTitleService:DoctorTitleService,
               private doctorSpecializationService:DoctorSpecializationService,
-              private sessionStorageService:SessionStorageService) {
+              private sessionStorageService:SessionStorageService,
+              private dialogRef: MatDialogRef<EditDoctorComponent>) {
   }
 
   ngOnInit(): void {
@@ -81,6 +82,7 @@ export class EditDoctorComponent implements OnInit{
 
       this.doctorService.updateDoctor(doctor).subscribe(value => {
         this.swAlertService.success('Updated Successfully');
+        this.dialogRef.close();
         if(this.imgFile) {
           this.doctorService.upload(this.imgFile, value.message).subscribe(() => {
           });

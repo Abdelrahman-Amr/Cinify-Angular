@@ -37,6 +37,7 @@ url = Constants.downloadDoctorImgUrl;
     // @ts-ignore
     this.doctorService.getDoctorsPageByClinic(this.page, this.limit, JSON.parse(localStorage.getItem('user')).id).subscribe(value => {
       this.doctors = value.data;
+      // console.log(value.data);
       this.totalCount=value.totalCount;
       this.isLoading = false;
     });
