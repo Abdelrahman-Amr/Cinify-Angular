@@ -6,3 +6,7 @@
   background-image:url("/assets/images/search-bg.jpg");
   background-size: contain;
 }
+
+.filter{
+  margin-right: 12%;
+}

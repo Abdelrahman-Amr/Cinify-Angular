@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Constants } from 'src/app/shared/constatnts';
 import { SearchResultService } from 'src/app/shared/services/search-result-service.service';
 import {SessionStorageService} from "../../../shared/services/session-storage.service";
+import { FilterService } from 'src/app/shared/services/filter.service';
 
 @Component({
   selector: 'app-clinic-search',
@@ -11,15 +12,6 @@ import {SessionStorageService} from "../../../shared/services/session-storage.se
   styleUrls: ['./clinic-search.component.css']
 })
 export class ClinicSearchComponent {
-
-  selectedSpeciality: any | null = null;
-  selectedArea: any | null = null;
-  selectedCity: any | null = null;
-  doctorName: string| null = null;
-  sortType: string| null = null;
-  order: string| null = null;
-  home = null;
-  flag=false;
   specialties: any[] =[]
   cities: any[] = []
   areas: any[] = [];
@@ -31,8 +23,8 @@ export class ClinicSearchComponent {
     { label: 'Rating', value: 'averageRating', order:'DESC' }
   ];
 
-  constructor(private _http:HttpClient,private router: Router,private searchResult: SearchResultService,
-    private activatedRoute:ActivatedRoute, private sessionStorageService:SessionStorageService){
+  constructor(private _http:HttpClient,private searchResult: SearchResultService,
+     private sessionStorageService:SessionStorageService,public filter:FilterService){
     console.log(this.specialties);
   }
   ngOnInit(): void {
@@ -40,9 +32,7 @@ export class ClinicSearchComponent {
     this.getAllSpecialties();
     this.getAllAreas();
     this.getAllCities();
-    this.activatedRoute.data.subscribe(value=>{
-      this.home = value["name"];
-    })
+    
     // this.getAllCities();
     this.cities = this.sessionStorageService.getCities();
   }
@@ -84,65 +74,11 @@ export class ClinicSearchComponent {
       }
     );
   }
-  getSearchResult():void{
-    let specialityId=null;
-    let cityId=null;
-    let areaId=null;
 
-    if(this.selectedSpeciality!==null){
-      specialityId=this.selectedSpeciality.id;
-    }
-    if(this.selectedCity!==null){
-      cityId=this.selectedCity.id;
-    }
-    if(this.selectedArea!==null){
-      areaId=this.selectedArea.id;
-    }
-    this._http.get<any>(`${Constants.getDoctor}${specialityId}/${cityId}/${areaId}?page=1&limit=10&clinicName=${this.doctorName}&sortType=${this.sortType}&order=${this.order}`)
-    .subscribe(
-      {
-        next:response=>{
-          this.searchResult.doctorsSearchResult = response.data;
-          this.searchResult.doctorsSubject.next(response);
-
-        },
-        error:error=>{}
-      }
-    );
-  }
-  submitSearchbutton(){
-    let selectedAreaOrCity: String="Egypt";
-    let speciality="All Specialities";
-    if (this.selectedSpeciality !== null) {
-      speciality=this.selectedSpeciality.name;
-    }
-    if(this.selectedArea!==null){
-      selectedAreaOrCity=this.selectedArea.name;
-    }
-    else{
-      if(this.selectedCity!==null){
-        selectedAreaOrCity=this.selectedCity.name;
-      }
-    }
-    if (this.doctorName !== null) {
-      this.router.navigate(['doctor', speciality, selectedAreaOrCity], { queryParams: { doctorName: this.doctorName } });
-    } else {
-      this.router.navigate(['doctor', speciality, selectedAreaOrCity]);
-    }
-    this.getSearchResult();
-    console.log(this.searchResult.doctorsSearchResult);
-
-  }
   onCitySelectionChange(selectedCity: any): void {
     this.filteredAreas = this.areas.filter(area => area.city.name === selectedCity.name);
   }
 
-  addSortParams(sortType: any) {
-
-    this.sortType = sortType.value;
-    this.order = sortType.order
-    this.submitSearchbutton();
-
-  }
+ 
 
 }
