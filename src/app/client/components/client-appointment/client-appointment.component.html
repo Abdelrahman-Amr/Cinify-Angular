@@ -23,8 +23,7 @@
         </div>
         <div class="card-body"> <p class="card-text"><i class="bi bi-geo-alt-fill"></i> {{ appointment.doctor.clinic.address }}</p>
           <p class="card-text"><i class="bi bi-calendar-event"></i> Appointment Date: {{ appointment.date |date}}</p>
-          <p class="card-text"><i class="bi bi-info-circle-fill"></i> {{ appointment.status }}</p>
-          <p class="card-text"><i class="bi bi-info-circle-fill"></i> {{ appointment.status }}</p>
+          <p class="card-text"><i class="bi bi-info-circle-fill"></i> {{ (!isBefore(appointment.date))?appointment.status:'Finished' }}</p>
 
           <p class="card-text"><i class="bi bi-calendar-event"></i> From: {{ appointment.startTime }} - To: {{ appointment.endTime }}</p>
         </div>
