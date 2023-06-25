@@ -42,6 +42,7 @@ url = Constants.downloadDoctorImgUrl;
       this.isLoading = false;
     });
 
+
     let app=new AppointmentModel();
     app.date=new Date();
     app.startTime=9.30;
