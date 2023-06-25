@@ -35,4 +35,8 @@ export class AppointmentWithoutRatingService {
   updateAppointment(app: AppointmentWithoutRatingModel): Observable < MessageResponse > {
     return this.httpClient.put<MessageResponse>(Constants.updateAppointmentWithoutRatingURL, app);
   }
+
+  getAppointmetsByClinicId(clinicId:number){
+    return this.httpClient.get<AppointmentWithoutRatingModel[]>(Constants.getAllBookedAppointmentsByClinicId+clinicId);
+  }
 }

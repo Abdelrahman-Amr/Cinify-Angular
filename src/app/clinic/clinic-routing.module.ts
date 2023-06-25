@@ -7,12 +7,13 @@ import {ClinicLoginComponent} from "./components/clinic-login/clinic-login.compo
 import {AddDoctorComponent} from "./components/add-doctor/add-doctor.component";
 import {ManageDoctorsComponent} from "./components/manage-doctors/manage-doctors.component";
 import {AuthGuard} from "../shared/services/auth.guard";
+import { ClinicHomeComponent } from './components/clinic-home/clinic-home.component';
 
 
 const routes: Routes = [
   {
     path:'',
-    component:DoctorHomeComponent
+    component:ClinicHomeComponent
   },
   {
     path:'signup',
@@ -38,7 +39,6 @@ const routes: Routes = [
       name:'clinic'
     }
   }
-
 
 
   ];

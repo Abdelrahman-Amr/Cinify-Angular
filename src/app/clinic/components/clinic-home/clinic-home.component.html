@@ -1,0 +1,82 @@
+<div class="clinic-name-container">
+    <h2 class="clinic-name">Zaki Clinics</h2>
+</div>
+
+<div class="container py-2">
+    <!-- replace if with pending -->
+    <ng-container *ngIf="false">
+        <div class="alert">
+            <div class="flex">
+                <div class="alert-prompt-wrap">
+                    <p class="">
+                        You Clinic Account is still pending, Please wait for verification.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- replace if with !pending inside container -->
+    <div class="quick-actions mb-4">
+        <h3 class="section-title">Quick Actions</h3>
+        <div class="row g-0">
+            <!-- update with links -->
+            <div class="action col-6 text-center">
+                <a>
+                    <mat-icon>add</mat-icon>
+                    <span>Add Doctors</span>
+                </a>
+            </div>
+
+            <div class="action col-6 text-center">
+                <a>
+                    <mat-icon>edit</mat-icon>
+                    <span>Manage Doctors</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="appointments">
+        <h3 class="section-title">Appointments</h3>
+
+        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+            class="mat-elevation-z8">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="doctor">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Doctor">doctor</th>
+                <td mat-cell *matCellDef="let element"> {{element.doctor.fullName}} </td>
+            </ng-container>
+
+
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="patient">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>patient</th>
+                <td mat-cell *matCellDef="let element"> {{element.patient.fullName}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>date</th>
+                <td mat-cell *matCellDef="let element"> {{element.date | date:'EEEE, MMMM d'}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="time">
+                <th mat-header-cell *matHeaderCellDef>time</th>
+                <td mat-cell *matCellDef="let element"> {{element.startTime + ' - ' + element.endTime}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+
+</div>
