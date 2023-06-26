@@ -4,4 +4,10 @@
 
 .text-reset {
     text-decoration: none;
+    cursor: pointer;
+}
+
+.linkStyle{
+    cursor: pointer;
+    color:black;
 }
