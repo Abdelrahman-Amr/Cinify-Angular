@@ -6,6 +6,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { ClinicModel } from 'src/app/shared/model/clinic-model';
 
 @Component({
   selector: 'app-clinic-home',
@@ -18,11 +19,14 @@ export class ClinicHomeComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource<AppointmentWithoutRatingModel>([]);
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+   //@ts-ignore
+  clinic :ClinicModel=JSON.parse(localStorage.getItem('user'));
 
   constructor(private appointmentService: AppointmentWithoutRatingService, private _liveAnnouncer: LiveAnnouncer) {
   }
 
   ngAfterViewInit(): void {
+ 
     this.dataSource.sort = this.sort;
     this.dataSource.sortingDataAccessor = (item, property) => {
       switch (property) {
