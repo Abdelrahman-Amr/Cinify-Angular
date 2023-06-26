@@ -71,6 +71,7 @@ export class Constants {
 
   public static readonly getDividedAppointmentByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/divided/';
   public static readonly getDividedAppointmentUpcomingByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/divided/upcoming/';
+  public static readonly rateAppointmentURL = this.baseURL + '/appointmentsForClinics/rate/';
 
   //Appointments
   public static readonly getAllPatientAppointments=this.baseURL+'/appointments/byPatientId/'
@@ -84,9 +85,10 @@ export class Constants {
 //Cities
   public static readonly getAllCities=this.baseURL+'/cities/all'
 
-
+  
   //Patient URLs
   public static readonly addPatientUrl = this.baseURL + '/patients/addPatient';
+  public static readonly updatePatientProfile=this.baseURL+'/patients/update'
 
 
 

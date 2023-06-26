@@ -32,8 +32,13 @@ export class AppointmentWithoutRatingService {
     });
   }
 
-  updateAppointment(app: AppointmentWithoutRatingModel): Observable < MessageResponse > {
-    return this.httpClient.put<MessageResponse>(Constants.updateAppointmentWithoutRatingURL, app);
+  updateAppointment(app: AppointmentWithoutRatingModel): Observable < AppointmentWithoutRatingModel > {
+    return this.httpClient.put<AppointmentWithoutRatingModel>(Constants.updateAppointmentWithoutRatingURL, app);
+  }
+
+  rateAppointment(appId:number, rating:number): Observable <MessageResponse > {
+    return this.httpClient.put<MessageResponse>(Constants.rateAppointmentURL+appId+"/rating/"+rating,{
+    });
   }
 
   getAppointmetsByClinicId(clinicId:number){

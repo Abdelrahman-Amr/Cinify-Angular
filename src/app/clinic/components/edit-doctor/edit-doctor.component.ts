@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SwAlertService} from "../../../shared/services/sw-alert.service";
 import {Constants} from "../../../shared/constatnts";
 import {DoctorModel} from "../../../shared/model/doctor-model";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {DoctorService} from "../../../shared/services/doctor.service";
 import {DoctorTitleService} from "../../../shared/services/doctorTitle.service";
 import {DoctorTitleModel} from "../../../shared/model/doctor-title-model";
@@ -26,12 +26,15 @@ export class EditDoctorComponent implements OnInit{
   imgTitle='Click to upload image';
 
   imgFile: any;
-  imgUrl: string;
+  docFile:any;
+  docImgTitle='Upload Document';
+
   constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService,
               @Inject(MAT_DIALOG_DATA) public doctor: DoctorModel,
               private doctorService:DoctorService, private doctorTitleService:DoctorTitleService,
               private doctorSpecializationService:DoctorSpecializationService,
-              private sessionStorageService:SessionStorageService) {
+              private sessionStorageService:SessionStorageService,
+              private dialogRef: MatDialogRef<EditDoctorComponent>) {
   }
 
   ngOnInit(): void {
@@ -41,6 +44,8 @@ export class EditDoctorComponent implements OnInit{
     this.titles = this.sessionStorageService.getTitles();
     this.specs = this.sessionStorageService.getSpecs();
     this.imgTitle = this.doctor.imgUrl;
+    this.docImgTitle = this.doctor.docImg;
+
     // this.doctorSpecializationService.getAllDoctorSpecs().subscribe(value => {
     //   this.specs = value;
     // });
@@ -71,13 +76,19 @@ export class EditDoctorComponent implements OnInit{
       doctor.phoneNumber = this.form.controls['phoneNumber'].value;
       doctor.fullName = this.form.controls['name'].value;
       doctor.isDeleted = this.form.controls['isDeleted'].value;
-      console.log(this.form.controls['isDeleted'].value);
       doctor.avgMinutesPerPatient = +this.form.controls['avgMinutesPerPatient'].value;
       doctor.imgUrl = this.imgTitle;
+      doctor.docImg = this.docImgTitle;
 
       this.doctorService.updateDoctor(doctor).subscribe(value => {
         this.swAlertService.success('Updated Successfully');
-        this.doctorService.upload(this.imgFile,value.message).subscribe(() => {
+        this.dialogRef.close();
+        if(this.imgFile) {
+          this.doctorService.upload(this.imgFile, value.message).subscribe(() => {
+          });
+        }
+        doctor.docImg = 'doc'+value.message;
+        this.doctorService.upload(this.docFile,this.docImgTitle).subscribe(() => {
         });
       }, error=>{
         const formControl = this.form.get(error.error.field);
@@ -100,4 +111,8 @@ export class EditDoctorComponent implements OnInit{
     this.imgFile = event.target.files[0];
   }
 
+  onDocChange(event:any){
+    this.docImgTitle = event.target.files[0].name;
+    this.docFile = event.target.files[0];
+  }
 }
