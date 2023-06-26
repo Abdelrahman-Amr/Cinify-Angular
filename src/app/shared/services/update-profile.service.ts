@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ValidatorFn, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -18,4 +19,5 @@ export class UpdateProfileService {
     this.isActive = 'changePassword';
     this.router.navigate(['/changePassword']);
   }
+  
 }

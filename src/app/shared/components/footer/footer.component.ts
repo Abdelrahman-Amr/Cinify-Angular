@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FilterService } from '../../services/filter.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+  constructor(public filterService:FilterService){}
+
+  search(){
+    this.filterService.submitSearchbutton();
+  }
 }

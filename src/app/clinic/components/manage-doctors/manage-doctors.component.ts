@@ -125,7 +125,8 @@ url = Constants.downloadDoctorImgUrl;
   }
 
   nextPage(){
-    this.doctorService.getDoctorsPage(this.page, this.limit).subscribe(value => {
+    // @ts-ignore
+    this.doctorService.getDoctorsPageByClinic(this.page, this.limit, JSON.parse(localStorage.getItem('user')).id).subscribe(value => {
       this.doctors = value.data;
     });
   }

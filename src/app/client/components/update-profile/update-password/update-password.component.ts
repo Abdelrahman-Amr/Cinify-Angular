@@ -2,6 +2,10 @@ import { Component, OnInit  } from '@angular/core';
 import { UpdateProfileService } from 'src/app/shared/services/update-profile.service';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Constants } from 'src/app/shared/constatnts';
+import { PatientModel } from 'src/app/shared/model/patient-model';
+import { PatientService } from 'src/app/shared/services/patient.service';
+import { Router } from '@angular/router';
+import { SwAlertService } from 'src/app/shared/services/sw-alert.service';
 
 @Component({
   selector: 'app-update-password',
@@ -10,9 +14,11 @@ import { Constants } from 'src/app/shared/constatnts';
 })
 export class UpdatePasswordComponent implements OnInit {
   profileForm: FormGroup;
- 
-  constructor(private updateProfileService:UpdateProfileService,private formBuilder: FormBuilder){
-      
+  //@ts-ignore
+ patient:PatientModel=JSON.parse(localStorage.getItem('user'));
+  constructor(private updateProfileService:UpdateProfileService,private formBuilder: FormBuilder,private patientService:PatientService,
+    private router :Router ,private swAlert:SwAlertService){
+      this.updateProfileService.isActive="changePassword";
   }
 
   ngOnInit(): void {
@@ -27,39 +33,78 @@ export class UpdatePasswordComponent implements OnInit {
     //   inputBirthday: [JSON.parse(localStorage.getItem('user')).birthDate,[Validators.email]],
     // });
     this.profileForm = this.formBuilder.group({
-      name:['', [Validators.required, Validators.minLength(3),
-      Validators.maxLength(30)]],
 
-      phone:['', [Validators.required, Validators.pattern(Constants.DIGITS_ONLY_11)]],
 
-      dob:['', [Validators.required]],
-      email:['', [Validators.required, Validators.pattern(Constants.EMAIL)]],
+      confirmPassword:['',[Validators.required,Validators.minLength(5),Validators.maxLength(30),this.passwordMismatch.bind(this)]],
 
-      password:['',[Validators.required,Validators.minLength(5),
-        Validators.maxLength(30)]],
+        newPassword:['',[Validators.required,Validators.minLength(5),Validators.maxLength(30),this.passwordMismatch.bind(this)]],
 
-      gender:['male',[Validators.required]],
+
 
     });
   }
+  // passwordMismatch(): ValidatorFn {
+  //   return (control: AbstractControl): ValidationErrors | null => {
+  //     const password = this.profileForm.controls['newPassword'].value;
+  //     const confirmPassword = this.profileForm.controls['confirmPassword'].value;
+  //     // Check if password field has a value
+  //     // if (password && password.value.trim()!='') {
+  //       // Make confirmPassword field required
+  //       // confirmPassword?.setValidators([Validators.required]);
+  //           console.log("yes");
+  //       // Validate if confirmation password matches the password
+  //       // @ts-ignore
+  //     if ( password !== confirmPassword) {
+  //         return { passwordMismatch: true };
+  //       // }
+  //     }
+  //
+  //     return null;
+  //   };
+  // }
 
-    minAge(minAge: number, errorMessage: string): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const birthDate = new Date(control.value);
-      const currentDate = new Date();
-  
-      const diffYears = currentDate.getFullYear() - birthDate.getFullYear();
-      const diffMonths = currentDate.getMonth() - birthDate.getMonth();
-      const diffDays = currentDate.getDate() - birthDate.getDate();
-  
-      if (diffYears < minAge || (diffYears === minAge && diffMonths < 0) || (diffYears === minAge && diffMonths === 0 && diffDays < 0)) {
-        return { 'minAge': { message: errorMessage } };
-      }
-  
-      return null;
-    };
+  passwordMismatch(control:AbstractControl):{[s:string]:boolean} | null{
+    let password='';
+    let confirmPassword='';
+
+    if(this.profileForm){
+       password = this.profileForm.controls['newPassword']?.value;
+
+    }
+    if(this.profileForm){
+      confirmPassword = this.profileForm.controls['confirmPassword']?.value;
+    }
+    // const confirmPassword = this.profileForm.controls['confirmPassword']?.value;
+    // Check if password field has a value
+    // if (password && password.value.trim()!='') {
+    // Make confirmPassword field required
+    // confirmPassword?.setValidators([Validators.required]);
+    console.log("yes");
+    // Validate if confirmation password matches the password
+    // @ts-ignore
+    if ( password !== confirmPassword) {
+      return { passwordMismatch: true };
+      // }
+    }
+
+    return null;
+  }
+  // $10$41bayHvUvPh7MHklcRmAbO1BUv2Bw6wVOreEDBOXOUh8zC42a4YrK
+  updatePassword():void{
+    if(this.profileForm.valid){
+      this.patient.password=this.profileForm.get('newPassword')?.value;
+      this.patientService.changePassword(this.patient);
+      console.log(this.profileForm.get('newPassword')?.value);
+
+    localStorage.setItem('user', JSON.stringify(this.patient));
+    }
+  this.swAlert.success("Patient Password Updated Successe");
+  this.router.navigate(['']);
+}
+
   }
 
-  submitForm(){}
 
-}
+
+
+

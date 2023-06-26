@@ -103,12 +103,12 @@ export class ClientSignupComponent  implements OnInit{
           this.getPatientData(this.signupForm.controls['email'].value);
 
 
-          // if(this.activatedRoute.snapshot.params['isCheckout']=='1'){
-          //   this.router.navigate(['/checkout']);
-          //
-          // }else {
-          //   this.router.navigate(['/']);
-          // }
+          if(this.activatedRoute.snapshot.params['isCheckout']=='1'){
+            this.router.navigate(['/checkout']);
+
+          }else {
+            this.router.navigate(['/']);
+          }
         },
         (error) => {
           this.swAlertService.fail('Failed to Login');

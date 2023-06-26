@@ -9,50 +9,50 @@
                     <form *ngIf="profileForm" [formGroup]="profileForm">
                         <!-- Form Row -->
                             <!-- Form Group (organization name)-->
-                            <div class="md-3">
-                                <label class="small mb-1" for="fullName">Full Name</label>
-                                <input [class.is-valid]="!profileForm.controls['name'].errors" formControlName="name"
-                                type="text" class="form-control" id="name" 
-                                placeholder="Enter full name">
-                            </div>
-                            <div *ngIf="profileForm.controls['name'].errors && (profileForm.controls['name'].touched || profileForm.controls['name'].dirty)">
-                                <small *ngIf="profileForm.controls['name'].errors?.['minlength']"
-                                    class="form-text text-danger">min length</small>
-                                <small *ngIf="profileForm.controls['name'].errors?.['maxlength']"
-                                    class="form-text text-danger">max length</small>
-                            </div>
+                      <mat-form-field appearance="outline" class="col-md-12 col-xs-12">
+                        <mat-label>Full Name</mat-label>
+                        <input  matInput name="name" required type="text" [formControlName]="'name'">
+                        <mat-error *ngIf="profileForm.controls['name'].errors?.['required']">Required</mat-error>
+                        <mat-error *ngIf="profileForm.controls['name'].errors?.['minLength']">Min Length = 5</mat-error>
+                        <mat-error *ngIf="profileForm.controls['name'].errors?.['maxlength']">Max Length = 30</mat-error>
+                      </mat-form-field>
                         <!-- Form Group (email address)-->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Email address</label><input [class.is-valid]="!profileForm.controls['email'].errors" formControlName="email"
-                                type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                placeholder="name@example.com">
-                        <div *ngIf="profileForm.controls['email'].errors && (profileForm.controls['email'].touched || profileForm.controls['email'].dirty)">
-                            <small *ngIf="profileForm.controls['email'].errors?.['pattern']"
-                                class="form-text text-danger">Invalid email format</small>
-                        </div> 
-                        </div>
+
+                      <mat-form-field appearance="outline" class="col-md-12">
+                        <mat-label>Email</mat-label>
+                        <input type="email"  matInput name="address" required [formControlName]="'email'"/>
+                        <mat-error *ngIf="profileForm.controls['email'].errors?.['required']">Required</mat-error>
+                        <mat-error *ngIf="profileForm.controls['email'].errors?.['pattern']">Invalid Email</mat-error>
+                        <mat-error *ngIf="profileForm.controls['email'].errors?.['serverError']">{{errorMsg}}</mat-error>
+                      </mat-form-field>
                         <!-- Form Row-->
-                            <div class="md-3">
-                                <label class="small mb-1" for="phone">Phone number</label>
-                                <input [class.is-valid]="!profileForm.controls['phone'].errors" formControlName="phone"
-                                type="tel" class="form-control" id="phone" placeholder="555-123-4567">
-                            </div>
-                            <div *ngIf="profileForm.controls['phone'].errors && (profileForm.controls['phone'].touched || profileForm.controls['phone'].dirty)">
-                                <small *ngIf="profileForm.controls['phone'].errors?.['pattern']"
-                                    class="form-text text-danger">Invalid phone number format</small>
-                            </div> 
+
+                      <mat-form-field appearance="outline" class="col-md-12">
+                        <mat-label>Mobile Number</mat-label>
+                        <input  matInput name="phone" required type="tel" [formControlName]="'phone'">
+                        <mat-error *ngIf="profileForm.controls['phone'].errors?.['required']">Required</mat-error>
+                        <mat-error *ngIf="profileForm.controls['phone'].errors?.['pattern']">Invalid Number</mat-error>
+                        <mat-error *ngIf="profileForm.controls['phone'].errors?.['serverError']">{{errorMsg}}</mat-error>
+                      </mat-form-field>
+
                             <!-- Form  (birthday)-->
-                            <div class="md-3">
-                                <label class="small mb-1" for="birthday">Birthday</label>
-                                <input [class.is-valid]="!profileForm.controls['birthday'].errors" formControlName="birthday"
-                                type="date" class="form-control" id="birthday" 
-                                placeholder="06/10/1988">
-                            </div>
+                            <mat-form-field   appearance="outline" class="col-md-12">
+                              <mat-label>DOB</mat-label>
+                              <input  matInput [matDatepicker]="picker" name="dob" required  [formControlName]="'birthday'">
+                              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                              <mat-datepicker #picker></mat-datepicker>
+                              <mat-error *ngIf="profileForm.controls['birthday'].errors?.['required']">Required</mat-error>
+                              <mat-error *ngIf="profileForm.controls['birthday'].errors?.['minAge']">'You must be at least 15 years old'</mat-error>
+                            </mat-form-field>
+
                             <div *ngIf="profileForm.controls['birthday'].errors && (profileForm.controls['birthday'].touched || profileForm.controls['birthday'].dirty)">
                                 <small *ngIf="profileForm.controls['birthday'].errors?.['minAge']"
                                     class="form-text text-danger">You must be at least 15 years old</small>
-                            </div> 
-                        <button class="btn btn-primary" type="button" (click)="submitForm()">Save changes</button>
+                            </div>
+                      <div class="col-12 text-center">
+                        <button [disabled]="!profileForm.valid" mat-raised-button color='primary' class="text-center" type="button" (click)="submitForm()">Save changes</button>
+
+                      </div>
                     </form>
                 </div>
             </div>

@@ -3,4 +3,5 @@ export class AppointmentModel{
    date:Date;
    startTime:number;
    endTime:number;
+  rating:number;
 }
