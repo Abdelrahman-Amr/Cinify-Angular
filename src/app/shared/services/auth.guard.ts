@@ -21,21 +21,31 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     let token=localStorage.getItem('token');
+    // @ts-ignore
+    let status=JSON.parse(localStorage.getItem('user')).status==='Accepted';
+    let ret=null;
     if(token) {
-     
-       if ((route.data['name']=='client' && !this.securityService.isClinic())
-          //@ts-ignore
-         || (route.data['name']=='clinic' && this.securityService.isClinic()&&JSON.parse(localStorage.getItem('user').status==='Accepted'))){
-        return true;
-      }else{
-      return   this.router.navigate(['/']);
-       }
-    }else if(route.data['name']=='client' &&route.data['isCheckout']=='true'){
-      return   this.router.navigate(['/login/1'],);
 
-    }
-    else{
-      return this.router.navigate(['/']);
+       if ((route.data['name']=='client' && !this.securityService.isClinic()))
+       {
+         return true;
+       }
+
+       if(route.data['name']=='clinic' && this.securityService.isClinic()&&status){
+         return true;
+      }
+      if(route.data['name']=='clinic' && this.securityService.isClinic()){
+        return   this.router.navigate(['/clinic']);
+      }
+       if(route.data['name']=='client' &&route.data['isCheckout']=='true'){
+        return   this.router.navigate(['/login/1'],);
+
+      }
+      return   this.router.navigate(['/']);
+
+    }else{
+      return   this.router.navigate(['/']);
+
     }
   }
 }

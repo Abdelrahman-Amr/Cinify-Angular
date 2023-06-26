@@ -13,7 +13,8 @@ import { ClinicHomeComponent } from './components/clinic-home/clinic-home.compon
 const routes: Routes = [
   {
     path:'',
-    component:ClinicHomeComponent
+    component:ClinicHomeComponent,
+
   },
   {
     path:'signup',

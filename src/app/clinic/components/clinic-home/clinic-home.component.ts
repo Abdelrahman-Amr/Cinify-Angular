@@ -8,6 +8,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ClinicModel } from 'src/app/shared/model/clinic-model';
 import { ClinicService } from 'src/app/shared/services/clinic.service';
+import {SecurityService} from "../../../shared/services/security.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-clinic-home',
@@ -23,11 +25,14 @@ export class ClinicHomeComponent implements AfterViewInit, OnInit {
    //@ts-ignore
   clinic :ClinicModel=JSON.parse(localStorage.getItem('user'));
 
-  constructor(private appointmentService: AppointmentWithoutRatingService, private _liveAnnouncer: LiveAnnouncer,private clinicService:ClinicService) {
+  constructor(private appointmentService: AppointmentWithoutRatingService,
+              private  securityService:SecurityService,
+              private _liveAnnouncer: LiveAnnouncer,private clinicService:ClinicService
+  ,private router:Router) {
   }
 
   ngAfterViewInit(): void {
- 
+
     this.dataSource.sort = this.sort;
     this.dataSource.sortingDataAccessor = (item, property) => {
       switch (property) {
@@ -41,6 +46,9 @@ export class ClinicHomeComponent implements AfterViewInit, OnInit {
 
 
   ngOnInit(): void {
+    if(!this.securityService.isClinic()){
+      this.router.navigate(['/']);
+    }
     this.loadAppointments();
     if(this.clinic.status==='pending'){
     this.clinicService.getClinicById(this.clinic.id).subscribe(
@@ -53,14 +61,14 @@ export class ClinicHomeComponent implements AfterViewInit, OnInit {
       }
     );
     }
-    
+
 
 
   }
 
 
   loadAppointments() {
-    //replace with clinic id 
+    //replace with clinic id
     this.appointmentService.getAppointmetsByClinicId(this.clinic.id).subscribe(
       (data: AppointmentWithoutRatingModel[]) => {
         this.dataSource.data = data;
