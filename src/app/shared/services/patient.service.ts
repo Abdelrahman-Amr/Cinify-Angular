@@ -15,8 +15,8 @@ export class PatientService {
 
   constructor(private _http:HttpClient) { }
 
-  updatePatientProfile(patient:PatientModel){
-    this._http.put<any>(Constants.updatePatientProfile,patient).subscribe();
+  updatePatientProfile(patient:PatientModel):Observable<MessageResponse>{
+    return this._http.put<MessageResponse>(Constants.updatePatient,patient);
 
   }
   changePassword(patient:PatientModel){

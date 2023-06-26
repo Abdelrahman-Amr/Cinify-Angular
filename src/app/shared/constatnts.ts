@@ -90,6 +90,7 @@ export class Constants {
   public static readonly addPatientUrl = this.baseURL + '/patients/addPatient';
   public static readonly updatePatientProfile=this.baseURL+'/patients/update'
   public static readonly changePassword=this.baseURL+'/patients/changePassword'
+  public static readonly updatePatient=this.baseURL+'/patients/updatePatient'
 
 
 

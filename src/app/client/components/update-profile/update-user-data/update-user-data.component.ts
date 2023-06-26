@@ -59,9 +59,19 @@ export class UpdateUserDataComponent implements OnInit {
      }
 
 
-    this.patientService.updatePatientProfile(this.patient);
-    localStorage.setItem('user', JSON.stringify(this.patient));
-    this.swaAlert.success("Patient Profile Updated Successe");
-    this.router.navigate(['']);
+    this.patientService.updatePatientProfile(this.patient).subscribe(value => {
+      localStorage.setItem('user', JSON.stringify(this.patient));
+      this.swaAlert.success("Patient Profile Updated Successe");
+      this.router.navigate(['']);
+    },error => {
+      const formControl = this.profileForm.get(error.error.field);
+      this.errorMsg = error.error.message;
+      if (formControl) {
+        formControl.setErrors({
+          serverError: true
+        });
+      }
+    });
+
   }
 }
