@@ -26,7 +26,6 @@
             <mat-error *ngIf="signupForm.controls['phone'].errors?.['required']">Required</mat-error>
             <mat-error *ngIf="signupForm.controls['phone'].errors?.['pattern']">Invalid Number</mat-error>
             <mat-error *ngIf="signupForm.controls['phone'].errors?.['serverError']">{{errorMsg}}</mat-error>
-
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="col-md-6">
