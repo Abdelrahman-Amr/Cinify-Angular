@@ -40,7 +40,6 @@ export class UpdateUserDataComponent implements OnInit {
       //@ts-ignore
       birthday: [this.patient.birthDate,[Validators.required,this.patientService.minAge(15, 'You must be at least 15 years old')]],
     });
-
   }
 
   submitForm(){
