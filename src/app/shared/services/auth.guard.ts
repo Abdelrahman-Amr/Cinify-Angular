@@ -22,8 +22,10 @@ export class AuthGuard implements CanActivate {
 
     let token=localStorage.getItem('token');
     if(token) {
+     
        if ((route.data['name']=='client' && !this.securityService.isClinic())
-         || (route.data['name']=='clinic' && this.securityService.isClinic())){
+          //@ts-ignore
+         || (route.data['name']=='clinic' && this.securityService.isClinic()&&JSON.parse(localStorage.getItem('user').status==='Accepted'))){
         return true;
       }else{
       return   this.router.navigate(['/']);

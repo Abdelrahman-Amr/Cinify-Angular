@@ -42,6 +42,7 @@ export class ClinicHomeComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
     this.loadAppointments();
+    if(this.clinic.status==='pending'){
     this.clinicService.getClinicById(this.clinic.id).subscribe(
       {
         next:response=>{
@@ -51,7 +52,7 @@ export class ClinicHomeComponent implements AfterViewInit, OnInit {
         error:error=>{}
       }
     );
-    
+    }
     
 
 

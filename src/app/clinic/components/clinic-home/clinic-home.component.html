@@ -4,7 +4,7 @@
 
 <div class="container py-2">
     <!-- replace if with pending -->
-    <ng-container *ngIf="clinic.status==='pending'">
+    <ng-container *ngIf="clinic.status==='Pending'">
         <div class="alert">
             <div class="flex">
                 <div class="alert-prompt-wrap">
@@ -17,7 +17,7 @@
     </ng-container>
 
     <!-- replace if with !pending inside container -->
-    <div class="quick-actions mb-4" *ngIf="clinic.status!=='pending'">
+    <div class="quick-actions mb-4" *ngIf="clinic.status!=='Pending'">
         <h3 class="section-title">Quick Actions</h3>
         <div class="row g-0">
             <!-- update with links -->
