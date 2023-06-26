@@ -19,24 +19,28 @@ export class PatientService {
     this._http.put<any>(Constants.updatePatientProfile,patient).subscribe();
 
   }
+  changePassword(patient:PatientModel){
+    this._http.put<any>(Constants.changePassword,patient).subscribe();
+
+  }
   minAge(minAge: number, errorMessage: string): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const birthDate = new Date(control.value);
       const currentDate = new Date();
-  
+
       const diffYears = currentDate.getFullYear() - birthDate.getFullYear();
       const diffMonths = currentDate.getMonth() - birthDate.getMonth();
       const diffDays = currentDate.getDate() - birthDate.getDate();
-  
+
       if (diffYears < minAge || (diffYears === minAge && diffMonths < 0) || (diffYears === minAge && diffMonths === 0 && diffDays < 0)) {
         return { 'minAge': { message: errorMessage } };
       }
-  
+
       return null;
     };
   }
 
-  
+
   addPatient(patient: PatientModel): Observable < PatientModel > {
     return this._http.post<PatientModel>(Constants.addPatientUrl, patient);
   }

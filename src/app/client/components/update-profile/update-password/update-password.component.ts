@@ -33,48 +33,69 @@ export class UpdatePasswordComponent implements OnInit {
     //   inputBirthday: [JSON.parse(localStorage.getItem('user')).birthDate,[Validators.email]],
     // });
     this.profileForm = this.formBuilder.group({
-   
 
-      confirmPassword:['',[Validators.minLength(5),Validators.maxLength(30)]],
 
-        newPassword:['',[,Validators.minLength(5),Validators.maxLength(30)]],
-  
-    
+      confirmPassword:['',[Validators.required,Validators.minLength(5),Validators.maxLength(30),this.passwordMismatch.bind(this)]],
+
+        newPassword:['',[Validators.required,Validators.minLength(5),Validators.maxLength(30),this.passwordMismatch.bind(this)]],
+
+
 
     });
   }
-  passwordMatchValidator(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const password = control.get('newPassword');
-      const confirmPassword = control.get('confirmPassword');
-  
-      // Check if password field has a value
-      if (password && password.value.trim()!='') {
-        // Make confirmPassword field required
-        confirmPassword?.setValidators([Validators.required]);        
-  
-        // Validate if confirmation password matches the password
-        if (confirmPassword && password.value !== confirmPassword.value) {
-          return { passwordMismatch: true };
-        }
-      } else {
-        // Reset confirmPassword field validators if password field is empty
-        confirmPassword?.clearValidators();
-      }
-  
-      // Update confirmPassword field validation state
-      confirmPassword?.updateValueAndValidity();
-  
-      return null;
-    };
+  // passwordMismatch(): ValidatorFn {
+  //   return (control: AbstractControl): ValidationErrors | null => {
+  //     const password = this.profileForm.controls['newPassword'].value;
+  //     const confirmPassword = this.profileForm.controls['confirmPassword'].value;
+  //     // Check if password field has a value
+  //     // if (password && password.value.trim()!='') {
+  //       // Make confirmPassword field required
+  //       // confirmPassword?.setValidators([Validators.required]);
+  //           console.log("yes");
+  //       // Validate if confirmation password matches the password
+  //       // @ts-ignore
+  //     if ( password !== confirmPassword) {
+  //         return { passwordMismatch: true };
+  //       // }
+  //     }
+  //
+  //     return null;
+  //   };
+  // }
+
+  passwordMismatch(control:AbstractControl):{[s:string]:boolean} | null{
+    let password='';
+    let confirmPassword='';
+
+    if(this.profileForm){
+       password = this.profileForm.controls['newPassword']?.value;
+
+    }
+    if(this.profileForm){
+      confirmPassword = this.profileForm.controls['confirmPassword']?.value;
+    }
+    // const confirmPassword = this.profileForm.controls['confirmPassword']?.value;
+    // Check if password field has a value
+    // if (password && password.value.trim()!='') {
+    // Make confirmPassword field required
+    // confirmPassword?.setValidators([Validators.required]);
+    console.log("yes");
+    // Validate if confirmation password matches the password
+    // @ts-ignore
+    if ( password !== confirmPassword) {
+      return { passwordMismatch: true };
+      // }
+    }
+
+    return null;
   }
-  
+  // $10$41bayHvUvPh7MHklcRmAbO1BUv2Bw6wVOreEDBOXOUh8zC42a4YrK
   updatePassword():void{
-    if(this.profileForm.get('newPassword')?.value!=null||this.profileForm.get('newPassword')?.value.trim!=''){
+    if(this.profileForm.valid){
       this.patient.password=this.profileForm.get('newPassword')?.value;
-      this.patientService.updatePatientProfile(this.patient);
+      this.patientService.changePassword(this.patient);
       console.log(this.profileForm.get('newPassword')?.value);
-      
+
     localStorage.setItem('user', JSON.stringify(this.patient));
     }
   this.swAlert.success("Patient Password Updated Successe");
@@ -82,7 +103,7 @@ export class UpdatePasswordComponent implements OnInit {
 }
 
   }
-   
+
 
 
 
