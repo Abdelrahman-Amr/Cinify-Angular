@@ -134,7 +134,7 @@ export class ClinicSignupComponent implements OnInit, AfterViewInit{
 
       this.swAlertService.success("Signed Up Successfully");
 
-      this.router.navigate(['/']);
+      this.router.navigate(['/clinic']);
 
     },error => {
       localStorage.removeItem('token');

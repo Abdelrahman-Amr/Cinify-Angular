@@ -23,6 +23,10 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {NgbPagination} from "@ng-bootstrap/ng-bootstrap";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { ClinicHomeComponent } from './components/clinic-home/clinic-home.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -33,7 +37,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ClinicLoginComponent,
     AddDoctorComponent,
     ManageDoctorsComponent,
-    EditDoctorComponent
+    EditDoctorComponent,
+    ClinicHomeComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +61,10 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatDialogModule,
     NgbPagination,
     MatTooltipModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule
 
   ]
 })

@@ -40,4 +40,8 @@ export class AppointmentWithoutRatingService {
     return this.httpClient.put<MessageResponse>(Constants.rateAppointmentURL+appId+"/rating/"+rating,{
     });
   }
+
+  getAppointmetsByClinicId(clinicId:number){
+    return this.httpClient.get<AppointmentWithoutRatingModel[]>(Constants.getAllBookedAppointmentsByClinicId+clinicId);
+  }
 }

@@ -62,7 +62,7 @@ export class Constants {
   public static readonly deleteAppointmentWithoutRatingUrl = this.baseURL + '/appointmentsForClinics/delete/';
   public static readonly addAppointmentWithoutRatingURL = this.baseURL + '/appointmentsForClinics/add';
   public static readonly bookAppointmentUrl = this.baseURL + '/appointmentsForClinics/book/';
-
+  public static readonly getAllBookedAppointmentsByClinicId =  this.baseURL + '/appointmentsForClinics/allBookedByClinicId/'
   // public static readonly getAppointmentByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/';
   // public static readonly getAppointmentUpcomingByDoctorIdURL = this.baseURL + '/appointmentsForClinics/byDoctorId/upcoming/';
 
