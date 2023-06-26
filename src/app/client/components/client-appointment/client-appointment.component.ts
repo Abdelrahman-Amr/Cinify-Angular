@@ -6,6 +6,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {EditDoctorComponent} from "../../../clinic/components/edit-doctor/edit-doctor.component";
 import {RateAppointmentComponent} from "../rate-appointment/rate-appointment.component";
 import { TimeFormatServiceService } from 'src/app/shared/services/time-format-service.service';
+import {PatientAppointment} from "../../../shared/model/patient-appointment";
 
 @Component({
   selector: 'app-client-appointment',
@@ -14,8 +15,11 @@ import { TimeFormatServiceService } from 'src/app/shared/services/time-format-se
 })
 export class ClientAppointmentComponent {
     imgUrl = Constants.downloadDoctorImgUrl ;
+  stars = [1, 2, 3, 4, 5];
+  flags = [true, true, true, true, true];
 
-    constructor(private _http:HttpClient,public appointmentService:AppointmentService,private timeFormatService: TimeFormatServiceService,private editDialog: MatDialog){
+
+  constructor(private _http:HttpClient,public appointmentService:AppointmentService,private timeFormatService: TimeFormatServiceService,private editDialog: MatDialog){
 
     }
     ngOnInit(): void {
@@ -37,7 +41,7 @@ export class ClientAppointmentComponent {
       }
     }
 
-    rate(appointmentId: number){
+    rate(appointment: PatientAppointment){
       const dialogConfig = new MatDialogConfig();
       // dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -47,12 +51,15 @@ export class ClientAppointmentComponent {
       // const data = new  UpdatePreviewData();
       // data.st = row;
       // data.sel = selection;
-      dialogConfig.data = appointmentId;
-      this.editDialog.open(RateAppointmentComponent, dialogConfig).afterClosed().subscribe(()=>{
+      dialogConfig.data = appointment.id;
+      this.editDialog.open(RateAppointmentComponent, dialogConfig).afterClosed().subscribe(value=>{
+        appointment.rating = value;
+
         // this.doctorService.getDoctor(doctor.id).subscribe(value => {
         //   this.doctors[index]  = value;
         // });
       });
+
     }
 
     isBefore(date1:Date){
@@ -62,7 +69,7 @@ export class ClientAppointmentComponent {
     formatAppointmentDate(date: Date): string {
       return this.timeFormatService.formatAppointmentDate(date);
     }
-    
+
     formatTime(time: number): string {
 
       return this.timeFormatService.formatTime(""+time);

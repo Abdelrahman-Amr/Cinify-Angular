@@ -29,9 +29,14 @@
             <button (click)="handleButtonAction(appointment.id)" class="btn btn-danger" *ngIf="!isBefore(appointment.date)">
             <i class="bi bi-x"></i> Cancel Appointment
           </button>
-          <button (click)="rate(appointment.id)" class="btn rate" *ngIf=" isBefore(appointment.date)">
+          <button (click)="rate(appointment)" class="btn rate" *ngIf=" isBefore(appointment.date) && !appointment.rating">
             <i class="fa fa-star checked"></i> Rate Appointment
           </button>
+          <div *ngIf=" isBefore(appointment.date) && appointment.rating">
+            <p *ngFor="let star of stars; let i=index" class="fa fa-star "
+               [ngClass]="{'checked':i<appointment.rating}">
+            </p>
+          </div>
         </div>
       </div>
     </div>
