@@ -13,6 +13,7 @@ import { DoctorTitleModel } from 'src/app/shared/model/doctor-title-model';
 import { DoctorSpecializationModel } from 'src/app/shared/model/doctor-specialization-model';
 import { ClinicModel } from 'src/app/shared/model/clinic-model';
 import { DoctorModel } from 'src/app/shared/model/doctor-model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-doctor',
@@ -36,7 +37,7 @@ export class AddDoctorComponent implements OnInit{
 constructor(private  formBuilder:FormBuilder, private swAlertService:SwAlertService,
             private doctorService:DoctorService, private doctorTitleService:DoctorTitleService,
             private doctorSpecializationService:DoctorSpecializationService,
-            private clinicService:ClinicService,  private sessionStorageService:SessionStorageService) {
+            private clinicService:ClinicService,  private sessionStorageService:SessionStorageService,private router:Router) {
 }
 
 ngOnInit(): void {
@@ -95,7 +96,7 @@ signup(){
       }
           this.doctorService.upload(this.docFile, this.docImgTitle).subscribe(() => {
           });
-
+          this.router.navigate(['/clinic']);
     }, error=>{
       const formControl = this.form.get(error.error.field);
       this.errorMsg = error.error.message;

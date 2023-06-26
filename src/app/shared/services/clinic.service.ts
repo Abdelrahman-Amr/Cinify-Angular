@@ -10,7 +10,7 @@ import { Constants } from '../constatnts';
     providedIn: 'root'
   })
   export class ClinicService {
-
+    clinicModel:ClinicModel;
     constructor(private httpClient: HttpClient) { }
     getAllClinics(): Observable < ClinicModel[] > {
       return this.httpClient.get<ClinicModel[]>(Constants.getAllClinicsUrl,{
@@ -20,6 +20,7 @@ import { Constants } from '../constatnts';
     addClinic(clinic: ClinicModel): Observable < ClinicModel > {
       return this.httpClient.post<ClinicModel>(Constants.addClinictUrl, clinic);
     }
-
-
+    getClinicById(id:number) :Observable < ClinicModel >{
+      return this.httpClient.get<ClinicModel>(Constants.getClinicURL+`${id}`);
+    }
   }

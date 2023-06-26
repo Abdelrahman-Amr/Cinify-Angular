@@ -7,6 +7,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ClinicModel } from 'src/app/shared/model/clinic-model';
+import { ClinicService } from 'src/app/shared/services/clinic.service';
 
 @Component({
   selector: 'app-clinic-home',
@@ -22,7 +23,7 @@ export class ClinicHomeComponent implements AfterViewInit, OnInit {
    //@ts-ignore
   clinic :ClinicModel=JSON.parse(localStorage.getItem('user'));
 
-  constructor(private appointmentService: AppointmentWithoutRatingService, private _liveAnnouncer: LiveAnnouncer) {
+  constructor(private appointmentService: AppointmentWithoutRatingService, private _liveAnnouncer: LiveAnnouncer,private clinicService:ClinicService) {
   }
 
   ngAfterViewInit(): void {
@@ -38,14 +39,28 @@ export class ClinicHomeComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+
   ngOnInit(): void {
     this.loadAppointments();
+    this.clinicService.getClinicById(this.clinic.id).subscribe(
+      {
+        next:response=>{
+          this.clinic=response;
+          localStorage.setItem('user', JSON.stringify(this.clinic));
+        },
+        error:error=>{}
+      }
+    );
+    
+    
+
+
   }
 
 
   loadAppointments() {
     //replace with clinic id 
-    this.appointmentService.getAppointmetsByClinicId(6).subscribe(
+    this.appointmentService.getAppointmetsByClinicId(this.clinic.id).subscribe(
       (data: AppointmentWithoutRatingModel[]) => {
         this.dataSource.data = data;
         this.appointments = data;

@@ -71,7 +71,7 @@ export class ClinicLoginComponent implements OnInit{
       this.securityService.loginSubject.next(null);
       this.swAlertService.success("Logged in Successfully");
 
-      this.router.navigate(['/']);
+      this.router.navigate(['/clinic']);
 
     },error => {
       localStorage.removeItem('token');

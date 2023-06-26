@@ -24,7 +24,7 @@ export class AppointmentService {
   }
 cancelPatientAppointmments(appointmentId: number):void{
     // this._http.put<String>(`${Constants.CancelPatientAppointment}${appointmentId}`,appointmentId)
-    this._http.put<String>(`${Constants.CancelPatientAppointment}5`,appointmentId)
+    this._http.put<String>(`${Constants.CancelPatientAppointment}${appointmentId}`,appointmentId)
 .subscribe(
   {
     next:response=>{
