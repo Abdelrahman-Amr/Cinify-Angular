@@ -13,6 +13,7 @@ export const environment = {
   // redirectURI:'http://clinify-client.s3-website.eu-west-2.amazonaws.com/login'
   redirectURI:'http://localhost:4200/login'
 
+
 };
 
 /*
