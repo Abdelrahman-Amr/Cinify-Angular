@@ -50,7 +50,8 @@ export class ClinicHomeComponent implements AfterViewInit, OnInit {
       this.router.navigate(['/']);
     }
     this.loadAppointments();
-    if(this.clinic.status==='pending'){
+
+    if(this.clinic.status==='Pending'){
     this.clinicService.getClinicById(this.clinic.id).subscribe(
       {
         next:response=>{

@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
 
     let token=localStorage.getItem('token');
     // @ts-ignore
-    let status=JSON.parse(localStorage.getItem('user')).status==='Accepted';
+    let status=JSON.parse(localStorage.getItem('user'))?.status==='Accepted';
     let ret=null;
     if(token) {
 
@@ -37,6 +37,8 @@ export class AuthGuard implements CanActivate {
       if(route.data['name']=='clinic' && this.securityService.isClinic()){
         return   this.router.navigate(['/clinic']);
       }
+      console.log(route.data['name']=='client');
+      console.log(route.data['isCheckout']=='true');
        if(route.data['name']=='client' &&route.data['isCheckout']=='true'){
         return   this.router.navigate(['/login/1'],);
 
@@ -44,7 +46,12 @@ export class AuthGuard implements CanActivate {
       return   this.router.navigate(['/']);
 
     }else{
-      return   this.router.navigate(['/']);
+      if(route.data['name']=='client' &&route.data['isCheckout']=='true'){
+        return   this.router.navigate(['/login/1'],);
+
+      }else {
+        return this.router.navigate(['/']);
+      }
 
     }
   }

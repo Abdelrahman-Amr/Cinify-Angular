@@ -20,8 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   fullName:string;
 
 
-  constructor(private securityService:SecurityService, private router:Router,
-              ) {
+  constructor(private securityService:SecurityService, private router:Router) {
   }
   ngOnInit(): void {
     this.loginSub = this.securityService.loginSubject.subscribe(value => {
